@@ -90,6 +90,12 @@ defmodule PetalBoilerplateWeb do
       import PetalBoilerplateWeb.ErrorHelpers
       import PetalBoilerplateWeb.Gettext
       alias PetalBoilerplateWeb.Router.Helpers, as: Routes
+
+      alias Petal.{
+        Container,
+        Typography,
+        Button
+      }
     end
   end
 

@@ -1,130 +1,128 @@
-<Petal.Container.full_width class="mt-10">
-  <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Petal</h1>
-</Petal.Container.full_width>
+<Container.full_width class="mt-10">
+  <Typography.h1>Petal</Typography.h1>
+</Container.full_width>
 
-<Petal.Container.full_width class="mt-10">
-  <h2 class="mb-5 text-xl">Typography</h2>
-  <Petal.Typography.h1>h1
-  </Petal.Typography.h1>
-</Petal.Container.full_width>
+<Container.full_width class="mt-10">
+  <Typography.h2 underline label="Containers" />
+</Container.full_width>
 
-<Petal.Container.full_width class="mt-10">
-  <h2 class="mb-5 text-xl">Containers</h2>
-</Petal.Container.full_width>
+<Container.full_width padding_on_mobile class="h-10 my-5 text-center bg-gray-300">
+  Container.full_width
+</Container.full_width>
 
-<Petal.Container.full_width padding_on_mobile class="h-10 my-5 text-center bg-gray-300">
-  Petal.Container.full_width
-</Petal.Container.full_width>
-
-<Petal.Container.full_width>
+<Container.full_width>
   <div>
-    <h2 class="mb-5 text-xl">Button Types</h2>
+    <Typography.h2 underline label="Buttons" />
+    <Typography.h3 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <Petal.Button.render type="a" href="/" label="a" />
-    <Petal.Button.render type="button" label="Button" />
-    <Petal.Button.render type="live_patch" href="/" label="Live Patch" />
-    <Petal.Button.render type="live_redirect" href="/" label="Live Redirect" />
+    <Button.button type="a" href="/" label="a" />
+    <Button.button label="Button" />
+    <Button.patch href="/" label="Live Patch" />
+    <Button.redirect href="/" label="Live Redirect" />
     </div>
   </div>
 
   <div class="mt-10">
-    <h2 class="mb-5 text-xl">Button Colors</h2>
+    <Typography.h3 label="Button Colors" />
     <div class="flex flex-wrap gap-2">
-    <Petal.Button.render type="button" color="primary" label="Primary" />
-    <Petal.Button.render type="button" color="secondary" label="secondary" />
-    <Petal.Button.render type="button" color="white" label="White" />
-    <Petal.Button.render type="button" color="green" label="Green" />
-    <Petal.Button.render type="button" color="gray" label="Gray" />
-    <Petal.Button.render type="button" color="gray-light" label="Light Gray" />
-    <Petal.Button.render type="button" color="blue" label="Blue" />
-    <Petal.Button.render type="button" color="pink" label="Pink" />
-    <Petal.Button.render type="button" color="purple" label="Purple" />
-    <Petal.Button.render type="button" color="orange" label="Orange" />
-    <Petal.Button.render type="button" color="red" label="Red" />
-    <Petal.Button.render type="button" color="yellow" label="Yellow" />
-    <Petal.Button.render type="button" color="deep-red" label="Deep Red" />
+    <Button.button color="primary" label="Primary" />
+    <Button.button color="secondary" label="secondary" />
+    <Button.button color="white" label="White" />
+    <Button.button color="green" label="Green" />
+    <Button.button color="gray" label="Gray" />
+    <Button.button color="gray-light" label="Light Gray" />
+    <Button.button color="blue" label="Blue" />
+    <Button.button color="pink" label="Pink" />
+    <Button.button color="purple" label="Purple" />
+    <Button.button color="orange" label="Orange" />
+    <Button.button color="red" label="Red" />
+    <Button.button color="yellow" label="Yellow" />
+    <Button.button color="deep-red" label="Deep Red" />
     </div>
   </div>
 
   <div class="mt-10">
-    <h2 class="mb-5 text-xl">Button Colors (Outline)</h2>
+    <Typography.h3 label="Button Colors (Outline)" />
     <div class="flex flex-wrap gap-2">
-    <Petal.Button.render type="button" color="primary" label="Primary" variant="outline" />
-    <Petal.Button.render type="button" color="secondary" label="Secondary" variant="outline" />
-    <Petal.Button.render type="button" color="white" label="White" variant="outline" />
-    <Petal.Button.render type="button" color="green" label="Green" variant="outline" />
-    <Petal.Button.render type="button" color="gray" label="Gray" variant="outline" />
-    <Petal.Button.render type="button" color="gray-light" label="Light Gray" variant="outline" />
-    <Petal.Button.render type="button" color="blue" label="Blue" variant="outline" />
-    <Petal.Button.render type="button" color="pink" label="Pink" variant="outline" />
-    <Petal.Button.render type="button" color="purple" label="Purple" variant="outline" />
-    <Petal.Button.render type="button" color="orange" label="Orange" variant="outline" />
-    <Petal.Button.render type="button" color="red" label="Red" variant="outline" />
-    <Petal.Button.render type="button" color="yellow" label="Yellow" variant="outline" />
-    <Petal.Button.render type="button" color="deep-red" label="Deep Red" variant="outline" />
+    <Button.button color="primary" label="Primary" variant="outline" />
+    <Button.button color="secondary" label="Secondary" variant="outline" />
+    <Button.button color="white" label="White" variant="outline" />
+    <Button.button color="green" label="Green" variant="outline" />
+    <Button.button color="gray" label="Gray" variant="outline" />
+    <Button.button color="gray-light" label="Light Gray" variant="outline" />
+    <Button.button color="blue" label="Blue" variant="outline" />
+    <Button.button color="pink" label="Pink" variant="outline" />
+    <Button.button color="purple" label="Purple" variant="outline" />
+    <Button.button color="orange" label="Orange" variant="outline" />
+    <Button.button color="red" label="Red" variant="outline" />
+    <Button.button color="yellow" label="Yellow" variant="outline" />
+    <Button.button color="deep-red" label="Deep Red" variant="outline" />
     </div>
   </div>
 
   <div class="mt-10">
-    <h2 class="mb-5 text-xl">Button Sizes</h2>
+    <Typography.h3 label="Button sizes" />
     <div class="flex flex-wrap items-start gap-2">
-    <Petal.Button.render type="button" size="xs" color="primary" label="xs" />
-    <Petal.Button.render type="button" size="sm" color="primary" label="sm" />
-    <Petal.Button.render type="button" size="md" color="primary" label="md" />
-    <Petal.Button.render type="button" size="lg" color="primary" label="lg" />
-    <Petal.Button.render type="button" size="xl" color="primary" label="xl" />
+    <Button.button size="xs" color="primary" label="xs" />
+    <Button.button size="sm" color="primary" label="sm" />
+    <Button.button size="md" color="primary" label="md" />
+    <Button.button size="lg" color="primary" label="lg" />
+    <Button.button size="xl" color="primary" label="xl" />
     </div>
   </div>
 
   <div class="mt-10">
-    <h2 class="mb-5 text-xl">Button States</h2>
+    <Typography.h3 label="Button states" />
+
     <div class="flex flex-wrap gap-2">
-    <Petal.Button.render disabled type="a" href="/" label="a Disabled" />
-    <Petal.Button.render disabled type="button" color="primary" label="Button Disabled" />
-    <Petal.Button.render disabled type="live_patch" href="/" label="Live Patch Disabled" />
-    <Petal.Button.render disabled type="live_redirect" href="/" label="Live Redirect" />
+      <Button.button disabled type="a" href="/" label="a Disabled" />
+      <Button.button disabled color="primary" label="Button Disabled" />
+      <Button.patch disabled href="/" label="Live Patch Disabled" />
+      <Button.redirect disabled href="/" label="Live Redirect" />
     </div>
 
     <div class="flex flex-wrap gap-2 mt-2">
-    <Petal.Button.render loading type="a" href="/" label="a Loading" />
-    <Petal.Button.render loading type="button" label="Button Loading" />
-    <Petal.Button.render loading type="live_patch" href="/" label="Live Patch Loading" />
-    <Petal.Button.render loading type="live_redirect" href="/" label="Live Redirect Loading" />
+      <Button.button loading type="a" href="/" label="a Loading" />
+      <Button.button loading label="Button Loading" />
+      <Button.patch loading href="/" label="Live Patch Loading" />
+      <Button.redirect loading href="/" label="Live Redirect Loading" />
     </div>
   </div>
+</Container.full_width>
 
-</Petal.Container.full_width>
+<Container.full_width class="mt-10">
+  <Typography.h2 underline label="Typography" />
+  <Typography.h1>Heading 1</Typography.h1>
+  <Typography.h2>Heading 2</Typography.h2>
+  <Typography.h3>Heading 3</Typography.h3>
+  <Typography.h4>Heading 4</Typography.h4>
+  <Typography.h5>Heading 5</Typography.h5>
+</Container.full_width>
 
-<Petal.Container.full_width class="mt-10">
-  <h2 class="mb-5 text-xl">Heroicons Solid</h2>
+<Container.full_width class="mt-10">
+  <Typography.h2 underline label="Heroicons" />
+  <Typography.h3 label="Heroicons solid" />
 
   <div class="flex">
     <Petal.Heroicons.Solid.home />
     <Petal.Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
     <Petal.Heroicons.Solid.home class="w-6 h-6 text-green-500" />
-
+    <Petal.Heroicons.Solid.chart_pie />
+    <Petal.Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
+    <Petal.Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
   </div>
 
-  <h2 class="mt-10 mb-5 text-xl">Heroicons Outline</h2>
+  <Typography.h3 label="Heroicons outline" class="mt-5" />
 
   <div class="flex">
     <Petal.Heroicons.Outline.home />
     <Petal.Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
     <Petal.Heroicons.Outline.home class="w-6 h-6 text-green-500" />
-
   </div>
+</Container.full_width>
 
-  <h2 class="mt-10 mb-5 text-xl">Heroicons</h2>
+<Container.full_width>
 
-  <div class="flex">
-    <Petal.Heroicons.Solid.chart_pie />
-    <Petal.Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
-    <Petal.Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
-  </div>
-</Petal.Container.full_width>
-
-<Petal.Container.full_width>
-
-</Petal.Container.full_width>
+</Container.full_width>
 
 <div class="mb-20"></div>

@@ -2,7 +2,7 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: ["../lib/*_web/**/*.*ex", "./js/**/*.js"],
+  purge: ["../lib/*_web/**/*.*ex", "./js/**/*.js", "../../petal/**/*.*ex"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -13,7 +13,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      cursor: ["disabled"],
+    },
   },
   plugins: [],
 };

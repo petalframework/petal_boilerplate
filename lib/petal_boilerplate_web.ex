@@ -96,7 +96,8 @@ defmodule PetalBoilerplateWeb do
         Typography,
         Heroicons,
         Button,
-        Badge
+        Badge,
+        Form
       }
     end
   end

@@ -6,8 +6,8 @@
   <Typography.h2 underline label="Containers" />
 </Container.full_width>
 
-<Container.full_width padding_on_mobile class="h-10 my-5 text-center bg-gray-300">
-  Container.full_width
+<Container.full_width padding_on_mobile class="flex items-center justify-center h-10 my-5 bg-gray-100">
+  Full width responsive container
 </Container.full_width>
 
 <Container.full_width>
@@ -96,7 +96,7 @@
         <Heroicons.Solid.home class="w-5 h-5" />
         a with label
       </Button.button>
-    
+
       <Button.button icon type="button">
         <Heroicons.Solid.home class="w-5 h-5" />
         Button with label
@@ -106,7 +106,7 @@
         <Heroicons.Solid.home class="w-5 h-5" />
         Live Patch with label
       </Button.patch>
-      
+
       <Button.redirect icon href="/">
         <Heroicons.Solid.home class="w-5 h-5" />
         Live Redirect with label
@@ -163,6 +163,27 @@
     <Badge.badge color="yellow" label="Yellow" />
     <Badge.badge color="deep-red" label="Deep Red" />
   </div>
+</Container.full_width>
+
+<Container.full_width>
+  <Typography.h2 underline label="Forms" class="mt-10" />
+
+  <Form.text_input form={:user} field={:name} placeholder="eg. John" />
+  <Form.textarea form={:user} field={:description} />
+
+  <Form.select
+    options={["Admin": "admin", "User": "user"]}
+    form={:user}
+    field={:role}
+  />
+
+  <Form.checkbox form={:user} field={:read_terms} label="I accept" />
+
+  <Form.radios
+    form={:user}
+    field={:eye_color}
+    options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
+  />
 </Container.full_width>
 
 <div class="mb-20"></div>

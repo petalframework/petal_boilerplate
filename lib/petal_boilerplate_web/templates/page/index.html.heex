@@ -88,6 +88,31 @@
       <Button.redirect loading href="/" label="Live Redirect Loading" />
     </div>
   </div>
+
+  <div class="mt-10">
+    <Typography.h3 label="Button with icon" />
+    <div class="flex flex-wrap gap-2">
+      <Button.button icon type="a" href="/">
+        <Heroicons.Solid.home class="w-5 h-5" />
+        a with label
+      </Button.button>
+    
+      <Button.button icon type="button">
+        <Heroicons.Solid.home class="w-5 h-5" />
+        Button with label
+      </Button.button>
+
+      <Button.patch icon href="/">
+        <Heroicons.Solid.home class="w-5 h-5" />
+        Live Patch with label
+      </Button.patch>
+      
+      <Button.redirect icon href="/">
+        <Heroicons.Solid.home class="w-5 h-5" />
+        Live Redirect with label
+      </Button.redirect>
+    </div>
+  </div>
 </Container.full_width>
 
 <Container.full_width class="mt-10">
@@ -104,25 +129,40 @@
   <Typography.h3 label="Heroicons solid" />
 
   <div class="flex">
-    <Petal.Heroicons.Solid.home />
-    <Petal.Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
-    <Petal.Heroicons.Solid.home class="w-6 h-6 text-green-500" />
-    <Petal.Heroicons.Solid.chart_pie />
-    <Petal.Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
-    <Petal.Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
+    <Heroicons.Solid.home />
+    <Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
+    <Heroicons.Solid.home class="w-6 h-6 text-green-500" />
+    <Heroicons.Solid.chart_pie />
+    <Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
+    <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
   </div>
 
   <Typography.h3 label="Heroicons outline" class="mt-5" />
 
   <div class="flex">
-    <Petal.Heroicons.Outline.home />
-    <Petal.Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
-    <Petal.Heroicons.Outline.home class="w-6 h-6 text-green-500" />
+    <Heroicons.Outline.home />
+    <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
+    <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
   </div>
 </Container.full_width>
 
-<Container.full_width>
-
+<Container.full_width class="mt-10">
+  <Typography.h2 underline label="Badges" />
+  <div class="flex flex-wrap gap-2">
+    <Badge.badge color="primary" label="Primary" />
+    <Badge.badge color="secondary" label="Secondary" />
+    <Badge.badge color="white" label="White" />
+    <Badge.badge color="green" label="Green" />
+    <Badge.badge color="gray" label="Gray" />
+    <Badge.badge color="gray-light" label="Light Gray" />
+    <Badge.badge color="blue" label="Blue" />
+    <Badge.badge color="pink" label="Pink" />
+    <Badge.badge color="purple" label="Purple" />
+    <Badge.badge color="orange" label="Orange" />
+    <Badge.badge color="red" label="Red" />
+    <Badge.badge color="yellow" label="Yellow" />
+    <Badge.badge color="deep-red" label="Deep Red" />
+  </div>
 </Container.full_width>
 
 <div class="mb-20"></div>

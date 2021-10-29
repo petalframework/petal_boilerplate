@@ -94,7 +94,9 @@ defmodule PetalBoilerplateWeb do
       alias Petal.{
         Container,
         Typography,
-        Button
+        Heroicons,
+        Button,
+        Badge
       }
     end
   end

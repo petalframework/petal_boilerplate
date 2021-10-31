@@ -97,6 +97,7 @@ defmodule PetalBoilerplateWeb do
         Heroicons,
         Button,
         Badge,
+        Alert,
         Form
       }
     end

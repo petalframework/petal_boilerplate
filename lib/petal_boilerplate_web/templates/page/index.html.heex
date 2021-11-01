@@ -1,16 +1,28 @@
-<Container.full_width class="mt-10">
+<Container.container class="mt-10 ">
   <Typography.h1>Petal</Typography.h1>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width class="mt-10">
+<Container.container class="mt-10">
   <Typography.h2 underline label="Containers" />
-</Container.full_width>
+</Container.container>
 
-<Container.full_width padding_on_mobile class="flex items-center justify-center h-10 my-5 bg-gray-100">
-  Full width responsive container
-</Container.full_width>
+<Container.container max_width="full" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+  Max width "full"
+</Container.container>
 
-<Container.full_width>
+<Container.container max_width="lg" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+  Max width "lg"
+</Container.container>
+
+<Container.container max_width="md" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+  Max width "md"
+</Container.container>
+
+<Container.container max_width="sm" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+  Max width "sm"
+</Container.container>
+
+<Container.container>
   <div>
     <Typography.h2 underline label="Buttons" />
     <Typography.h3 label="Types" />
@@ -97,18 +109,18 @@
       </Button.redirect>
     </div>
   </div>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width class="mt-10">
+<Container.container class="mt-10">
   <Typography.h2 underline label="Typography" />
   <Typography.h1>Heading 1</Typography.h1>
   <Typography.h2>Heading 2</Typography.h2>
   <Typography.h3>Heading 3</Typography.h3>
   <Typography.h4>Heading 4</Typography.h4>
   <Typography.h5>Heading 5</Typography.h5>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width class="mt-10">
+<Container.container class="mt-10">
   <Typography.h2 underline label="Heroicons" />
   <Typography.h3 label="Heroicons solid" />
 
@@ -128,9 +140,9 @@
     <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
     <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
   </div>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width class="mt-10">
+<Container.container class="mt-10">
   <Typography.h2 underline label="Badges" />
   <div class="flex flex-wrap gap-2">
     <Badge.badge color="primary" label="Primary" />
@@ -147,33 +159,33 @@
     <Badge.badge color="orange" label="Orange" />
     <Badge.badge color="yellow" label="Yellow" />
   </div>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width class="mt-10">
+<Container.container class="mt-10">
   <Typography.h2 underline label="Alerts" />
   <div class="flex items-start">
-    <Alert.alert icon state="info" label="Info state"> 
+    <Alert.alert icon state="info" label="Info state">
       <Heroicons.Outline.information_circle class="w-5 h-5" />
     </Alert.alert>
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="success" label="Success state"> 
+    <Alert.alert icon state="success" label="Success state">
       <Heroicons.Outline.check_circle class="w-5 h-5" />
     </Alert.alert>
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="warning" label="Warning state"> 
+    <Alert.alert icon state="warning" label="Warning state">
       <Heroicons.Outline.exclamation class="w-5 h-5" />
     </Alert.alert>
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="danger" label="Danger state"> 
+    <Alert.alert icon state="danger" label="Danger state">
       <Heroicons.Outline.x_circle class="w-5 h-5" />
     </Alert.alert>
   </div>
-</Container.full_width>
+</Container.container>
 
-<Container.full_width>
+<Container.container>
   <Typography.h2 underline label="Forms" class="mt-10" />
 
   <Form.text_input form={:user} field={:name} placeholder="eg. John" />
@@ -192,6 +204,6 @@
     field={:eye_color}
     options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
   />
-</Container.full_width>
+</Container.container>
 
 <div class="mb-20"></div>

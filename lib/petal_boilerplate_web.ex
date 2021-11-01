@@ -91,7 +91,7 @@ defmodule PetalBoilerplateWeb do
       import PetalBoilerplateWeb.Gettext
       alias PetalBoilerplateWeb.Router.Helpers, as: Routes
 
-      alias Petal.{
+      alias PetalComponents.{
         Container,
         Typography,
         Heroicons,

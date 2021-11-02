@@ -16,10 +16,5 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      cursor: ["disabled"],
-    },
-  },
   plugins: [require("@tailwindcss/forms")],
 };

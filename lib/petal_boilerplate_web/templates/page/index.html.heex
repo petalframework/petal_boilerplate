@@ -35,7 +35,7 @@
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button Colors" />
+    <Typography.h3 label="Button colors" />
     <div class="flex flex-wrap gap-2">
     <Button.button color="primary" label="Primary" />
     <Button.button color="secondary" label="secondary" />
@@ -46,7 +46,7 @@
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button Colors (Outline)" />
+    <Typography.h3 label="Button colors (outline)" />
     <div class="flex flex-wrap gap-2">
     <Button.button color="primary" label="Primary" variant="outline" />
     <Button.button color="secondary" label="Secondary" variant="outline" />
@@ -206,4 +206,17 @@
   />
 </Container.container>
 
-<div class="mb-20"></div>
+<Container.container class="mt-10">
+  <Typography.h2 underline label="Dropdowns" />
+  <Typography.h3 label="" />
+  <Dropdown.dropdown label="Dropdown">
+    <Dropdown.dropdown_menu_item type="button">
+      <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
+      Option with icon
+    </Dropdown.dropdown_menu_item>
+    <Dropdown.dropdown_menu_item type="button" label="Option 2" />
+    <Dropdown.dropdown_menu_item type="button" label="Option 3" />
+  </Dropdown.dropdown>
+</Container.container>
+
+<div class="mb-40"></div>

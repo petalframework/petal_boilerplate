@@ -98,7 +98,8 @@ defmodule PetalBoilerplateWeb do
         Button,
         Badge,
         Alert,
-        Form
+        Form,
+        Dropdown
       }
     end
   end

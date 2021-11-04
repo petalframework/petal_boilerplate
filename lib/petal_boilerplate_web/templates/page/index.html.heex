@@ -27,7 +27,7 @@
     <Typography.h2 underline label="Buttons" />
     <Typography.h3 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <Button.button type="a" href="/" label="a" />
+    <Button.a href="/" label="a" />
     <Button.button label="Button" />
     <Button.patch href="/" label="Live Patch" />
     <Button.redirect href="/" label="Live Redirect" />
@@ -164,24 +164,18 @@
 <Container.container class="mt-10">
   <Typography.h2 underline label="Alerts" />
   <div class="flex items-start">
-    <Alert.alert icon state="info" label="Info state">
-      <Heroicons.Outline.information_circle class="w-5 h-5" />
+    <Alert.alert state="info">
+      This is an info state
     </Alert.alert>
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="success" label="Success state">
-      <Heroicons.Outline.check_circle class="w-5 h-5" />
-    </Alert.alert>
+    <Alert.alert state="success" label="This is a success state" />
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="warning" label="Warning state">
-      <Heroicons.Outline.exclamation class="w-5 h-5" />
-    </Alert.alert>
+    <Alert.alert state="warning" label="This is a warning state" />
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert icon state="danger" label="Danger state">
-      <Heroicons.Outline.x_circle class="w-5 h-5" />
-    </Alert.alert>
+    <Alert.alert state="danger" label="This is a danger state" />
   </div>
 </Container.container>
 

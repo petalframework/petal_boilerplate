@@ -213,4 +213,16 @@
   </Dropdown.dropdown>
 </Container.container>
 
+<Container.container class="mt-10">
+  <Typography.h2 underline label="Loading" />
+  <Typography.h3 label="Spinner" />
+
+  <div class="flex gap-3">
+    <Loading.spinner show={false} />
+    <Loading.spinner show={true} size="sm" />
+    <Loading.spinner show={true} size="md" class="text-green-500" />
+    <Loading.spinner show={true} size="lg" class="text-red-500" />
+  </div>
+</Container.container>
+
 <div class="mb-40"></div>

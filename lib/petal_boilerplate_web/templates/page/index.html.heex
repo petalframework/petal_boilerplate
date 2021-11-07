@@ -1,128 +1,129 @@
-<Container.container class="mt-10 ">
-  <Typography.h1>Petal Components</Typography.h1>
-</Container.container>
+<.container class="mt-10 ">
+  <.h1>Petal Components</.h1>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Containers" />
-</Container.container>
+<.container class="mt-10">
+  <.h2 underline label="Containers" />
+</.container>
 
-<Container.container max_width="full" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+<.container max_width="full" class="flex items-center justify-center h-10 my-5 bg-gray-100">
   Max width "full"
-</Container.container>
+</.container>
 
-<Container.container max_width="lg" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+<.container max_width="lg" class="flex items-center justify-center h-10 my-5 bg-gray-100">
   Max width "lg"
-</Container.container>
+</.container>
 
-<Container.container max_width="md" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+<.container max_width="md" class="flex items-center justify-center h-10 my-5 bg-gray-100">
   Max width "md"
-</Container.container>
+</.container>
 
-<Container.container max_width="sm" class="flex items-center justify-center h-10 my-5 bg-gray-100">
+<.container max_width="sm" class="flex items-center justify-center h-10 my-5 bg-gray-100">
   Max width "sm"
-</Container.container>
+</.container>
 
-<Container.container>
+<.container>
   <div>
-    <Typography.h2 underline label="Buttons" />
-    <Typography.h3 label="Types" />
+    <.h2 underline label="Buttons" />
+    <.h3 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <Button.a href="/" label="a" />
-    <Button.button label="Button" />
-    <Button.patch href="/" label="Live Patch" />
-    <Button.redirect href="/" label="Live Redirect" />
+    <.a href="/" label="a" />
+    <.button label="Button" />
+    <.patch href="/" label="Live Patch" />
+    <.redirect href="/" label="Live Redirect" />
     </div>
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button colors" />
+    <.h3 label="Button colors" />
     <div class="flex flex-wrap gap-2">
-    <Button.button color="primary" label="Primary" />
-    <Button.button color="secondary" label="secondary" />
-    <Button.button color="white" label="White" />
-    <Button.button color="success" label="Success" />
-    <Button.button color="danger" label="Danger" />
+    <.button color="primary" label="Primary" />
+    <.button color="secondary" label="secondary" />
+    <.button color="white" label="White" />
+    <.button color="success" label="Success" />
+    <.button color="danger" label="Danger" />
     </div>
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button colors (outline)" />
+    <.h3 label="Button colors (outline)" />
     <div class="flex flex-wrap gap-2">
-    <Button.button color="primary" label="Primary" variant="outline" />
-    <Button.button color="secondary" label="Secondary" variant="outline" />
-    <Button.button color="white" label="White" variant="outline" />
-    <Button.button color="success" label="Success" variant="outline" />
-    <Button.button color="danger" label="Danger" variant="outline" />
+    <.button color="primary" label="Primary" variant="outline" />
+    <.button color="secondary" label="Secondary" variant="outline" />
+    <.button color="white" label="White" variant="outline" />
+    <.button color="success" label="Success" variant="outline" />
+    <.button color="danger" label="Danger" variant="outline" />
     </div>
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button sizes" />
+    <.h3 label="Button sizes" />
     <div class="flex flex-wrap items-start gap-2">
-    <Button.button size="xs" color="primary" label="xs" />
-    <Button.button size="sm" color="primary" label="sm" />
-    <Button.button size="md" color="primary" label="md" />
-    <Button.button size="lg" color="primary" label="lg" />
-    <Button.button size="xl" color="primary" label="xl" />
+    <.button size="xs" label="xs" />
+    <.button size="sm" label="sm" />
+    <.button size="md" label="md" />
+    <.button size="lg" label="lg" />
+    <.button size="xl" label="xl" />
     </div>
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button states" />
+    <.h3 label="Button states" />
 
     <div class="flex flex-wrap gap-2">
-      <Button.button disabled type="a" href="/" label="a Disabled" />
-      <Button.button disabled color="primary" label="Button Disabled" />
-      <Button.patch disabled href="/" label="Live Patch Disabled" />
-      <Button.redirect disabled href="/" label="Live Redirect" />
+      <.button disabled type="a" href="/" label="a Disabled" />
+      <.button disabled color="primary" label="Button Disabled" />
+      <.patch disabled href="/" label="Live Patch Disabled" />
+      <.redirect disabled href="/" label="Live Redirect" />
     </div>
 
-    <div class="flex flex-wrap gap-2 mt-2">
-      <Button.button loading type="a" href="/" label="a Loading" />
-      <Button.button loading label="Button Loading" />
-      <Button.patch loading href="/" label="Live Patch Loading" />
-      <Button.redirect loading href="/" label="Live Redirect Loading" />
+    <div class="flex flex-wrap items-start gap-2 mt-2">
+      <.button loading size="xs" label="Loading xs" />
+      <.button loading size="sm" label="Loading sm" />
+      <.button loading size="md" label="Loading md" />
+      <.button loading size="lg" label="Loading lg" />
+      <.button loading size="xl" label="Loading xl" />
     </div>
   </div>
 
   <div class="mt-10">
-    <Typography.h3 label="Button with icon" />
+    <.h3 label="Button with icon" />
     <div class="flex flex-wrap gap-2">
-      <Button.button icon type="a" href="/">
+      <.button icon type="a" href="/">
         <Heroicons.Solid.home class="w-5 h-5" />
         a with label
-      </Button.button>
+      </.button>
 
-      <Button.button icon type="button">
+      <.button icon type="button">
         <Heroicons.Solid.home class="w-5 h-5" />
         Button with label
-      </Button.button>
+      </.button>
 
-      <Button.patch icon href="/">
+      <.patch icon href="/">
         <Heroicons.Solid.home class="w-5 h-5" />
         Live Patch with label
-      </Button.patch>
+      </.patch>
 
-      <Button.redirect icon href="/">
+      <.redirect icon href="/">
         <Heroicons.Solid.home class="w-5 h-5" />
         Live Redirect with label
-      </Button.redirect>
+      </.redirect>
     </div>
   </div>
-</Container.container>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Typography" />
-  <Typography.h1>Heading 1</Typography.h1>
-  <Typography.h2>Heading 2</Typography.h2>
-  <Typography.h3>Heading 3</Typography.h3>
-  <Typography.h4>Heading 4</Typography.h4>
-  <Typography.h5>Heading 5</Typography.h5>
-</Container.container>
+<.container class="mt-10">
+  <.h2 underline label="Typography" />
+  <.h1>Heading 1</.h1>
+  <.h2>Heading 2</.h2>
+  <.h3>Heading 3</.h3>
+  <.h4>Heading 4</.h4>
+  <.h5>Heading 5</.h5>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Heroicons" />
-  <Typography.h3 label="Heroicons solid" />
+<.container class="mt-10">
+  <.h2 underline label="Heroicons" />
+  <.h3 label="Heroicons solid" />
 
   <div class="flex">
     <Heroicons.Solid.home />
@@ -133,102 +134,119 @@
     <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
   </div>
 
-  <Typography.h3 label="Heroicons outline" class="mt-5" />
+  <.h3 label="Heroicons outline" class="mt-5" />
 
   <div class="flex">
     <Heroicons.Outline.home />
     <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
     <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
   </div>
-</Container.container>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Badges" />
+<.container class="mt-10">
+  <.h2 underline label="Badges" />
   <div class="flex flex-wrap gap-2">
-    <Badge.badge color="primary" label="Primary" />
-    <Badge.badge color="secondary" label="Secondary" />
-    <Badge.badge color="white" label="White" />
-    <Badge.badge color="black" label="Black" />
-    <Badge.badge color="green" label="Green" />
-    <Badge.badge color="red" label="Red" />
-    <Badge.badge color="blue" label="Blue" />
-    <Badge.badge color="gray" label="Gray" />
-    <Badge.badge color="gray-light" label="Light Gray" />
-    <Badge.badge color="pink" label="Pink" />
-    <Badge.badge color="purple" label="Purple" />
-    <Badge.badge color="orange" label="Orange" />
-    <Badge.badge color="yellow" label="Yellow" />
+    <.badge color="primary" label="Primary" />
+    <.badge color="secondary" label="Secondary" />
+    <.badge color="white" label="White" />
+    <.badge color="black" label="Black" />
+    <.badge color="green" label="Green" />
+    <.badge color="red" label="Red" />
+    <.badge color="blue" label="Blue" />
+    <.badge color="gray" label="Gray" />
+    <.badge color="gray-light" label="Light Gray" />
+    <.badge color="pink" label="Pink" />
+    <.badge color="purple" label="Purple" />
+    <.badge color="orange" label="Orange" />
+    <.badge color="yellow" label="Yellow" />
   </div>
-</Container.container>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Alerts" />
+<.container class="mt-10">
+  <.h2 underline label="Alerts" />
   <div class="flex items-start">
-    <Alert.alert state="info">
+    <.alert state="info">
       This is an info state
-    </Alert.alert>
+    </.alert>
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert state="success" label="This is a success state" />
+    <.alert state="success" label="This is a success state" />
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert state="warning" label="This is a warning state" />
+    <.alert state="warning" label="This is a warning state" />
   </div>
   <div class="flex items-start mt-4">
-    <Alert.alert state="danger" label="This is a danger state" />
+    <.alert state="danger" label="This is a danger state" />
   </div>
   <div class="flex items-start max-w-sm mt-4">
-    <Alert.alert heading="Optional heading">
+    <.alert heading="Optional heading">
       This is quite a long paragraph that takes up more than one line.
-    </Alert.alert>
+    </.alert>
   </div>
-</Container.container>
+</.container>
 
-<Container.container>
-  <Typography.h2 underline label="Forms" class="mt-10" />
+<.container>
+  <.h2 underline label="Forms" class="mt-10" />
 
-  <Form.text_input form={:user} field={:name} placeholder="eg. John" />
-  <Form.textarea form={:user} field={:description} />
-
-  <Form.select
-    options={["Admin": "admin", "User": "user"]}
+  <.form_field
+    type="text_input"
     form={:user}
-    field={:role}
+    field={:first_name}
+    placeholder="eg. John"
   />
 
-  <Form.checkbox form={:user} field={:read_terms} label="I accept" />
+  <div class="mb-6">
+    <.form_label form={:user} field={:last_name} />
+    <.text_input form={:user} field={:last_name} placeholder="eg. Smith" />
+  </div>
 
-  <Form.radios
+  <div class="mb-6">
+    <.form_label form={:user} field={:description} />
+    <.textarea form={:user} field={:description} />
+  </div>
+
+  <div class="mb-6">
+    <.form_label form={:user} field={:role} />
+    <.select
+      options={["Admin": "admin", "User": "user"]}
+      form={:user}
+      field={:role}
+    />
+  </div>
+
+  <.checkbox form={:user} field={:read_terms} label="I accept" />
+
+  <.radios
     form={:user}
     field={:eye_color}
     options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
   />
-</Container.container>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Dropdowns" />
-  <Typography.h3 label="" />
-  <Dropdown.dropdown label="Dropdown">
-    <Dropdown.dropdown_menu_item type="button">
+<.container class="mt-10">
+  <.h2 underline label="Dropdowns" />
+  <.h3 label="" />
+  <.dropdown label="Dropdown">
+    <.dropdown_menu_item type="button">
       <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
       Button item with icon
-    </Dropdown.dropdown_menu_item>
-    <Dropdown.dropdown_menu_item type="a" href="/" label="a item" />
-    <Dropdown.dropdown_menu_item type="live_patch" href="/" label="Live Patch item" />
-    <Dropdown.dropdown_menu_item type="live_redirect" href="/" label="Live Redirect item" />
-  </Dropdown.dropdown>
-</Container.container>
+    </.dropdown_menu_item>
+    <.dropdown_menu_item type="a" href="/" label="a item" />
+    <.dropdown_menu_item type="live_patch" href="/" label="Live Patch item" />
+    <.dropdown_menu_item type="live_redirect" href="/" label="Live Redirect item" />
+  </.dropdown>
+</.container>
 
-<Container.container class="mt-10">
-  <Typography.h2 underline label="Loading" />
-  <Typography.h3 label="Spinner" />
+<.container class="mt-10">
+  <.h2 underline label="Loading" />
+  <.h3 label="Spinner" />
 
-  <div class="flex gap-3">
-    <Loading.spinner show={false} />
-    <Loading.spinner show={true} size="sm" />
-    <Loading.spinner show={true} size="md" class="text-green-500" />
-    <Loading.spinner show={true} size="lg" class="text-red-500" />
+  <div class="flex items-start gap-3">
+    <.spinner show={false} />
+    <.spinner show={true} size="sm" />
+    <.spinner show={true} size="md" class="text-green-500" />
+    <.spinner show={true} size="lg" class="text-red-500" />
   </div>
-</Container.container>
+</.container>
 
 <div class="mb-40"></div>

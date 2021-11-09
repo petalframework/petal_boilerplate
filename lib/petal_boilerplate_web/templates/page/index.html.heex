@@ -27,10 +27,10 @@
     <.h2 underline label="Buttons" />
     <.h3 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <.a href="/" label="a" />
+    <.a href="#" label="a" />
     <.button label="Button" />
-    <.patch href="/" label="Live Patch" />
-    <.redirect href="/" label="Live Redirect" />
+    <.patch href="#" label="Live Patch" />
+    <.redirect href="#" label="Live Redirect" />
     </div>
   </div>
 
@@ -148,17 +148,11 @@
   <div class="flex flex-wrap gap-2">
     <.badge color="primary" label="Primary" />
     <.badge color="secondary" label="Secondary" />
-    <.badge color="white" label="White" />
-    <.badge color="black" label="Black" />
-    <.badge color="green" label="Green" />
-    <.badge color="red" label="Red" />
-    <.badge color="blue" label="Blue" />
+    <.badge color="info" label="Info" />
+    <.badge color="success" label="Success" />
+    <.badge color="warning" label="Warning" />
+    <.badge color="danger" label="Danger" />
     <.badge color="gray" label="Gray" />
-    <.badge color="gray-light" label="Light Gray" />
-    <.badge color="pink" label="Pink" />
-    <.badge color="purple" label="Purple" />
-    <.badge color="orange" label="Orange" />
-    <.badge color="yellow" label="Yellow" />
   </div>
 </.container>
 
@@ -246,6 +240,26 @@
     <.spinner show={true} size="sm" />
     <.spinner show={true} size="md" class="text-green-500" />
     <.spinner show={true} size="lg" class="text-red-500" />
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Breadcrumbs" />
+  <.h5 label="Slash" />
+    <div class="flex">
+      <.breadcrumbs links={[
+        %{ label: "Link 1", to: "#" },
+        %{ label: "Link 2", to: "#" },
+        %{ label: "Link 3", to: "#" }
+      ]}/>
+    </div>
+  <.h5 label="Chevron" class="mt-10" />
+  <div class="flex">
+  <.breadcrumbs separator="chevron" links={[
+    %{ label: "Link 1", to: "#" },
+    %{ label: "Link 2", to: "#", link_type: "live_patch" },
+    %{ label: "Link 3", to: "#", link_type: "live_redirect" },
+  ]}/>
   </div>
 </.container>
 

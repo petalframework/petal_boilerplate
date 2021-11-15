@@ -1,5 +1,6 @@
 <.container class="mt-10 ">
   <.h1>Petal Components</.h1>
+  <.link to="/live" class="underline">View Live View JS components</.link>
 </.container>
 
 <.container class="mt-10">
@@ -182,39 +183,129 @@
 <.container>
   <.h2 underline label="Forms" class="mt-10" />
 
-  <.form_field
-    type="text_input"
-    form={:user}
-    field={:first_name}
-    placeholder="eg. John"
-  />
+  <.form let={f} as={:user} for={%Ecto.Changeset{
+    action: :update,
+    data: %{name: ""},
+    errors: [
+      name_with_error: {"can't be blank", [validation: :required]},
+      name_with_error: {"must be at least 2 characters", [validation: :minimum]},
+      last_name_with_error: {"can't be blank", [validation: :required]},
+      description_with_error: {"can't be blank", [validation: :required]},
+      role_with_error: {"can't be blank", [validation: :required]},
+      read_terms_with_error: {"can't be blank", [validation: :required]},
+      eye_color_with_error: {"can't be blank", [validation: :required]},
+    ]}
+  }>
 
-  <div class="mb-6">
-    <.form_label form={:user} field={:last_name} />
-    <.text_input form={:user} field={:last_name} placeholder="eg. Smith" />
-  </div>
+    <!--
+      When creating form fields you can do it two ways:
 
-  <div class="mb-6">
-    <.form_label form={:user} field={:description} />
-    <.textarea form={:user} field={:description} />
-  </div>
+      1. Use `<.form_field>`, which includes the label and error
+      2. You can write the input, label and error separately (if you want to style the form differently)
 
-  <div class="mb-6">
-    <.form_label form={:user} field={:role} />
-    <.select
-      options={["Admin": "admin", "User": "user"]}
-      form={:user}
-      field={:role}
-    />
-  </div>
+      The following code shows both methods for each form element:
+    -->
 
-  <.checkbox form={:user} field={:read_terms} label="I accept" />
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <.form_label form={f} field={:name} />
+        <.text_input form={f} field={:name} placeholder="eg. John" />
+        <.form_field_error form={f} field={:name} class="mt-1" />
+      </div>
 
-  <.radios
-    form={:user}
-    field={:eye_color}
-    options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
-  />
+      <div>
+        <.form_field
+          type="text_input"
+          form={f}
+          field={:name_with_error}
+          placeholder="eg. John"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <.form_label form={f} field={:description} />
+        <.textarea form={f} field={:description} />
+        <.form_field_error form={f} field={:description} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="textarea" form={f} field={:description_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <.form_label form={f} field={:role} />
+        <.select
+          options={["Admin": "admin", "User": "user"]}
+          form={f}
+          field={:role}
+        />
+        <.form_field_error form={f} field={:name} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="select"
+          options={["Admin": "admin", "User": "user"]}
+          form={f}
+          field={:role_with_error}
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="inline-flex items-center block gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+          <.checkbox form={f} field={:read_terms} />
+          <div>I accept</div>
+        </label>
+
+        <.form_field_error form={f} field={:read_terms} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="checkbox" form={f} field={:read_terms_with_error} label="I accept (with error)" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <.form_label form={f} field={:eye_color} />
+
+        <div class="flex flex-col gap-1">
+          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:eye_color} value="green" />
+            <div>Green</div>
+          </label>
+
+          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:eye_color} value="blue" />
+            <div>Blue</div>
+          </label>
+
+          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:eye_color} value="gray" />
+            <div>Gray</div>
+          </label>
+        </div>
+
+        <.form_field_error form={f} field={:read_terms} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="radio_group"
+          form={f}
+          field={:eye_color_with_error}
+          options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
+          label="Eye color with error"
+        />
+      </div>
+    </div>
+  </.form>
 </.container>
 
 <.container class="mt-10">

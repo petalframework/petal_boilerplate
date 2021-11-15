@@ -18,6 +18,7 @@ defmodule PetalBoilerplateWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/live", PageLive
   end
 
   # Other scopes may use custom stacks.

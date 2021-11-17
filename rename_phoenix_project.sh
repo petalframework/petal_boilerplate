@@ -6,6 +6,12 @@
 
 set -e
 
+if ! command -v ack &> /dev/null
+then
+    echo "\`ack\` could not be found. Please install it before continuing"
+    exit 1
+fi
+
 CURRENT_NAME="PetalBoiletplate"
 CURRENT_OTP="petal_boilerplate"
 

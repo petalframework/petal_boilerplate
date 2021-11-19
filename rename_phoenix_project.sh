@@ -6,7 +6,7 @@
 
 set -e
 
-CURRENT_NAME="PetalBoiletplate"
+CURRENT_NAME="PetalBoilerplate"
 CURRENT_OTP="petal_boilerplate"
 
 # TODO: MODIFY THESE TWO VARIABLES BEFORE RUNNING THE SCRIPT
@@ -20,5 +20,8 @@ git mv lib/$CURRENT_OTP lib/$NEW_OTP
 git mv lib/$CURRENT_OTP.ex lib/$NEW_OTP.ex
 git mv lib/${CURRENT_OTP}_web lib/${NEW_OTP}_web
 git mv lib/${CURRENT_OTP}_web.ex lib/${NEW_OTP}_web.ex
-git mv test/$CURRENT_OTP test/$NEW_OTP
+
+# Uncomment this if you have written tests in the folder test/petal_boilerplate
+# git mv test/$CURRENT_OTP test/$NEW_OTP
+
 git mv test/${CURRENT_OTP}_web test/${NEW_OTP}_web

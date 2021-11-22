@@ -25,60 +25,77 @@
 
 <.container>
   <div>
+    <.h2 underline label="Links" />
+    <.h5 label="Types" />
+    <div class="flex flex-wrap gap-2 text-gray-300">
+      <.link link_type="a" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="a" /> |
+      <.link link_type="live_patch" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Patch" /> |
+      <.link link_type="live_redirect" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Redirect" />
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <div>
     <.h2 underline label="Buttons" />
-    <.h3 label="Types" />
+    <.h5 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <.a href="#" label="a" />
-    <.button label="Button" />
-    <.patch href="#" label="Live Patch" />
-    <.redirect href="#" label="Live Redirect" />
+      <.button label="Button" />
+      <.button link_type="a" to="/" label="a" />
+      <.button link_type="live_patch" to="/" label="Live Patch" />
+      <.button link_type="live_redirect" to="/" label="Live Redirect" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button colors" />
+    <.h5 label="Button colors" />
     <div class="flex flex-wrap gap-2">
-    <.button color="primary" label="Primary" />
-    <.button color="secondary" label="secondary" />
-    <.button color="white" label="White" />
-    <.button color="success" label="Success" />
-    <.button color="danger" label="Danger" />
+      <.button color="primary" label="Primary" />
+      <.button color="secondary" label="secondary" />
+      <.button color="white" label="White" />
+      <.button color="success" label="Success" />
+      <.button color="danger" label="Danger" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button colors (outline)" />
+    <.h5 label="Button colors (outline)" />
     <div class="flex flex-wrap gap-2">
-    <.button color="primary" label="Primary" variant="outline" />
-    <.button color="secondary" label="Secondary" variant="outline" />
-    <.button color="white" label="White" variant="outline" />
-    <.button color="success" label="Success" variant="outline" />
-    <.button color="danger" label="Danger" variant="outline" />
+      <.button color="primary" label="Primary" variant="outline" />
+      <.button color="secondary" label="Secondary" variant="outline" />
+      <.button color="white" label="White" variant="outline" />
+      <.button color="success" label="Success" variant="outline" />
+      <.button color="danger" label="Danger" variant="outline" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button sizes" />
-    <div class="flex flex-wrap items-start gap-2">
-    <.button size="xs" label="xs" />
-    <.button size="sm" label="sm" />
-    <.button size="md" label="md" />
-    <.button size="lg" label="lg" />
-    <.button size="xl" label="xl" />
+    <.h5 label="Button sizes" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.button size="xs" label="xs" />
+      <.button size="sm" label="sm" />
+      <.button size="md" label="md" />
+      <.button size="lg" label="lg" />
+      <.button size="xl" label="xl" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button states" />
-
-    <div class="flex flex-wrap gap-2">
-      <.button disabled type="a" href="/" label="a Disabled" />
-      <.button disabled color="primary" label="Button Disabled" />
-      <.patch disabled href="/" label="Live Patch Disabled" />
-      <.redirect disabled href="/" label="Live Redirect" />
+    <.h5 label="Button states" />
+    <div class="mt-5">
+      <.form_label label="Disabled" />
     </div>
-
-    <div class="flex flex-wrap items-start gap-2 mt-2">
+    <div class="flex flex-wrap items-end gap-2 mt-2">
+      <.button disabled size="xs" to="/" label="Disabled xs" />
+      <.button disabled size="sm" to="/" label="Disabled sm" />
+      <.button disabled size="md" to="/" label="Disabled md" />
+      <.button disabled size="lg" to="/" label="Disabled lg" />
+      <.button disabled size="xl" to="/" label="Disabled xl" />
+    </div>
+    <div class="mt-5">
+      <.form_label label="Loading" />
+    </div>
+    <div class="flex flex-wrap items-end gap-2 mt-2">
       <.button loading size="xs" label="Loading xs" />
       <.button loading size="sm" label="Loading sm" />
       <.button loading size="md" label="Loading md" />
@@ -88,27 +105,12 @@
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button with icon" />
-    <div class="flex flex-wrap gap-2">
-      <.button icon type="a" href="/">
+    <.h5 label="Button with icon" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.button icon link_type="a" to="/">
         <Heroicons.Solid.home class="w-5 h-5" />
-        a with label
+        With icon
       </.button>
-
-      <.button icon type="button">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Button with label
-      </.button>
-
-      <.patch icon href="/">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Live Patch with label
-      </.patch>
-
-      <.redirect icon href="/">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Live Redirect with label
-      </.redirect>
     </div>
   </div>
 </.container>
@@ -124,7 +126,7 @@
 
 <.container class="mt-10">
   <.h2 underline label="Heroicons" />
-  <.h3 label="Heroicons solid" />
+  <.h5 label="Heroicons solid" />
 
   <div class="flex">
     <Heroicons.Solid.home />
@@ -135,7 +137,7 @@
     <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
   </div>
 
-  <.h3 label="Heroicons outline" class="mt-5" />
+  <.h5 label="Heroicons outline" class="mt-5" />
 
   <div class="flex">
     <Heroicons.Outline.home />
@@ -480,19 +482,20 @@
   <.h2 underline label="Dropdowns" />
   <.h3 label="" />
   <.dropdown label="Dropdown">
-    <.dropdown_menu_item type="button">
+    <.dropdown_menu_item>
       <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
       Button item with icon
     </.dropdown_menu_item>
-    <.dropdown_menu_item type="a" href="/" label="a item" />
-    <.dropdown_menu_item type="live_patch" href="/" label="Live Patch item" />
-    <.dropdown_menu_item type="live_redirect" href="/" label="Live Redirect item" />
+    <.dropdown_menu_item link_type="button" label="button item" />
+    <.dropdown_menu_item link_type="a" to="/" label="a item" />
+    <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch item" />
+    <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect item" />
   </.dropdown>
 </.container>
 
 <.container class="mt-10">
   <.h2 underline label="Loading" />
-  <.h3 label="Spinner" />
+  <.h5 label="Spinner" />
 
   <div class="flex items-start gap-3">
     <.spinner show={false} />
@@ -519,6 +522,145 @@
     %{ label: "Link 2", to: "#", link_type: "live_patch" },
     %{ label: "Link 3", to: "#", link_type: "live_redirect" },
   ]}/>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Avatar" />
+  <.h5 label="Basic Avatars" />
+  <div class="flex flex-wrap items-end gap-2">
+    <.avatar size="xs" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="md" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="lg" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="xl" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+  </div>
+
+  <.h5 label="Avatars with placeholder icon" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2">
+    <.avatar size="xs"/>
+    <.avatar size="sm"/>
+    <.avatar size="md"/>
+    <.avatar size="lg"/>
+    <.avatar size="xl"/>
+  </div>
+
+  <.h5 label="Avatar groups stacked" class="mt-10" />
+  <div class="flex flex-wrap items-center gap-10">
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="xs" class="inline-block"/>
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="sm" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="md" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="lg" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="xl" />
+  </div>
+  <.h5 label="Avatars with placeholder initials" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2 mt-8">
+    <.avatar name="Petal Components" size="xs" />
+    <.avatar name="Petal Components" size="sm"/>
+    <.avatar name="PC" />
+    <.avatar name="PC" size="lg"/>
+    <.avatar name="PC" size="xl"/>
+  </div>
+  <.h5 label="Random color generated avatars with placeholder initials" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2 mt-8">
+    <.avatar name="Matt Platts" size="xs" random_color />
+    <.avatar name="Nic Hoban" size="sm" random_color />
+    <.avatar name="James Cameron" random_color />
+    <.avatar name="Will Smith" size="lg" random_color />
+    <.avatar name="Peter Jackson" size="xl" random_color />
+  </div>
+  
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Progress" />
+  <.h5 label="Progress bar" />
+  <div class="flex flex-col">
+    <div class="mt-5">
+    <.form_label label="Primary" />
+    <.progress color="primary" value={15} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Secondary" />
+    <.progress color="secondary" value={30} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Info" />
+    <.progress color="info" value={45} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Success" />
+    <.progress color="success" value={60} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Warning" />
+    <.progress color="warning" value={75} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Danger" />
+    <.progress color="danger" value={90} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-10">
+      <.h5 label="Sizes" />
+      <div class="mt-5">
+        <.form_label label="xs" />
+        <.progress size="xs" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="sm" />
+        <.progress color="primary" size="sm" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="md" />
+        <.progress size="md" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="lg" />
+        <.progress size="lg" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="xl with label" />
+        <.progress size="xl" value={15} max={100} class="max-w-xl" label="15%" />
+      </div>
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Pagination" />
+  <.h5 label="Basic pagination" />
+  <div class="flex flex-col gap-2 mt-5">
+    <.form_label label="a" />
+    <.pagination link_type="a" class="mb-5" path="/:page" current_page={1} total_pages={10} />
+    <.form_label label="Live Patch" />
+    <.pagination link_type="live_patch" class="mb-5" path="/:page" current_page={5} total_pages={10} />
+    <.form_label label="Live Redirect" />
+    <.pagination link_type="live_redirect" class="mb-5" path="/:page" current_page={10} total_pages={10} />
   </div>
 </.container>
 

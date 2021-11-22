@@ -25,60 +25,77 @@
 
 <.container>
   <div>
+    <.h2 underline label="Links" />
+    <.h5 label="Types" />
+    <div class="flex flex-wrap gap-2 text-gray-300">
+      <.link link_type="a" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="a" /> |
+      <.link link_type="live_patch" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Patch" /> |
+      <.link link_type="live_redirect" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Redirect" />
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <div>
     <.h2 underline label="Buttons" />
-    <.h3 label="Types" />
+    <.h5 label="Types" />
     <div class="flex flex-wrap gap-2">
-    <.a href="#" label="a" />
-    <.button label="Button" />
-    <.patch href="#" label="Live Patch" />
-    <.redirect href="#" label="Live Redirect" />
+      <.button label="Button" />
+      <.button link_type="a" to="/" label="a" />
+      <.button link_type="live_patch" to="/" label="Live Patch" />
+      <.button link_type="live_redirect" to="/" label="Live Redirect" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button colors" />
+    <.h5 label="Button colors" />
     <div class="flex flex-wrap gap-2">
-    <.button color="primary" label="Primary" />
-    <.button color="secondary" label="secondary" />
-    <.button color="white" label="White" />
-    <.button color="success" label="Success" />
-    <.button color="danger" label="Danger" />
+      <.button color="primary" label="Primary" />
+      <.button color="secondary" label="secondary" />
+      <.button color="white" label="White" />
+      <.button color="success" label="Success" />
+      <.button color="danger" label="Danger" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button colors (outline)" />
+    <.h5 label="Button colors (outline)" />
     <div class="flex flex-wrap gap-2">
-    <.button color="primary" label="Primary" variant="outline" />
-    <.button color="secondary" label="Secondary" variant="outline" />
-    <.button color="white" label="White" variant="outline" />
-    <.button color="success" label="Success" variant="outline" />
-    <.button color="danger" label="Danger" variant="outline" />
+      <.button color="primary" label="Primary" variant="outline" />
+      <.button color="secondary" label="Secondary" variant="outline" />
+      <.button color="white" label="White" variant="outline" />
+      <.button color="success" label="Success" variant="outline" />
+      <.button color="danger" label="Danger" variant="outline" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button sizes" />
-    <div class="flex flex-wrap items-start gap-2">
-    <.button size="xs" label="xs" />
-    <.button size="sm" label="sm" />
-    <.button size="md" label="md" />
-    <.button size="lg" label="lg" />
-    <.button size="xl" label="xl" />
+    <.h5 label="Button sizes" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.button size="xs" label="xs" />
+      <.button size="sm" label="sm" />
+      <.button size="md" label="md" />
+      <.button size="lg" label="lg" />
+      <.button size="xl" label="xl" />
     </div>
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button states" />
-
-    <div class="flex flex-wrap gap-2">
-      <.button disabled type="a" href="/" label="a Disabled" />
-      <.button disabled color="primary" label="Button Disabled" />
-      <.patch disabled href="/" label="Live Patch Disabled" />
-      <.redirect disabled href="/" label="Live Redirect" />
+    <.h5 label="Button states" />
+    <div class="mt-5">
+      <.form_label label="Disabled" />
     </div>
-
-    <div class="flex flex-wrap items-start gap-2 mt-2">
+    <div class="flex flex-wrap items-end gap-2 mt-2">
+      <.button disabled size="xs" to="/" label="Disabled xs" />
+      <.button disabled size="sm" to="/" label="Disabled sm" />
+      <.button disabled size="md" to="/" label="Disabled md" />
+      <.button disabled size="lg" to="/" label="Disabled lg" />
+      <.button disabled size="xl" to="/" label="Disabled xl" />
+    </div>
+    <div class="mt-5">
+      <.form_label label="Loading" />
+    </div>
+    <div class="flex flex-wrap items-end gap-2 mt-2">
       <.button loading size="xs" label="Loading xs" />
       <.button loading size="sm" label="Loading sm" />
       <.button loading size="md" label="Loading md" />
@@ -88,27 +105,12 @@
   </div>
 
   <div class="mt-10">
-    <.h3 label="Button with icon" />
-    <div class="flex flex-wrap gap-2">
-      <.button icon type="a" href="/">
+    <.h5 label="Button with icon" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.button icon link_type="a" to="/">
         <Heroicons.Solid.home class="w-5 h-5" />
-        a with label
+        With icon
       </.button>
-
-      <.button icon type="button">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Button with label
-      </.button>
-
-      <.patch icon href="/">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Live Patch with label
-      </.patch>
-
-      <.redirect icon href="/">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        Live Redirect with label
-      </.redirect>
     </div>
   </div>
 </.container>
@@ -124,7 +126,7 @@
 
 <.container class="mt-10">
   <.h2 underline label="Heroicons" />
-  <.h3 label="Heroicons solid" />
+  <.h5 label="Heroicons solid" />
 
   <div class="flex">
     <Heroicons.Solid.home />
@@ -135,7 +137,7 @@
     <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
   </div>
 
-  <.h3 label="Heroicons outline" class="mt-5" />
+  <.h5 label="Heroicons outline" class="mt-5" />
 
   <div class="flex">
     <Heroicons.Outline.home />
@@ -183,17 +185,29 @@
 <.container>
   <.h2 underline label="Forms" class="mt-10" />
 
-  <.form let={f} as={:user} for={%Ecto.Changeset{
+  <.form let={f} multipart as={:user} for={%Ecto.Changeset{
     action: :update,
     data: %{name: ""},
     errors: [
-      name_with_error: {"can't be blank", [validation: :required]},
-      name_with_error: {"must be at least 2 characters", [validation: :minimum]},
-      last_name_with_error: {"can't be blank", [validation: :required]},
-      description_with_error: {"can't be blank", [validation: :required]},
-      role_with_error: {"can't be blank", [validation: :required]},
-      read_terms_with_error: {"can't be blank", [validation: :required]},
-      eye_color_with_error: {"can't be blank", [validation: :required]},
+      text_input_with_error: {"can't be blank", [validation: :required]},
+      text_input_with_error: {"must be at least 2 characters", [validation: :minimum]},
+      number_input_with_error: {"can't be blank", [validation: :required]},
+      email_input_with_error: {"can't be blank", [validation: :required]},
+      password_input_with_error: {"can't be blank", [validation: :required]},
+      search_input_with_error: {"can't be blank", [validation: :required]},
+      telephone_input_with_error: {"can't be blank", [validation: :required]},
+      url_input_with_error: {"can't be blank", [validation: :required]},
+      time_input_with_error: {"can't be blank", [validation: :required]},
+      time_select_with_error: {"can't be blank", [validation: :required]},
+      datetime_select_with_error: {"can't be blank", [validation: :required]},
+      datetime_local_input_with_error: {"can't be blank", [validation: :required]},
+      color_input_with_error: {"can't be blank", [validation: :required]},
+      file_input_with_error: {"can't be blank", [validation: :required]},
+      range_input_with_error: {"can't be blank", [validation: :required]},
+      textarea_with_error: {"can't be blank", [validation: :required]},
+      select_with_error: {"can't be blank", [validation: :required]},
+      checkbox_with_error: {"can't be blank", [validation: :required]},
+      radio_with_error: {"can't be blank", [validation: :required]},
     ]}
   }>
 
@@ -206,44 +220,200 @@
       The following code shows both methods for each form element:
     -->
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} field={:name} />
-        <.text_input form={f} field={:name} placeholder="eg. John" />
-        <.form_field_error form={f} field={:name} class="mt-1" />
+        <.form_label form={f} field={:text_input} />
+        <.text_input form={f} field={:text_input} placeholder="eg. John" />
+        <.form_field_error form={f} field={:text_input} class="mt-1" />
       </div>
 
       <div>
         <.form_field
           type="text_input"
           form={f}
-          field={:name_with_error}
-          placeholder="eg. John"
+          field={:text_input_with_error}
+          placeholder="Placeholder"
         />
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} field={:description} />
-        <.textarea form={f} field={:description} />
-        <.form_field_error form={f} field={:description} class="mt-1" />
+        <.form_label form={f} field={:email_input} />
+        <.email_input form={f} field={:email_input} />
+        <.form_field_error form={f} field={:email_input} class="mt-1" />
       </div>
 
       <div>
-        <.form_field type="textarea" form={f} field={:description_with_error} />
+        <.form_field type="email_input" form={f} field={:email_input_with_error} />
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} field={:role} />
+        <.form_label form={f} field={:number_input} />
+        <.number_input form={f} field={:number_input} placeholder="eg. 1" />
+        <.form_field_error form={f} field={:number_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="number_input" form={f} field={:number_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:password_input} />
+        <.password_input form={f} field={:password_input} />
+        <.form_field_error form={f} field={:password_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="password_input" form={f} field={:password_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:search_input} />
+        <.search_input form={f} field={:search_input} />
+        <.form_field_error form={f} field={:search_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="search_input" form={f} field={:search_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:telephone_input} />
+        <.telephone_input form={f} field={:telephone_input} />
+        <.form_field_error form={f} field={:telephone_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="telephone_input" form={f} field={:telephone_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:url_input} />
+        <.url_input form={f} field={:url_input} />
+        <.form_field_error form={f} field={:url_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="url_input" form={f} field={:url_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:time_input} />
+        <.time_input form={f} field={:time_input} />
+        <.form_field_error form={f} field={:time_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="time_input" form={f} field={:time_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:time_select} />
+        <.time_select form={f} field={:time_select} />
+        <.form_field_error form={f} field={:time_select} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="time_select" form={f} field={:time_select_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:datetime_local_input} />
+        <.datetime_local_input form={f} field={:datetime_local_input} />
+        <.form_field_error form={f} field={:datetime_local_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="datetime_local_input" form={f} field={:datetime_local_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:datetime_select} />
+        <.datetime_select form={f} field={:datetime_select} />
+        <.form_field_error form={f} field={:datetime_select} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="datetime_select" form={f} field={:datetime_select_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:color_input} />
+        <.color_input form={f} field={:color_input} />
+        <.form_field_error form={f} field={:color_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="color_input" form={f} field={:color_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:file_input} />
+        <.file_input form={f} field={:file_input} />
+        <.form_field_error form={f} field={:file_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="file_input" form={f} field={:file_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:range_input} />
+        <.range_input form={f} field={:range_input} />
+        <.form_field_error form={f} field={:range_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="range_input" form={f} field={:range_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:textarea} />
+        <.textarea form={f} field={:textarea} />
+        <.form_field_error form={f} field={:textarea} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="textarea" form={f} field={:textarea_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:select} />
         <.select
           options={["Admin": "admin", "User": "user"]}
           form={f}
-          field={:role}
+          field={:select}
         />
-        <.form_field_error form={f} field={:name} class="mt-1" />
+        <.form_field_error form={f} field={:select} class="mt-1" />
       </div>
 
       <div>
@@ -251,55 +421,55 @@
           type="select"
           options={["Admin": "admin", "User": "user"]}
           form={f}
-          field={:role_with_error}
+          field={:select_with_error}
         />
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
       <div>
         <label class="inline-flex items-center block gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
-          <.checkbox form={f} field={:read_terms} />
+          <.checkbox form={f} field={:checkbox} />
           <div>I accept</div>
         </label>
 
-        <.form_field_error form={f} field={:read_terms} class="mt-1" />
+        <.form_field_error form={f} field={:checkbox} class="mt-1" />
       </div>
 
       <div>
-        <.form_field type="checkbox" form={f} field={:read_terms_with_error} label="I accept (with error)" />
+        <.form_field type="checkbox" form={f} field={:checkbox_with_error} label="I accept (with error)" />
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
       <div>
-        <.form_label form={f} field={:eye_color} />
+        <.form_label form={f} field={:radio} />
 
         <div class="flex flex-col gap-1">
           <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:eye_color} value="green" />
+            <.radio form={f} field={:radio} value="green" />
             <div>Green</div>
           </label>
 
           <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:eye_color} value="blue" />
+            <.radio form={f} field={:radio} value="blue" />
             <div>Blue</div>
           </label>
 
           <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:eye_color} value="gray" />
+            <.radio form={f} field={:radio} value="gray" />
             <div>Gray</div>
           </label>
         </div>
 
-        <.form_field_error form={f} field={:read_terms} class="mt-1" />
+        <.form_field_error form={f} field={:radio} class="mt-1" />
       </div>
 
       <div>
         <.form_field
           type="radio_group"
           form={f}
-          field={:eye_color_with_error}
+          field={:radio_with_error}
           options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
           label="Eye color with error"
         />
@@ -312,25 +482,26 @@
   <.h2 underline label="Dropdowns" />
   <.h3 label="" />
   <.dropdown label="Dropdown">
-    <.dropdown_menu_item type="button">
+    <.dropdown_menu_item>
       <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
       Button item with icon
     </.dropdown_menu_item>
-    <.dropdown_menu_item type="a" href="/" label="a item" />
-    <.dropdown_menu_item type="live_patch" href="/" label="Live Patch item" />
-    <.dropdown_menu_item type="live_redirect" href="/" label="Live Redirect item" />
+    <.dropdown_menu_item link_type="button" label="button item" />
+    <.dropdown_menu_item link_type="a" to="/" label="a item" />
+    <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch item" />
+    <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect item" />
   </.dropdown>
 </.container>
 
 <.container class="mt-10">
   <.h2 underline label="Loading" />
-  <.h3 label="Spinner" />
+  <.h5 label="Spinner" />
 
   <div class="flex items-start gap-3">
     <.spinner show={false} />
     <.spinner show={true} size="sm" />
-    <.spinner show={true} size="md" class="text-green-500" />
-    <.spinner show={true} size="lg" class="text-red-500" />
+    <.spinner size="md" class="text-green-500" />
+    <.spinner size="lg" class="text-red-500" />
   </div>
 </.container>
 
@@ -351,6 +522,145 @@
     %{ label: "Link 2", to: "#", link_type: "live_patch" },
     %{ label: "Link 3", to: "#", link_type: "live_redirect" },
   ]}/>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Avatar" />
+  <.h5 label="Basic Avatars" />
+  <div class="flex flex-wrap items-end gap-2">
+    <.avatar size="xs" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="md" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="lg" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    <.avatar size="xl" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+  </div>
+
+  <.h5 label="Avatars with placeholder icon" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2">
+    <.avatar size="xs"/>
+    <.avatar size="sm"/>
+    <.avatar size="md"/>
+    <.avatar size="lg"/>
+    <.avatar size="xl"/>
+  </div>
+
+  <.h5 label="Avatar groups stacked" class="mt-10" />
+  <div class="flex flex-wrap items-center gap-10">
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="xs" class="inline-block"/>
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="sm" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="md" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="lg" />
+    <.avatar_group avatars={[
+      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+    ]} size="xl" />
+  </div>
+  <.h5 label="Avatars with placeholder initials" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2 mt-8">
+    <.avatar name="Petal Components" size="xs" />
+    <.avatar name="Petal Components" size="sm"/>
+    <.avatar name="PC" />
+    <.avatar name="PC" size="lg"/>
+    <.avatar name="PC" size="xl"/>
+  </div>
+  <.h5 label="Random color generated avatars with placeholder initials" class="mt-10" />
+  <div class="flex flex-wrap items-end gap-2 mt-8">
+    <.avatar name="Matt Platts" size="xs" random_color />
+    <.avatar name="Nic Hoban" size="sm" random_color />
+    <.avatar name="James Cameron" random_color />
+    <.avatar name="Will Smith" size="lg" random_color />
+    <.avatar name="Peter Jackson" size="xl" random_color />
+  </div>
+  
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Progress" />
+  <.h5 label="Progress bar" />
+  <div class="flex flex-col">
+    <div class="mt-5">
+    <.form_label label="Primary" />
+    <.progress color="primary" value={15} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Secondary" />
+    <.progress color="secondary" value={30} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Info" />
+    <.progress color="info" value={45} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Success" />
+    <.progress color="success" value={60} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Warning" />
+    <.progress color="warning" value={75} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-5">
+    <.form_label label="Danger" />
+    <.progress color="danger" value={90} max={100} class="max-w-xl" />
+    </div>
+    <div class="mt-10">
+      <.h5 label="Sizes" />
+      <div class="mt-5">
+        <.form_label label="xs" />
+        <.progress size="xs" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="sm" />
+        <.progress color="primary" size="sm" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="md" />
+        <.progress size="md" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="lg" />
+        <.progress size="lg" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="xl with label" />
+        <.progress size="xl" value={15} max={100} class="max-w-xl" label="15%" />
+      </div>
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Pagination" />
+  <.h5 label="Basic pagination" />
+  <div class="flex flex-col gap-2 mt-5">
+    <.form_label label="a" />
+    <.pagination link_type="a" class="mb-5" path="/:page" current_page={1} total_pages={10} />
+    <.form_label label="Live Patch" />
+    <.pagination link_type="live_patch" class="mb-5" path="/:page" current_page={5} total_pages={10} />
+    <.form_label label="Live Redirect" />
+    <.pagination link_type="live_redirect" class="mb-5" path="/:page" current_page={10} total_pages={10} />
   </div>
 </.container>
 

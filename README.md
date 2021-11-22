@@ -1,10 +1,9 @@
 # Petal Boilerplate
 
-A clean Phoenix 1.16 install with Tailwind CSS and Alpine JS added.
-
-Tailwind set to JIT mode with a watcher added to dev.exs.
-
-Assets will be built correctly in production.
+A clean Phoenix 1.16 install with some extras to get you started:
+- Tailwind CSS
+- Alpine JS
+- 🌺 [Petal Components Library](https://github.com/petalframework/petal_components)
 
 ## Get up and running
 

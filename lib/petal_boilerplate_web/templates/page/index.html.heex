@@ -28,7 +28,8 @@
     <.h2 underline label="Links" />
     <.h5 label="Types" />
     <div class="flex flex-wrap gap-2 text-gray-300">
-      <.link link_type="a" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="a" /> |
+      <.link link_type="a" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Link" /> |
+      <.link method={:put} to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Link with method" /> |
       <.link link_type="live_patch" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Patch" /> |
       <.link link_type="live_redirect" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Redirect" />
     </div>
@@ -41,7 +42,8 @@
     <.h5 label="Types" />
     <div class="flex flex-wrap gap-2">
       <.button label="Button" />
-      <.button link_type="a" to="/" label="a" />
+      <.button link_type="a" to="/" label="Link" />
+      <.button link_type="a" to="/" label="Link with method" method={:delete} />
       <.button link_type="live_patch" to="/" label="Live Patch" />
       <.button link_type="live_redirect" to="/" label="Live Redirect" />
     </div>
@@ -487,9 +489,10 @@
       Button item with icon
     </.dropdown_menu_item>
     <.dropdown_menu_item link_type="button" label="button item" />
-    <.dropdown_menu_item link_type="a" to="/" label="a item" />
-    <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch item" />
-    <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect item" />
+    <.dropdown_menu_item link_type="a" to="/" label="Link" />
+    <.dropdown_menu_item link_type="a" to="/" label="Link with method" method={:put} />
+    <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch" />
+    <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect" />
   </.dropdown>
 </.container>
 
@@ -594,7 +597,7 @@
     <.avatar name="Will Smith" size="lg" random_color />
     <.avatar name="Peter Jackson" size="xl" random_color />
   </div>
-  
+
 </.container>
 
 <.container class="mt-10">

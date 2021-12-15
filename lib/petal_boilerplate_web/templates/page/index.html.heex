@@ -41,7 +41,7 @@
     <.h2 underline label="Buttons" />
     <.h5 label="Types" />
     <div class="flex flex-wrap gap-2">
-      <.button label="Button" />
+      <.button label="Button" to="/" />
       <.button link_type="a" to="/" label="Link" />
       <.button link_type="a" to="/" label="Link with method" method={:delete} />
       <.button link_type="live_patch" to="/" label="Live Patch" />
@@ -50,7 +50,7 @@
   </div>
 
   <div class="mt-10">
-    <.h5 label="Button colors" />
+    <.h5 label="Colors" />
     <div class="flex flex-wrap gap-2">
       <.button color="primary" label="Primary" />
       <.button color="secondary" label="secondary" />
@@ -61,7 +61,7 @@
   </div>
 
   <div class="mt-10">
-    <.h5 label="Button colors (outline)" />
+    <.h5 label="Colors (outline)" />
     <div class="flex flex-wrap gap-2">
       <.button color="primary" label="Primary" variant="outline" />
       <.button color="secondary" label="Secondary" variant="outline" />
@@ -72,7 +72,7 @@
   </div>
 
   <div class="mt-10">
-    <.h5 label="Button sizes" />
+    <.h5 label="Sizes" />
     <div class="flex flex-wrap items-end gap-2">
       <.button size="xs" label="xs" />
       <.button size="sm" label="sm" />
@@ -83,7 +83,7 @@
   </div>
 
   <div class="mt-10">
-    <.h5 label="Button states" />
+    <.h5 label="States" />
     <div class="mt-5">
       <.form_label label="Disabled" />
     </div>
@@ -123,6 +123,7 @@
   <.h2>Heading 2</.h2>
   <.h3>Heading 3</.h3>
   <.h4>Heading 4</.h4>
+  <.h5 label="Hello" />
   <.h5>Heading 5</.h5>
 </.container>
 
@@ -150,6 +151,7 @@
 
 <.container class="mt-10">
   <.h2 underline label="Badges" />
+  <.h5 label="Light" />
   <div class="flex flex-wrap gap-2">
     <.badge color="primary" label="Primary" />
     <.badge color="secondary" label="Secondary" />
@@ -158,6 +160,26 @@
     <.badge color="warning" label="Warning" />
     <.badge color="danger" label="Danger" />
     <.badge color="gray" label="Gray" />
+  </div>
+  <.h5 label="Dark" class="mt-10" />
+  <div class="flex flex-wrap gap-2">
+    <.badge color="primary" label="Primary" variant="dark" />
+    <.badge color="secondary" label="Secondary" variant="dark" />
+    <.badge color="info" label="Info" variant="dark" />
+    <.badge color="success" label="Success" variant="dark" />
+    <.badge color="warning" label="Warning" variant="dark" />
+    <.badge color="danger" label="Danger" variant="dark" />
+    <.badge color="gray" label="Gray" variant="dark" />
+  </div>
+  <.h5 label="Outline" class="mt-10" />
+  <div class="flex flex-wrap gap-2">
+    <.badge color="primary" label="Primary" variant="outline" />
+    <.badge color="secondary" label="Secondary" variant="outline" />
+    <.badge color="info" label="Info" variant="outline" />
+    <.badge color="success" label="Success" variant="outline" />
+    <.badge color="warning" label="Warning" variant="outline" />
+    <.badge color="danger" label="Danger" variant="outline" />
+    <.badge color="gray" label="Gray" variant="outline" />
   </div>
 </.container>
 
@@ -665,6 +687,52 @@
     <.form_label label="Live Redirect" />
     <.pagination link_type="live_redirect" class="mb-5" path="/:page" current_page={10} total_pages={10} />
   </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Tabs" />
+  <.h5 label="Basic tabs" />
+  <.tabs class="flex-col sm:flex-row space-x">
+    <.tab is_active to="/">Home</.tab>
+    <.tab link_type="a" to="/" label="About" />
+  </.tabs>
+  <.h5 label="Tabs with underline" class="mt-10" />
+  <.tabs>
+    <.tab underline is_active to="/">Home</.tab>
+    <.tab underline link_type="a" to="/" label="About" />
+  </.tabs>
+  <.h5 label="Basic tabs with number" class="mt-10" />
+  <.tabs>
+    <.tab number={1} is_active to="/">Home</.tab>
+    <.tab number={63} link_type="a" to="/" label="About" />
+  </.tabs>
+  <.h5 label="Tabs underlined with number" class="mt-10" />
+  <.tabs underline>
+    <.tab underline number={1} is_active to="/">Home</.tab>
+    <.tab number={63} underline link_type="a" to="/" label="About" />
+  </.tabs>
+  <.h5 label="Basic tabs with icons" class="mt-10" />
+  <.tabs>
+    <.tab is_active to="/">
+      <Heroicons.Solid.home class="w-5 h-5 mr-2" />
+        Home
+    </.tab>
+    <.tab link_type="a" to="/">
+      <Heroicons.Solid.office_building class="w-5 h-5 mr-2" />
+        Company
+    </.tab>
+  </.tabs>
+  <.h5 label="Tabs underlined with outline icons" class="mt-10" />
+  <.tabs underline>
+    <.tab underline is_active to="/">
+      <Heroicons.Outline.home class="w-5 h-5 mr-2" />
+        Home
+    </.tab>
+    <.tab underline link_type="a" to="/">
+      <Heroicons.Outline.office_building class="w-5 h-5 mr-2" />
+        Company
+    </.tab>
+  </.tabs>
 </.container>
 
 <div class="mb-40"></div>

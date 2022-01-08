@@ -3,6 +3,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer components {
+  .select-wrapper select {
+    @apply text-sm border-gray-300 rounded-md shadow-sm disabled:bg-gray-100 disabled:cursor-not-allowed focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500 dark:bg-gray-800 dark:text-gray-300 focus:outline-none ;
+  }
+}
+
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;

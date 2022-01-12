@@ -543,22 +543,27 @@
 
 <.container class="mt-10">
   <.h2 underline label="Breadcrumbs" />
+
   <.h5 label="Slash" />
-    <div class="flex">
-      <.breadcrumbs links={[
-        %{ label: "Link 1", to: "#" },
-        %{ label: "Link 2", to: "#" },
-        %{ label: "Link 3", to: "#" }
-      ]}/>
-    </div>
+  <.breadcrumbs links={[
+    %{ label: "Link 1", to: "#" },
+    %{ label: "Link 2", to: "#" },
+    %{ label: "Link 3", to: "#" }
+  ]}/>
+
   <.h5 label="Chevron" class="mt-10" />
-  <div class="flex">
   <.breadcrumbs separator="chevron" links={[
     %{ label: "Link 1", to: "#" },
     %{ label: "Link 2", to: "#", link_type: "live_patch" },
     %{ label: "Link 3", to: "#", link_type: "live_redirect" }
   ]}/>
-  </div>
+
+  <.h5 label="Custom CSS" class="mt-10" />
+  <.breadcrumbs class="mt-3" link_class="!text-blue-500 text-sm font-semibold" links={[
+    %{ label: "Link 1", to: "#" },
+    %{ label: "Link 2", to: "#", link_type: "live_patch" },
+    %{ label: "Link 3", to: "#", link_type: "live_redirect" },
+  ]}/>
 </.container>
 
 <.container class="mt-10">

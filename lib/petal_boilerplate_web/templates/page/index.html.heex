@@ -234,6 +234,8 @@
       url_input_with_error: {"can't be blank", [validation: :required]},
       time_input_with_error: {"can't be blank", [validation: :required]},
       time_select_with_error: {"can't be blank", [validation: :required]},
+      date_select_with_error: {"can't be blank", [validation: :required]},
+      date_input_with_error: {"can't be blank", [validation: :required]},
       datetime_select_with_error: {"can't be blank", [validation: :required]},
       datetime_local_input_with_error: {"can't be blank", [validation: :required]},
       color_input_with_error: {"can't be blank", [validation: :required]},
@@ -365,6 +367,30 @@
 
       <div>
         <.form_field type="time_select" form={f} field={:time_select_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:date_input} />
+        <.date_input form={f} field={:date_input} />
+        <.form_field_error form={f} field={:date_input} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="date_input" form={f} field={:date_input_with_error} />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.form_label form={f} field={:date_select} />
+        <.date_select form={f} field={:date_select} />
+        <.form_field_error form={f} field={:date_select} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field type="date_select" form={f} field={:date_select_with_error} />
       </div>
     </div>
 

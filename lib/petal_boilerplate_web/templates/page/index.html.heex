@@ -541,18 +541,45 @@
 
 <.container class="mt-10">
   <.h2 underline label="Dropdowns" />
-  <.h3 label="" />
-  <.dropdown label="Dropdown">
-    <.dropdown_menu_item>
-      <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
-      Button item with icon
-    </.dropdown_menu_item>
-    <.dropdown_menu_item link_type="button" label="button item" />
-    <.dropdown_menu_item link_type="a" to="/" label="Link" />
-    <.dropdown_menu_item link_type="a" to="/" label="Link with method" method={:put} />
-    <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch" />
-    <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect" />
-  </.dropdown>
+  <div class="flex items-center gap-5">
+    <.dropdown label="Dropdown">
+      <.dropdown_menu_item>
+        <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
+        Button item with icon
+      </.dropdown_menu_item>
+      <.dropdown_menu_item link_type="button" label="button item" />
+      <.dropdown_menu_item link_type="a" to="/" label="Link" />
+      <.dropdown_menu_item link_type="a" to="/" label="Link with method" method={:put} />
+      <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch" />
+      <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect" />
+    </.dropdown>
+
+    <.dropdown>
+      <:trigger_element>
+        <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+      </:trigger_element>
+
+      <.dropdown_menu_item label="Item 1" />
+      <.dropdown_menu_item label="Item 2" />
+    </.dropdown>
+
+    <.dropdown>
+      <.dropdown_menu_item label="Item 1" />
+      <.dropdown_menu_item label="Item 2" />
+    </.dropdown>
+
+    <.dropdown>
+      <:trigger_element>
+        <div class="inline-flex items-center justify-center w-full align-middle focus:outline-none">
+          <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+          <Heroicons.Solid.chevron_down class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
+        </div>
+      </:trigger_element>
+
+      <.dropdown_menu_item label="Item 1" />
+      <.dropdown_menu_item label="Item 2" />
+    </.dropdown>
+  </div>
 </.container>
 
 <.container class="mt-10">

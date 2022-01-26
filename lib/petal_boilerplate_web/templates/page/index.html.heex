@@ -244,6 +244,7 @@
       textarea_with_error: {"can't be blank", [validation: :required]},
       select_with_error: {"can't be blank", [validation: :required]},
       checkbox_with_error: {"can't be blank", [validation: :required]},
+      checkbox_group_with_error: {"can't be blank", [validation: :required]},
       radio_with_error: {"can't be blank", [validation: :required]},
     ]}
   }>
@@ -489,7 +490,7 @@
 
     <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
       <div>
-        <label class="inline-flex items-center block gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
           <.checkbox form={f} field={:checkbox} />
           <div>I accept</div>
         </label>
@@ -504,22 +505,51 @@
 
     <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
       <div>
+        <.form_field
+          type="checkbox_group"
+          form={f}
+          field={:checkbox_group}
+          options={[
+            {"Option 1", "option_1"},
+            {"Option 2", "option_2"},
+            {"Option 3", "option_3"},
+            {"Option 4", "option_4"}
+          ]}
+        />
+      </div>
+      <div>
+        <.form_field
+          type="checkbox_group"
+          form={f}
+          field={:checkbox_group_with_error}
+          options={[
+            {"Option 1", "option_1"},
+            {"Option 2", "option_2"},
+            {"Option 3", "option_3"},
+            {"Option 4", "option_4"}
+          ]}
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+      <div>
         <.form_label form={f} field={:radio} />
 
         <div class="flex flex-col gap-1">
-          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="green" />
-            <div>Green</div>
+          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:radio} value="option_1" />
+            <div>Option 1</div>
           </label>
 
-          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="blue" />
-            <div>Blue</div>
+          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:radio} value="option_2" />
+            <div>Option 2</div>
           </label>
 
-          <label class="inline-flex items-center block gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="gray" />
-            <div>Gray</div>
+          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+            <.radio form={f} field={:radio} value="option_3" />
+            <div>Option 3</div>
           </label>
         </div>
 
@@ -531,8 +561,11 @@
           type="radio_group"
           form={f}
           field={:radio_with_error}
-          options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
-          label="Eye color with error"
+          options={[
+            "Option 1": "option_1",
+            "Option 2": "option_2",
+            "Option 3": "option_3"
+          ]}
         />
       </div>
     </div>

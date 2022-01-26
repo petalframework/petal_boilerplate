@@ -50,3 +50,45 @@ liveSocket.connect();
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
+
+function setupThemeSwitcher() {
+  const themeSwitch = document.getElementById("theme-switch");
+  const mode = getTheme();
+
+  if (mode === "dark") {
+    themeSwitch.checked = true;
+    setTheme("dark");
+  }
+
+  themeSwitch.addEventListener("change", () => {
+    setTheme(themeSwitch.checked ? "dark" : "light");
+  });
+}
+
+function getTheme() {
+  const persistedColorPreference = window.localStorage.getItem("dark-mode");
+  const hasPersistedPreference = typeof persistedColorPreference === "string";
+  if (hasPersistedPreference) {
+    return persistedColorPreference;
+  }
+  const mql = window.matchMedia("(prefers-color-scheme: dark)");
+  const hasMediaQueryPreference = typeof mql.matches === "boolean";
+  if (hasMediaQueryPreference) {
+    return mql.matches ? "dark" : "light";
+  }
+  return "dark";
+}
+
+function setTheme(mode) {
+  if (mode === "dark") {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("dark-mode", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("dark-mode", "light");
+  }
+}
+
+window.onload = () => {
+  setupThemeSwitcher();
+};

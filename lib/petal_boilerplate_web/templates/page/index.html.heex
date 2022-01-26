@@ -1,919 +1,1037 @@
-<.container class="mt-10 ">
-  <.h1>Petal Components</.h1>
-  <.link to="/live" class="underline">View Live View JS components</.link>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Containers" />
-</.container>
-
-<.container max_width="full" class="flex items-center justify-center h-10 my-5 bg-gray-100">
-  Max width "full"
-</.container>
-
-<.container max_width="lg" class="flex items-center justify-center h-10 my-5 bg-gray-100">
-  Max width "lg"
-</.container>
-
-<.container max_width="md" class="flex items-center justify-center h-10 my-5 bg-gray-100">
-  Max width "md"
-</.container>
-
-<.container max_width="sm" class="flex items-center justify-center h-10 my-5 bg-gray-100">
-  Max width "sm"
-</.container>
-
-<.container>
-  <div>
-    <.h2 underline label="Links" />
-    <.h5 label="Types" />
-    <div class="flex flex-wrap gap-2 text-gray-300">
-      <.link link_type="a" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Link" /> |
-      <.link method={:put} to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Link with method" /> |
-      <.link link_type="live_patch" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Patch" /> |
-      <.link link_type="live_redirect" to="/" class="text-gray-700 hover:text-gray-900 hover:underline" label="Live Redirect" />
-    </div>
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <div>
-    <.h2 underline label="Buttons" />
-    <.h5 label="Types" />
-    <div class="flex flex-wrap gap-2">
-      <.button label="Button" to="/" />
-      <.button link_type="a" to="/" label="Link" />
-      <.button link_type="a" to="/" label="Link with method" method={:delete} />
-      <.button link_type="live_patch" to="/" label="Live Patch" />
-      <.button link_type="live_redirect" to="/" label="Live Redirect" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="Colors" />
-    <div class="flex flex-wrap gap-2">
-      <.button color="primary" label="Primary" />
-      <.button color="secondary" label="secondary" />
-      <.button color="white" label="White" />
-      <.button color="success" label="Success" />
-      <.button color="danger" label="Danger" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="Colors (outline)" />
-    <div class="flex flex-wrap gap-2">
-      <.button color="primary" label="Primary" variant="outline" />
-      <.button color="secondary" label="Secondary" variant="outline" />
-      <.button color="white" label="White" variant="outline" />
-      <.button color="success" label="Success" variant="outline" />
-      <.button color="danger" label="Danger" variant="outline" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="Shadow" />
-    <div class="flex flex-wrap gap-2">
-      <.button color="primary" label="Primary" variant="shadow" />
-      <.button color="secondary" label="Secondary" variant="shadow" />
-      <.button color="white" label="White" variant="shadow" />
-      <.button color="success" label="Success" variant="shadow" />
-      <.button color="danger" label="Danger" variant="shadow" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="Sizes" />
-    <div class="flex flex-wrap items-end gap-2">
-      <.button size="xs" label="xs" />
-      <.button size="sm" label="sm" />
-      <.button size="md" label="md" />
-      <.button size="lg" label="lg" />
-      <.button size="xl" label="xl" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="States" />
-    <div class="mt-5">
-      <.form_label label="Disabled" />
-    </div>
-    <div class="flex flex-wrap items-end gap-2 mt-2">
-      <.button disabled size="xs" to="/" label="Disabled xs" />
-      <.button disabled size="sm" to="/" label="Disabled sm" />
-      <.button disabled size="md" to="/" label="Disabled md" />
-      <.button disabled size="lg" to="/" label="Disabled lg" />
-      <.button disabled size="xl" to="/" label="Disabled xl" />
-    </div>
-    <div class="mt-5">
-      <.form_label label="Loading" />
-    </div>
-    <div class="flex flex-wrap items-end gap-2 mt-2">
-      <.button loading size="xs" label="Loading xs" />
-      <.button loading size="sm" label="Loading sm" />
-      <.button loading size="md" label="Loading md" />
-      <.button loading size="lg" label="Loading lg" />
-      <.button loading size="xl" label="Loading xl" />
-    </div>
-  </div>
-
-  <div class="mt-10">
-    <.h5 label="Button with icon" />
-    <div class="flex flex-wrap items-end gap-2">
-      <.button icon link_type="a" to="/">
-        <Heroicons.Solid.home class="w-5 h-5" />
-        With icon
-      </.button>
-    </div>
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Typography" />
-  <.h1>Heading 1</.h1>
-  <.h2>Heading 2</.h2>
-  <.h3>Heading 3</.h3>
-  <.h4>Heading 4</.h4>
-  <.h5 label="Heading 5" />
-  <.p>Paragraph tag</.p>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Heroicons" />
-  <.h5 label="Heroicons solid" />
-
-  <div class="flex">
-    <Heroicons.Solid.home />
-    <Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
-    <Heroicons.Solid.home class="w-6 h-6 text-green-500" />
-    <Heroicons.Solid.chart_pie />
-    <Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
-    <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
-  </div>
-
-  <.h5 label="Heroicons outline" class="mt-5" />
-
-  <div class="flex">
-    <Heroicons.Outline.home />
-    <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
-    <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Badges" />
-  <.h5 label="Light" />
-  <div class="flex flex-wrap gap-2">
-    <.badge color="primary" label="Primary" />
-    <.badge color="secondary" label="Secondary" />
-    <.badge color="info" label="Info" />
-    <.badge color="success" label="Success" />
-    <.badge color="warning" label="Warning" />
-    <.badge color="danger" label="Danger" />
-    <.badge color="gray" label="Gray" />
-  </div>
-  <.h5 label="Dark" class="mt-10" />
-  <div class="flex flex-wrap gap-2">
-    <.badge color="primary" label="Primary" variant="dark" />
-    <.badge color="secondary" label="Secondary" variant="dark" />
-    <.badge color="info" label="Info" variant="dark" />
-    <.badge color="success" label="Success" variant="dark" />
-    <.badge color="warning" label="Warning" variant="dark" />
-    <.badge color="danger" label="Danger" variant="dark" />
-    <.badge color="gray" label="Gray" variant="dark" />
-  </div>
-  <.h5 label="Outline" class="mt-10" />
-  <div class="flex flex-wrap gap-2">
-    <.badge color="primary" label="Primary" variant="outline" />
-    <.badge color="secondary" label="Secondary" variant="outline" />
-    <.badge color="info" label="Info" variant="outline" />
-    <.badge color="success" label="Success" variant="outline" />
-    <.badge color="warning" label="Warning" variant="outline" />
-    <.badge color="danger" label="Danger" variant="outline" />
-    <.badge color="gray" label="Gray" variant="outline" />
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Alerts" />
-  <div class="flex items-start">
-    <.alert state="info">
-      This is an info state
-    </.alert>
-  </div>
-  <div class="flex items-start mt-4">
-    <.alert state="success" label="This is a success state" />
-  </div>
-  <div class="flex items-start mt-4">
-    <.alert state="warning" label="This is a warning state" />
-  </div>
-  <div class="flex items-start mt-4">
-    <.alert state="danger" label="This is a danger state" />
-  </div>
-  <div class="flex items-start max-w-sm mt-4">
-    <.alert heading="Optional heading">
-      This is quite a long paragraph that takes up more than one line.
-    </.alert>
-  </div>
-</.container>
-
-<.container>
-  <.h2 underline label="Forms" class="mt-10" />
-
-  <.form let={f} multipart as={:user} for={%Ecto.Changeset{
-    action: :update,
-    data: %{name: ""},
-    errors: [
-      text_input_with_error: {"can't be blank", [validation: :required]},
-      text_input_with_error: {"must be at least 2 characters", [validation: :minimum]},
-      number_input_with_error: {"can't be blank", [validation: :required]},
-      email_input_with_error: {"can't be blank", [validation: :required]},
-      password_input_with_error: {"can't be blank", [validation: :required]},
-      search_input_with_error: {"can't be blank", [validation: :required]},
-      telephone_input_with_error: {"can't be blank", [validation: :required]},
-      url_input_with_error: {"can't be blank", [validation: :required]},
-      time_input_with_error: {"can't be blank", [validation: :required]},
-      time_select_with_error: {"can't be blank", [validation: :required]},
-      date_select_with_error: {"can't be blank", [validation: :required]},
-      date_input_with_error: {"can't be blank", [validation: :required]},
-      datetime_select_with_error: {"can't be blank", [validation: :required]},
-      datetime_local_input_with_error: {"can't be blank", [validation: :required]},
-      color_input_with_error: {"can't be blank", [validation: :required]},
-      file_input_with_error: {"can't be blank", [validation: :required]},
-      range_input_with_error: {"can't be blank", [validation: :required]},
-      textarea_with_error: {"can't be blank", [validation: :required]},
-      select_with_error: {"can't be blank", [validation: :required]},
-      checkbox_with_error: {"can't be blank", [validation: :required]},
-      checkbox_group_with_error: {"can't be blank", [validation: :required]},
-      radio_with_error: {"can't be blank", [validation: :required]},
-    ]}
-  }>
-
-    <!--
-      When creating form fields you can do it two ways:
-
-      1. Use `<.form_field>`, which includes the label and error
-      2. You can write the input, label and error separately (if you want to style the form differently)
-
-      The following code shows both methods for each form element:
-    -->
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:text_input} />
-        <.text_input form={f} field={:text_input} placeholder="eg. John" />
-        <.form_field_error form={f} field={:text_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field
-          type="text_input"
-          form={f}
-          field={:text_input_with_error}
-          placeholder="Placeholder"
-        />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:email_input} />
-        <.email_input form={f} field={:email_input} />
-        <.form_field_error form={f} field={:email_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="email_input" form={f} field={:email_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:number_input} />
-        <.number_input form={f} field={:number_input} placeholder="eg. 1" />
-        <.form_field_error form={f} field={:number_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="number_input" form={f} field={:number_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:password_input} />
-        <.password_input form={f} field={:password_input} />
-        <.form_field_error form={f} field={:password_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="password_input" form={f} field={:password_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:search_input} />
-        <.search_input form={f} field={:search_input} />
-        <.form_field_error form={f} field={:search_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="search_input" form={f} field={:search_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:telephone_input} />
-        <.telephone_input form={f} field={:telephone_input} />
-        <.form_field_error form={f} field={:telephone_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="telephone_input" form={f} field={:telephone_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:url_input} />
-        <.url_input form={f} field={:url_input} />
-        <.form_field_error form={f} field={:url_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="url_input" form={f} field={:url_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:time_input} />
-        <.time_input form={f} field={:time_input} />
-        <.form_field_error form={f} field={:time_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="time_input" form={f} field={:time_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:time_select} />
-        <.time_select form={f} field={:time_select} />
-        <.form_field_error form={f} field={:time_select} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="time_select" form={f} field={:time_select_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:date_input} />
-        <.date_input form={f} field={:date_input} />
-        <.form_field_error form={f} field={:date_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="date_input" form={f} field={:date_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:date_select} />
-        <.date_select form={f} field={:date_select} />
-        <.form_field_error form={f} field={:date_select} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="date_select" form={f} field={:date_select_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:datetime_local_input} />
-        <.datetime_local_input form={f} field={:datetime_local_input} />
-        <.form_field_error form={f} field={:datetime_local_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="datetime_local_input" form={f} field={:datetime_local_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:datetime_select} />
-        <.datetime_select form={f} field={:datetime_select} />
-        <.form_field_error form={f} field={:datetime_select} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="datetime_select" form={f} field={:datetime_select_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:color_input} />
-        <.color_input form={f} field={:color_input} />
-        <.form_field_error form={f} field={:color_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="color_input" form={f} field={:color_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:file_input} />
-        <.file_input form={f} field={:file_input} />
-        <.form_field_error form={f} field={:file_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="file_input" form={f} field={:file_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:range_input} />
-        <.range_input form={f} field={:range_input} />
-        <.form_field_error form={f} field={:range_input} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="range_input" form={f} field={:range_input_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:textarea} />
-        <.textarea form={f} field={:textarea} />
-        <.form_field_error form={f} field={:textarea} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="textarea" form={f} field={:textarea_with_error} />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:select} />
-        <.select
-          options={["Admin": "admin", "User": "user"]}
-          form={f}
-          field={:select}
-        />
-        <.form_field_error form={f} field={:select} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field
-          type="select"
-          options={["Admin": "admin", "User": "user"]}
-          form={f}
-          field={:select_with_error}
-        />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
-      <div>
-        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
-          <.checkbox form={f} field={:checkbox} />
-          <div>I accept</div>
-        </label>
-
-        <.form_field_error form={f} field={:checkbox} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field type="checkbox" form={f} field={:checkbox_with_error} label="I accept (with error)" />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
-      <div>
-        <.form_field
-          type="checkbox_group"
-          form={f}
-          field={:checkbox_group}
-          options={[
-            {"Option 1", "option_1"},
-            {"Option 2", "option_2"},
-            {"Option 3", "option_3"},
-            {"Option 4", "option_4"}
-          ]}
-        />
-      </div>
-      <div>
-        <.form_field
-          type="checkbox_group"
-          form={f}
-          field={:checkbox_group_with_error}
-          options={[
-            {"Option 1", "option_1"},
-            {"Option 2", "option_2"},
-            {"Option 3", "option_3"},
-            {"Option 4", "option_4"}
-          ]}
-        />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
-      <div>
-        <.form_label form={f} field={:radio} />
-
-        <div class="flex flex-col gap-1">
-          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="option_1" />
-            <div>Option 1</div>
-          </label>
-
-          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="option_2" />
-            <div>Option 2</div>
-          </label>
-
-          <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-            <.radio form={f} field={:radio} value="option_3" />
-            <div>Option 3</div>
-          </label>
+<div class="h-screen overflow-auto dark:bg-gray-900">
+  <nav class="sticky top-0 flex items-center justify-end w-full h-12 bg-white dark:bg-gray-900">
+    <div class="flex justify-end pr-3">
+      <div class="bg-pink-400 hover:bg-pink-500/90 theme-switch-wrapper dark:bg-gray-600 dark:hover:bg-gray-500/80">
+        <input type="checkbox" class="theme-switch" id="theme-switch">
+        <div class="switch-ui">
+          <svg class="moon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 16a7.947 7.947 0 003.5-.815C8.838 13.886 7 11.161 7 8S8.838 2.114 11.5.815A7.947 7.947 0 008 0a8 8 0 000 16zM14 3a2 2 0 01-2 2 2 2 0 012 2 2 2 0 012-2 2 2 0 01-2-2z" /><path d="M10 6a2 2 0 01-2 2 2 2 0 012 2 2 2 0 012-2 2 2 0 01-2-2zM13 13a2 2 0 012-2 2 2 0 01-2-2 2 2 0 01-2 2 2 2 0 012 2z" /></svg>
+          <svg class="sun" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="7.5" r="4.5" /><path d="M8 0h1v2H8zM8 13h1v2H8zM14 7h2v1h-2zM1 7h2v1H1zM12.035 11.743l.707-.707 1.414 1.414-.707.707zM2.843 2.55l.707-.707 1.415 1.414-.707.707zM2.843 12.45l1.414-1.415.707.707-1.414 1.415zM12.035 3.257l1.414-1.414.708.707-1.415 1.415z" /></svg>
         </div>
-
-        <.form_field_error form={f} field={:radio} class="mt-1" />
-      </div>
-
-      <div>
-        <.form_field
-          type="radio_group"
-          form={f}
-          field={:radio_with_error}
-          options={[
-            "Option 1": "option_1",
-            "Option 2": "option_2",
-            "Option 3": "option_3"
-          ]}
-        />
       </div>
     </div>
-  </.form>
-</.container>
+  </nav>
+  <.container class="mt-10">
+    <.h1>Petal Components</.h1>
+    <.link to="/live" class="underline dark:text-gray-400">View Live View JS components</.link>
+  </.container>
 
-<.container class="mt-10">
-  <.h2 underline label="Dropdowns" />
-  <div class="flex items-center gap-5">
-    <.dropdown label="Dropdown">
-      <.dropdown_menu_item>
-        <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
-        Button item with icon
-      </.dropdown_menu_item>
-      <.dropdown_menu_item link_type="button" label="button item" />
-      <.dropdown_menu_item link_type="a" to="/" label="Link" />
-      <.dropdown_menu_item link_type="a" to="/" label="Link with method" method={:put} />
-      <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch" />
-      <.dropdown_menu_item link_type="live_redirect" to="/" label="Live Redirect" />
-    </.dropdown>
+  <.container class="mt-10">
+    <.h2 underline label="Containers" />
+  </.container>
 
-    <.dropdown>
-      <:trigger_element>
-        <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-      </:trigger_element>
+  <.container max_width="full" class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400">
+    Max width "full"
+  </.container>
 
-      <.dropdown_menu_item label="Item 1" />
-      <.dropdown_menu_item label="Item 2" />
-    </.dropdown>
+  <.container max_width="lg" class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400">
+    Max width "lg"
+  </.container>
 
-    <.dropdown>
-      <.dropdown_menu_item label="Item 1" />
-      <.dropdown_menu_item label="Item 2" />
-    </.dropdown>
+  <.container max_width="md" class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400">
+    Max width "md"
+  </.container>
 
-    <.dropdown>
-      <:trigger_element>
-        <div class="inline-flex items-center justify-center w-full align-middle focus:outline-none">
-          <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-          <Heroicons.Solid.chevron_down class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
-        </div>
-      </:trigger_element>
+  <.container max_width="sm" class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400">
+    Max width "sm"
+  </.container>
 
-      <.dropdown_menu_item label="Item 1" />
-      <.dropdown_menu_item label="Item 2" />
-    </.dropdown>
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Loading" />
-  <.h5 label="Spinner" />
-
-  <div class="flex items-start gap-3">
-    <.spinner show={false} />
-    <.spinner show={true} size="sm" />
-    <.spinner size="md" class="text-green-500" />
-    <.spinner size="lg" class="text-red-500" />
-  </div>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Breadcrumbs" />
-
-  <.h5 label="Slash" />
-  <.breadcrumbs links={[
-    %{ label: "Link 1", to: "#" },
-    %{ label: "Link 2", to: "#" },
-    %{ label: "Link 3", to: "#" }
-  ]}/>
-
-  <.h5 label="Chevron" class="mt-10" />
-  <.breadcrumbs separator="chevron" links={[
-    %{ label: "Link 1", to: "#" },
-    %{ label: "Link 2", to: "#", link_type: "live_patch" },
-    %{ label: "Link 3", to: "#", link_type: "live_redirect" }
-  ]}/>
-
-  <.h5 label="Custom CSS" class="mt-10" />
-  <.breadcrumbs class="mt-3" link_class="!text-blue-500 text-sm font-semibold" links={[
-    %{ label: "Link 1", to: "#" },
-    %{ label: "Link 2", to: "#", link_type: "live_patch" },
-    %{ label: "Link 3", to: "#", link_type: "live_redirect" },
-  ]}/>
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Avatar" />
-  <.h5 label="Basic Avatars" />
-  <div class="flex flex-wrap items-end gap-2">
-    <.avatar size="xs" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-    <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-    <.avatar size="md" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-    <.avatar size="lg" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-    <.avatar size="xl" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-  </div>
-
-  <.h5 label="Avatars with placeholder icon" class="mt-10" />
-  <div class="flex flex-wrap items-end gap-2">
-    <.avatar size="xs"/>
-    <.avatar size="sm"/>
-    <.avatar size="md"/>
-    <.avatar size="lg"/>
-    <.avatar size="xl"/>
-  </div>
-
-  <.h5 label="Avatar groups stacked" class="mt-10" />
-  <div class="flex flex-wrap items-center gap-10">
-    <.avatar_group avatars={[
-      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
-    ]} size="xs" class="inline-block"/>
-    <.avatar_group avatars={[
-      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
-    ]} size="sm" />
-    <.avatar_group avatars={[
-      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
-    ]} size="md" />
-    <.avatar_group avatars={[
-      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
-    ]} size="lg" />
-    <.avatar_group avatars={[
-      "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-      "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
-    ]} size="xl" />
-  </div>
-  <.h5 label="Avatars with placeholder initials" class="mt-10" />
-  <div class="flex flex-wrap items-end gap-2 mt-8">
-    <.avatar name="Petal Components" size="xs" />
-    <.avatar name="Petal Components" size="sm"/>
-    <.avatar name="PC" />
-    <.avatar name="PC" size="lg"/>
-    <.avatar name="PC" size="xl"/>
-  </div>
-  <.h5 label="Random color generated avatars with placeholder initials" class="mt-10" />
-  <div class="flex flex-wrap items-end gap-2 mt-8">
-    <.avatar name="Matt Platts" size="xs" random_color />
-    <.avatar name="Nic Hoban" size="sm" random_color />
-    <.avatar name="James Cameron" random_color />
-    <.avatar name="Will Smith" size="lg" random_color />
-    <.avatar name="Peter Jackson" size="xl" random_color />
-  </div>
-
-</.container>
-
-<.container class="mt-10">
-  <.h2 underline label="Progress" />
-  <.h5 label="Progress bar" />
-  <div class="flex flex-col">
-    <div class="mt-5">
-    <.form_label label="Primary" />
-    <.progress color="primary" value={15} max={100} class="max-w-xl" />
+  <.container>
+    <div>
+      <.h2 underline label="Links" />
+      <.h5 label="Types" />
+      <div class="flex flex-wrap gap-2 text-gray-300">
+        <.link link_type="a" to="/" class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline" label="Link" /> |
+        <.link method={:put} to="/" class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline" label="Link with method" /> |
+        <.link link_type="live_patch" to="/" class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline" label="Live Patch" /> |
+        <.link link_type="live_redirect" to="/" class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline" label="Live Redirect" />
+      </div>
     </div>
-    <div class="mt-5">
-    <.form_label label="Secondary" />
-    <.progress color="secondary" value={30} max={100} class="max-w-xl" />
+  </.container>
+
+  <.container class="mt-10">
+    <div>
+      <.h2 underline label="Buttons" />
+      <.h5 label="Types" />
+      <div class="flex flex-wrap gap-2">
+        <.button label="Button" to="/" />
+        <.button link_type="a" to="/" label="Link" />
+        <.button link_type="a" to="/" label="Link with method" method={:delete} />
+        <.button link_type="live_patch" to="/" label="Live Patch" />
+        <.button link_type="live_redirect" to="/" label="Live Redirect" />
+      </div>
     </div>
-    <div class="mt-5">
-    <.form_label label="Info" />
-    <.progress color="info" value={45} max={100} class="max-w-xl" />
+
+    <div class="mt-10">
+      <.h5 label="Colors" />
+      <div class="flex flex-wrap gap-2">
+        <.button color="primary" label="Primary" />
+        <.button color="secondary" label="secondary" />
+        <.button color="white" label="White" />
+        <.button color="success" label="Success" />
+        <.button color="danger" label="Danger" />
+      </div>
     </div>
-    <div class="mt-5">
-    <.form_label label="Success" />
-    <.progress color="success" value={60} max={100} class="max-w-xl" />
+
+    <div class="mt-10">
+      <.h5 label="Colors (outline)" />
+      <div class="flex flex-wrap gap-2">
+        <.button color="primary" label="Primary" variant="outline" />
+        <.button color="secondary" label="Secondary" variant="outline" />
+        <.button color="white" label="White" variant="outline" />
+        <.button color="success" label="Success" variant="outline" />
+        <.button color="danger" label="Danger" variant="outline" />
+      </div>
     </div>
-    <div class="mt-5">
-    <.form_label label="Warning" />
-    <.progress color="warning" value={75} max={100} class="max-w-xl" />
+
+    <div class="mt-10">
+      <.h5 label="Shadow" />
+      <div class="flex flex-wrap gap-2">
+        <.button color="primary" label="Primary" variant="shadow" />
+        <.button color="secondary" label="Secondary" variant="shadow" />
+        <.button color="white" label="White" variant="shadow" />
+        <.button color="success" label="Success" variant="shadow" />
+        <.button color="danger" label="Danger" variant="shadow" />
+      </div>
     </div>
-    <div class="mt-5">
-    <.form_label label="Danger" />
-    <.progress color="danger" value={90} max={100} class="max-w-xl" />
-    </div>
+
     <div class="mt-10">
       <.h5 label="Sizes" />
-      <div class="mt-5">
-        <.form_label label="xs" />
-        <.progress size="xs" value={15} max={100} class="max-w-xl" />
-      </div>
-      <div class="mt-5">
-        <.form_label label="sm" />
-        <.progress color="primary" size="sm" value={15} max={100} class="max-w-xl" />
-      </div>
-      <div class="mt-5">
-        <.form_label label="md" />
-        <.progress size="md" value={15} max={100} class="max-w-xl" />
-      </div>
-      <div class="mt-5">
-        <.form_label label="lg" />
-        <.progress size="lg" value={15} max={100} class="max-w-xl" />
-      </div>
-      <div class="mt-5">
-        <.form_label label="xl with label" />
-        <.progress size="xl" value={15} max={100} class="max-w-xl" label="15%" />
+      <div class="flex flex-wrap items-end gap-2">
+        <.button size="xs" label="xs" />
+        <.button size="sm" label="sm" />
+        <.button size="md" label="md" />
+        <.button size="lg" label="lg" />
+        <.button size="xl" label="xl" />
       </div>
     </div>
-  </div>
-</.container>
 
-<.container class="mt-10">
-  <.h2 underline label="Pagination" />
-  <.h5 label="Basic Pagination" />
-  <div class="flex flex-col gap-2 mt-5">
-    <.form_label label="a" />
-    <.pagination link_type="a" class="mb-5" path="/:page" current_page={1} total_pages={10} />
-    <.form_label label="Live Patch" />
-    <.pagination link_type="live_patch" class="mb-5" path="/:page" current_page={5} total_pages={10} />
-    <.form_label label="Live Redirect" />
-    <.pagination link_type="live_redirect" class="mb-5" path="/:page" current_page={10} total_pages={10} />
-  </div>
-</.container>
+    <div class="mt-10">
+      <.h5 label="States" />
+      <div class="mt-5">
+        <.form_label label="Disabled" />
+      </div>
+      <div class="flex flex-wrap items-end gap-2 mt-2">
+        <.button disabled size="xs" to="/" label="Disabled xs" />
+        <.button disabled size="sm" to="/" label="Disabled sm" />
+        <.button disabled size="md" to="/" label="Disabled md" />
+        <.button disabled size="lg" to="/" label="Disabled lg" />
+        <.button disabled size="xl" to="/" label="Disabled xl" />
+      </div>
+      <div class="mt-5">
+        <.form_label label="Loading" />
+      </div>
+      <div class="flex flex-wrap items-end gap-2 mt-2">
+        <.button loading size="xs" label="Loading xs" />
+        <.button loading size="sm" label="Loading sm" />
+        <.button loading size="md" label="Loading md" />
+        <.button loading size="lg" label="Loading lg" />
+        <.button loading size="xl" label="Loading xl" />
+      </div>
+    </div>
 
-<.container class="mt-10">
-  <.h2 underline label="Tabs" />
-  <.h5 label="Basic tabs" />
-  <.tabs class="flex-col sm:flex-row space-x">
-    <.tab is_active to="/">Home</.tab>
-    <.tab link_type="a" to="/" label="About" />
-  </.tabs>
-  <.h5 label="Tabs with underline" class="mt-10" />
-  <.tabs>
-    <.tab underline is_active to="/">Home</.tab>
-    <.tab underline link_type="a" to="/" label="About" />
-  </.tabs>
-  <.h5 label="Basic tabs with number" class="mt-10" />
-  <.tabs>
-    <.tab number={1} is_active to="/">Home</.tab>
-    <.tab number={63} link_type="a" to="/" label="About" />
-  </.tabs>
-  <.h5 label="Tabs underlined with number" class="mt-10" />
-  <.tabs underline>
-    <.tab underline number={1} is_active to="/">Home</.tab>
-    <.tab number={63} underline link_type="a" to="/" label="About" />
-  </.tabs>
-  <.h5 label="Basic tabs with icons" class="mt-10" />
-  <.tabs>
-    <.tab is_active to="/">
-      <Heroicons.Solid.home class="w-5 h-5 mr-2" />
-        Home
-    </.tab>
-    <.tab link_type="a" to="/">
-      <Heroicons.Solid.office_building class="w-5 h-5 mr-2" />
-        Company
-    </.tab>
-  </.tabs>
-  <.h5 label="Tabs underlined with outline icons" class="mt-10" />
-  <.tabs underline>
-    <.tab underline is_active to="/">
-      <Heroicons.Outline.home class="w-5 h-5 mr-2" />
-        Home
-    </.tab>
-    <.tab underline link_type="a" to="/">
-      <Heroicons.Outline.office_building class="w-5 h-5 mr-2" />
-        Company
-    </.tab>
-  </.tabs>
-</.container>
+    <div class="mt-10">
+      <.h5 label="Button with icon" />
+      <div class="flex flex-wrap items-end gap-2">
+        <.button icon link_type="a" to="/">
+          <Heroicons.Solid.home class="w-5 h-5" />
+          With icon
+        </.button>
+      </div>
+    </div>
+  </.container>
 
-<.container class="mt-10">
-  <.h2 underline label="Card" />
-  <.h5 label="Basic cards" />
-  <div class="grid gap-5 mt-12 lg:grid-cols-3">
-    <.card >
-      <.card_content category="Article" heading="Enhance your Phoenix development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card>
-      <.card_content category="Marketing" heading="Tips for lightning fast development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card>
-      <.card_content category="Event" heading="Petal meetup in Melbourne">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-  </div>
-  <.h5 label="Outline cards" class="mt-10" />
-  <div class="grid gap-5 mt-12 lg:grid-cols-3">
-    <.card variant="outline" >
-      <.card_content category="Article" heading="Enhance your Phoenix development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card variant="outline">
-      <.card_content category="Marketing" heading="Tips for lightning fast development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card variant="outline">
-      <.card_content category="Event" heading="Petal meetup in Melbourne">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-  </div>
-  <.h5 label="Cards with media" class="mt-10" />
-  <div class="grid gap-5 mt-12 lg:grid-cols-3">
-    <.card>
-      <.card_media class="h-48" src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-      <.card_content category="Article" heading="Enhance your Phoenix development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card>
-    <.card_media class="h-48" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" />
-      <.card_content category="Marketing" heading="Tips for lightning fast development">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-    <.card>
-      <.card_media class="h-48" src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-      <.card_content category="Event" heading="Petal meetup in Melbourne">
-        <div class="mt-4 font-light text-gray-500 text-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-        </div>
-      </.card_content>
-    </.card>
-  </div>
-</.container>
+  <.container class="mt-10">
+    <.h2 underline label="Typography" />
+    <.h1>Heading 1</.h1>
+    <.h2>Heading 2</.h2>
+    <.h3>Heading 3</.h3>
+    <.h4>Heading 4</.h4>
+    <.h5 label="Heading 5" />
+    <.p>Paragraph tag</.p>
+  </.container>
 
-<div class="mb-40"></div>
+  <.container class="mt-10">
+    <.h2 underline label="Heroicons" />
+    <.h5 label="Heroicons solid" />
+
+    <div class="flex">
+      <Heroicons.Solid.home />
+      <Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
+      <Heroicons.Solid.home class="w-6 h-6 text-green-500" />
+      <Heroicons.Solid.chart_pie />
+      <Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
+      <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
+    </div>
+
+    <.h5 label="Heroicons outline" class="mt-5" />
+
+    <div class="flex">
+      <Heroicons.Outline.home />
+      <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
+      <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Badges" />
+    <.h5 label="Light" />
+    <div class="flex flex-wrap gap-2">
+      <.badge color="primary" label="Primary" />
+      <.badge color="secondary" label="Secondary" />
+      <.badge color="info" label="Info" />
+      <.badge color="success" label="Success" />
+      <.badge color="warning" label="Warning" />
+      <.badge color="danger" label="Danger" />
+      <.badge color="gray" label="Gray" />
+    </div>
+    <.h5 label="Dark" class="mt-10" />
+    <div class="flex flex-wrap gap-2">
+      <.badge color="primary" label="Primary" variant="dark" />
+      <.badge color="secondary" label="Secondary" variant="dark" />
+      <.badge color="info" label="Info" variant="dark" />
+      <.badge color="success" label="Success" variant="dark" />
+      <.badge color="warning" label="Warning" variant="dark" />
+      <.badge color="danger" label="Danger" variant="dark" />
+      <.badge color="gray" label="Gray" variant="dark" />
+    </div>
+    <.h5 label="Outline" class="mt-10" />
+    <div class="flex flex-wrap gap-2">
+      <.badge color="primary" label="Primary" variant="outline" />
+      <.badge color="secondary" label="Secondary" variant="outline" />
+      <.badge color="info" label="Info" variant="outline" />
+      <.badge color="success" label="Success" variant="outline" />
+      <.badge color="warning" label="Warning" variant="outline" />
+      <.badge color="danger" label="Danger" variant="outline" />
+      <.badge color="gray" label="Gray" variant="outline" />
+    </div>
+    <.h5 label="Sizes" class="mt-10" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.badge color="primary" label="SM" size="sm" />
+      <.badge color="primary" label="md" size="md" />
+      <.badge color="primary" label="lg" size="lg" />
+    </div>
+    <.h5 label="With icon" class="mt-10" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.badge color="gray" variant="light" icon label="SM" size="sm">
+        <Heroicons.Solid.clock class="w-3 h-3 pb-[0.05rem]" />
+        2 hours ago
+      </.badge>
+      <.badge color="secondary" variant="dark" label="md" size="md">
+        <Heroicons.Solid.mail class="w-4 h-4 mr-1 pb-[0.05rem]" />
+        New messages
+      </.badge>
+      <.badge color="success" variant="outline" label="lg" size="lg">
+        <Heroicons.Solid.status_online class="w-5 h-5 mr-1 pb-[0.025rem]" />
+        Online now
+      </.badge>
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Alerts" />
+    <.h5 label="Default" class="mt-10" />
+    <div class="flex items-start">
+      <.alert
+        color="info"
+        label="This is an info state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        color="success"
+        label="This is a success state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        color="warning"
+        label="This is a warning state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        color="danger">
+        This is a danger state that is very long
+      </.alert>
+    </div>
+    <div class="flex items-start max-w-sm mt-4">
+      <.alert
+        heading="Optional heading that is too long">
+        This is quite a long paragraph that takes up more than one line.
+      </.alert>
+    </div>
+    <.h5 label="With state icon" class="mt-10" />
+    <div class="flex items-start">
+      <.alert
+        with_icon
+        color="info"
+        label="This is an info state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        with_icon
+        color="success"
+        label="This is a success state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        with_icon
+        color="warning"
+        label="This is a warning state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert with_icon
+        color="danger">
+        This is a danger state that is very long
+      </.alert>
+    </div>
+    <div class="flex items-start max-w-sm mt-4">
+      <.alert
+        with_icon
+        heading="Optional heading that is too long">
+        This is quite a long paragraph that takes up more than one line.
+      </.alert>
+    </div>
+    <.h5 label="Dismissable" class="mt-10" />
+    <div class="flex items-start">
+      <.alert
+        with_icon
+        close_button_properties={["phx-click": "do_something"]}
+        color="info"
+        label="This is an info state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        with_icon
+        close_button_properties={["phx-click": "do_something"]}
+        color="success"
+        label="This is a success state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert
+        with_icon
+        close_button_properties={["phx-click": "do_something"]}
+        color="warning"
+        label="This is a warning state"
+      />
+    </div>
+    <div class="flex items-start mt-4">
+      <.alert with_icon close_button_properties={["phx-click": "do_something"]} color="danger">
+        This is a danger state that is very long
+      </.alert>
+    </div>
+    <div class="flex items-start max-w-sm mt-4">
+      <.alert with_icon close_button_properties={["phx-click": "do_something"]} heading="Optional heading that is too long">
+        This is quite a long paragraph that takes up more than one line.
+      </.alert>
+    </div>
+  </.container>
+
+  <.container>
+    <.h2 underline label="Forms" class="mt-10" />
+
+    <.form let={f} multipart as={:user} for={%Ecto.Changeset{
+      action: :update,
+      data: %{name: ""},
+      errors: [
+        text_input_with_error: {"can't be blank", [validation: :required]},
+        text_input_with_error: {"must be at least 2 characters", [validation: :minimum]},
+        number_input_with_error: {"can't be blank", [validation: :required]},
+        email_input_with_error: {"can't be blank", [validation: :required]},
+        password_input_with_error: {"can't be blank", [validation: :required]},
+        search_input_with_error: {"can't be blank", [validation: :required]},
+        telephone_input_with_error: {"can't be blank", [validation: :required]},
+        url_input_with_error: {"can't be blank", [validation: :required]},
+        time_input_with_error: {"can't be blank", [validation: :required]},
+        time_select_with_error: {"can't be blank", [validation: :required]},
+        date_select_with_error: {"can't be blank", [validation: :required]},
+        date_input_with_error: {"can't be blank", [validation: :required]},
+        datetime_select_with_error: {"can't be blank", [validation: :required]},
+        datetime_local_input_with_error: {"can't be blank", [validation: :required]},
+        color_input_with_error: {"can't be blank", [validation: :required]},
+        file_input_with_error: {"can't be blank", [validation: :required]},
+        range_input_with_error: {"can't be blank", [validation: :required]},
+        textarea_with_error: {"can't be blank", [validation: :required]},
+        select_with_error: {"can't be blank", [validation: :required]},
+        checkbox_with_error: {"can't be blank", [validation: :required]},
+        checkbox_group_with_error: {"can't be blank", [validation: :required]},
+        radio_with_error: {"can't be blank", [validation: :required]},
+      ]}
+    }>
+
+      <!--
+        When creating form fields you can do it two ways:
+
+        1. Use `<.form_field>`, which includes the label and error
+        2. You can write the input, label and error separately (if you want to style the form differently)
+
+        The following code shows both methods for each form element:
+      -->
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:text_input} />
+          <.text_input form={f} field={:text_input} placeholder="eg. John" />
+          <.form_field_error form={f} field={:text_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field
+            type="text_input"
+            form={f}
+            field={:text_input_with_error}
+            placeholder="Placeholder"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:email_input} />
+          <.email_input form={f} field={:email_input} />
+          <.form_field_error form={f} field={:email_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="email_input" form={f} field={:email_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:number_input} />
+          <.number_input form={f} field={:number_input} placeholder="eg. 1" />
+          <.form_field_error form={f} field={:number_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="number_input" form={f} field={:number_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:password_input} />
+          <.password_input form={f} field={:password_input} />
+          <.form_field_error form={f} field={:password_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="password_input" form={f} field={:password_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:search_input} />
+          <.search_input form={f} field={:search_input} />
+          <.form_field_error form={f} field={:search_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="search_input" form={f} field={:search_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:telephone_input} />
+          <.telephone_input form={f} field={:telephone_input} />
+          <.form_field_error form={f} field={:telephone_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="telephone_input" form={f} field={:telephone_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:url_input} />
+          <.url_input form={f} field={:url_input} />
+          <.form_field_error form={f} field={:url_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="url_input" form={f} field={:url_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:time_input} />
+          <.time_input form={f} field={:time_input} />
+          <.form_field_error form={f} field={:time_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="time_input" form={f} field={:time_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:time_select} />
+          <.time_select form={f} field={:time_select} />
+          <.form_field_error form={f} field={:time_select} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="time_select" form={f} field={:time_select_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:date_input} />
+          <.date_input form={f} field={:date_input} />
+          <.form_field_error form={f} field={:date_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="date_input" form={f} field={:date_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:date_select} />
+          <.date_select form={f} field={:date_select} />
+          <.form_field_error form={f} field={:date_select} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="date_select" form={f} field={:date_select_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:datetime_local_input} />
+          <.datetime_local_input form={f} field={:datetime_local_input} />
+          <.form_field_error form={f} field={:datetime_local_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="datetime_local_input" form={f} field={:datetime_local_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:datetime_select} />
+          <.datetime_select form={f} field={:datetime_select} />
+          <.form_field_error form={f} field={:datetime_select} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="datetime_select" form={f} field={:datetime_select_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:color_input} />
+          <.color_input form={f} field={:color_input} />
+          <.form_field_error form={f} field={:color_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="color_input" form={f} field={:color_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:file_input} />
+          <.file_input form={f} field={:file_input} />
+          <.form_field_error form={f} field={:file_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="file_input" form={f} field={:file_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:range_input} />
+          <.range_input form={f} field={:range_input} />
+          <.form_field_error form={f} field={:range_input} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="range_input" form={f} field={:range_input_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:textarea} />
+          <.textarea form={f} field={:textarea} />
+          <.form_field_error form={f} field={:textarea} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="textarea" form={f} field={:textarea_with_error} />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:select} />
+          <.select
+            options={["Admin": "admin", "User": "user"]}
+            form={f}
+            field={:select}
+          />
+          <.form_field_error form={f} field={:select} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field
+            type="select"
+            options={["Admin": "admin", "User": "user"]}
+            form={f}
+            field={:select_with_error}
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+        <div>
+          <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+            <.checkbox form={f} field={:checkbox} />
+            <div>I accept</div>
+          </label>
+
+          <.form_field_error form={f} field={:checkbox} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field type="checkbox" form={f} field={:checkbox_with_error} label="I accept (with error)" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+        <div>
+          <.form_field
+            type="checkbox_group"
+            form={f}
+            field={:checkbox_group}
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
+          />
+        </div>
+        <div>
+          <.form_field
+            type="checkbox_group"
+            form={f}
+            field={:checkbox_group_with_error}
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+        <div>
+          <.form_label form={f} field={:radio} />
+
+          <div class="flex flex-col gap-1">
+            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+              <.radio form={f} field={:radio} value="green" />
+              <div>Green</div>
+            </label>
+
+            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+              <.radio form={f} field={:radio} value="blue" />
+              <div>Blue</div>
+            </label>
+
+            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
+              <.radio form={f} field={:radio} value="gray" />
+              <div>Gray</div>
+            </label>
+          </div>
+
+          <.form_field_error form={f} field={:radio} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field
+            type="radio_group"
+            form={f}
+            field={:radio_with_error}
+            options={["Green": "green", "Blue": "blue", "Gray": "gray"]}
+            label="Eye color with error"
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
+          />
+        </div>
+      </div>
+    </.form>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Dropdowns" />
+    <div class="flex items-center gap-5">
+      <.dropdown label="Dropdown">
+        <.dropdown_menu_item>
+          <Heroicons.Outline.home class="w-5 h-5 text-gray-500" />
+          Button item with icon
+        </.dropdown_menu_item>
+        <.dropdown_menu_item link_type="button" label="button item" />
+        <.dropdown_menu_item link_type="a" to="/" label="Link" />
+        <.dropdown_menu_item link_type="a" to="/" label="Link with method" method={:put} />
+        <.dropdown_menu_item link_type="live_patch" to="/" label="Live Patch" />
+        <.dropdown_menu_item phx-click="some_phoenix_click_event" label="Phoenix click event" />
+      </.dropdown>
+
+      <.dropdown>
+        <:trigger_element>
+          <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+        </:trigger_element>
+
+        <.dropdown_menu_item label="Item 1" />
+        <.dropdown_menu_item label="Item 2" />
+      </.dropdown>
+
+      <.dropdown>
+        <.dropdown_menu_item label="Item 1" />
+        <.dropdown_menu_item label="Item 2" />
+      </.dropdown>
+
+      <.dropdown>
+        <:trigger_element>
+          <div class="inline-flex items-center justify-center w-full align-middle focus:outline-none">
+            <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+            <Heroicons.Solid.chevron_down class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
+          </div>
+        </:trigger_element>
+
+        <.dropdown_menu_item label="Item 1" />
+        <.dropdown_menu_item label="Item 2" />
+      </.dropdown>
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Loading" />
+    <.h5 label="Spinner" />
+
+    <div class="flex items-start gap-3">
+      <.spinner show={false} />
+      <.spinner show={true} size="sm" />
+      <.spinner size="md" class="text-green-500" />
+      <.spinner size="lg" class="text-red-500" />
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Breadcrumbs" />
+
+    <.h5 label="Slash" />
+    <.breadcrumbs links={[
+      %{ label: "Link 1", to: "#" },
+      %{ label: "Link 2", to: "#" },
+      %{ label: "Link 3", to: "#" }
+    ]}/>
+
+    <.h5 label="Chevron" class="mt-10" />
+    <.breadcrumbs separator="chevron" links={[
+      %{ label: "Link 1", to: "#" },
+      %{ label: "Link 2", to: "#", link_type: "live_patch" },
+      %{ label: "Link 3", to: "#", link_type: "live_redirect" }
+    ]}/>
+
+    <.h5 label="Custom CSS" class="mt-10" />
+    <.breadcrumbs class="mt-3" link_class="!text-blue-500 text-sm font-semibold" links={[
+      %{ label: "Link 1", to: "#" },
+      %{ label: "Link 2", to: "#", link_type: "live_patch" },
+      %{ label: "Link 3", to: "#", link_type: "live_redirect" },
+    ]}/>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Avatar" />
+    <.h5 label="Basic Avatars" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.avatar size="xs" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+      <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+      <.avatar size="md" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+      <.avatar size="lg" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+      <.avatar size="xl" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
+    </div>
+
+    <.h5 label="Avatars with placeholder icon" class="mt-10" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.avatar size="xs"/>
+      <.avatar size="sm"/>
+      <.avatar size="md"/>
+      <.avatar size="lg"/>
+      <.avatar size="xl"/>
+    </div>
+
+    <.h5 label="Avatar groups stacked" class="mt-10" />
+    <div class="flex flex-wrap items-center gap-10">
+      <.avatar_group avatars={[
+        "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+      ]} size="xs" class="inline-block"/>
+      <.avatar_group avatars={[
+        "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+      ]} size="sm" />
+      <.avatar_group avatars={[
+        "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+      ]} size="md" />
+      <.avatar_group avatars={[
+        "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+      ]} size="lg" />
+      <.avatar_group avatars={[
+        "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+        "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png",
+      ]} size="xl" />
+    </div>
+    <.h5 label="Avatars with placeholder initials" class="mt-10" />
+    <div class="flex flex-wrap items-end gap-2 mt-8">
+      <.avatar name="Petal Components" size="xs" />
+      <.avatar name="Petal Components" size="sm"/>
+      <.avatar name="PC" />
+      <.avatar name="PC" size="lg"/>
+      <.avatar name="PC" size="xl"/>
+    </div>
+    <.h5 label="Random color generated avatars with placeholder initials" class="mt-10" />
+    <div class="flex flex-wrap items-end gap-2 mt-8">
+      <.avatar name="Matt Platts" size="xs" random_color />
+      <.avatar name="Nic Hoban" size="sm" random_color />
+      <.avatar name="James Cameron" random_color />
+      <.avatar name="Will Smith" size="lg" random_color />
+      <.avatar name="Peter Jackson" size="xl" random_color />
+    </div>
+
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Progress" />
+    <.h5 label="Progress bar" />
+    <div class="flex flex-col">
+      <div class="mt-5">
+      <.form_label label="Primary" />
+      <.progress color="primary" value={15} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Secondary" />
+      <.progress color="secondary" value={30} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Info" />
+      <.progress color="info" value={45} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Success" />
+      <.progress color="success" value={60} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Warning" />
+      <.progress color="warning" value={75} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Danger" />
+      <.progress color="danger" value={90} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-10">
+        <.h5 label="Sizes" />
+        <div class="mt-5">
+          <.form_label label="xs" />
+          <.progress size="xs" value={15} max={100} class="max-w-xl" />
+        </div>
+        <div class="mt-5">
+          <.form_label label="sm" />
+          <.progress color="primary" size="sm" value={15} max={100} class="max-w-xl" />
+        </div>
+        <div class="mt-5">
+          <.form_label label="md" />
+          <.progress size="md" value={15} max={100} class="max-w-xl" />
+        </div>
+        <div class="mt-5">
+          <.form_label label="lg" />
+          <.progress size="lg" value={15} max={100} class="max-w-xl" />
+        </div>
+        <div class="mt-5">
+          <.form_label label="xl with label" />
+          <.progress size="xl" value={15} max={100} class="max-w-xl" label="15%" />
+        </div>
+      </div>
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Pagination" />
+    <.h5 label="Basic Pagination" />
+    <div class="flex flex-col gap-2 mt-5">
+      <.form_label label="a" />
+      <.pagination link_type="a" class="mb-5" path="/:page" current_page={1} total_pages={10} />
+      <.form_label label="Live Patch" />
+      <.pagination link_type="live_patch" class="mb-5" path="/:page" current_page={5} total_pages={10} />
+      <.form_label label="Live Redirect" />
+      <.pagination link_type="live_redirect" class="mb-5" path="/:page" current_page={10} total_pages={10} />
+    </div>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Tabs" />
+    <.h5 label="Basic tabs" />
+    <.tabs class="flex-col sm:flex-row space-x">
+      <.tab is_active to="/">Home</.tab>
+      <.tab link_type="a" to="/" label="About" />
+    </.tabs>
+    <.h5 label="Tabs with underline" class="mt-10" />
+    <.tabs>
+      <.tab underline is_active to="/">Home</.tab>
+      <.tab underline link_type="a" to="/" label="About" />
+    </.tabs>
+    <.h5 label="Basic tabs with number" class="mt-10" />
+    <.tabs>
+      <.tab number={1} is_active to="/">Home</.tab>
+      <.tab number={63} link_type="a" to="/" label="About" />
+    </.tabs>
+    <.h5 label="Tabs underlined with number" class="mt-10" />
+    <.tabs underline>
+      <.tab underline number={1} is_active to="/">Home</.tab>
+      <.tab number={63} underline link_type="a" to="/" label="About" />
+    </.tabs>
+    <.h5 label="Basic tabs with icons" class="mt-10" />
+    <.tabs>
+      <.tab is_active to="/">
+        <Heroicons.Solid.home class="w-5 h-5 mr-2" />
+          Home
+      </.tab>
+      <.tab link_type="a" to="/">
+        <Heroicons.Solid.office_building class="w-5 h-5 mr-2" />
+          Company
+      </.tab>
+    </.tabs>
+    <.h5 label="Tabs underlined with outline icons" class="mt-10" />
+    <.tabs underline>
+      <.tab underline is_active to="/">
+        <Heroicons.Outline.home class="w-5 h-5 mr-2" />
+          Home
+      </.tab>
+      <.tab underline link_type="a" to="/">
+        <Heroicons.Outline.office_building class="w-5 h-5 mr-2" />
+          Company
+      </.tab>
+    </.tabs>
+  </.container>
+
+  <.container class="mt-10">
+    <.h2 underline label="Card" />
+    <.h5 label="Basic cards" />
+    <div class="grid gap-5 mt-12 lg:grid-cols-3">
+      <.card >
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+    </div>
+    <.h5 label="Outline cards" class="mt-10" />
+    <div class="grid gap-5 mt-12 lg:grid-cols-3">
+      <.card variant="outline" >
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card variant="outline">
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card variant="outline">
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+    </div>
+    <.h5 label="Cards with media" class="mt-10" />
+    <div class="grid gap-5 mt-12 lg:grid-cols-3">
+      <.card>
+        <.card_media class="h-48" src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+      <.card_media class="h-48" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" />
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_media class="h-48" src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+    </div>
+  </.container>
+
+  <div class="mb-40"></div>
+</div>

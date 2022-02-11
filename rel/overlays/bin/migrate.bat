@@ -1,0 +1,1 @@
+call "%~dp0\petal_boilerplate" eval PetalBoilerplate.Release.migrate

@@ -67,8 +67,8 @@ defmodule PetalBoilerplate.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": [
-        "tailwind default --minify",
         "esbuild default --minify",
+        "tailwind default --minify",
         "phx.digest"
       ]
     ]

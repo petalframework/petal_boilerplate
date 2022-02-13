@@ -954,86 +954,116 @@
     </.tabs>
   </.container>
 
-  <div class="py-10 my-10 bg-gray-100">
-    <.container>
-      <.h2 underline label="Card" />
-      <.h5 label="Basic cards" />
-      <div class="grid gap-5 mt-1 md:grid-cols-2 lg:grid-cols-3">
-        <.card >
-          <.card_content category="Article" heading="Enhance your Phoenix development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card>
-          <.card_content category="Marketing" heading="Tips for lightning fast development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card>
-          <.card_content category="Event" heading="Petal meetup in Melbourne">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-      </div>
-      <.h5 label="Outline cards" class="mt-10" />
-      <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
-        <.card variant="outline" >
-          <.card_content category="Article" heading="Enhance your Phoenix development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card variant="outline">
-          <.card_content category="Marketing" heading="Tips for lightning fast development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card variant="outline">
-          <.card_content category="Event" heading="Petal meetup in Melbourne">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-      </div>
-      <.h5 label="Cards with media" class="mt-10" />
-      <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
-        <.card>
-          <.card_media src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-          <.card_content category="Article" heading="Enhance your Phoenix development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card>
+  <.container class="mt-10">
+    <.h2 underline label="Card" />
+    <.h5 label="Basic cards" />
+    <div class="grid gap-5 mt-1 md:grid-cols-2 lg:grid-cols-3">
+      <.card >
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          <div class="mt-4 font-light text-gray-500 text-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+          </div>
+        </.card_content>
+      </.card>
+    </div>
+    <.h5 label="Outline cards" class="mt-10" />
+    <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
+      <.card variant="outline" >
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+      <.card variant="outline">
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+      <.card variant="outline">
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+    </div>
+    <.h5 label="Cards with media" class="mt-10" />
+    <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
+      <.card>
+        <.card_media src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+      <.card>
+      <.card_media src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" />
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+      <.card>
+        <.card_media src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+      </.card>
+    </div>
+    <.h5 label="Cards with media and footer" class="mt-10" />
+    <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
+      <.card>
+        <.card_media src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+
+        <.card_content category="Article" heading="Enhance your Phoenix development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+
+        <.card_footer>
+          <.button to="/" label="View">
+            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+          </.button>
+        </.card_footer>
+      </.card>
+
+      <.card>
         <.card_media src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" />
-          <.card_content category="Marketing" heading="Tips for lightning fast development">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-        <.card>
-          <.card_media src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-          <.card_content category="Event" heading="Petal meetup in Melbourne">
-            <div class="mt-4 font-light text-gray-500 text-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
-            </div>
-          </.card_content>
-        </.card>
-      </div>
-    </.container>
-  </div>
+
+        <.card_content category="Marketing" heading="Tips for lightning fast development">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+
+        <.card_footer>
+          <.button to="/" label="View">
+            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+          </.button>
+        </.card_footer>
+      </.card>
+
+      <.card>
+        <.card_media src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+
+        <.card_content category="Event" heading="Petal meetup in Melbourne">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget leo interdum, feugiat ligula eu, facilisis massa. Nunc sollicitudin massa a elit laoreet.
+        </.card_content>
+
+        <.card_footer>
+          <.button to="/" label="View">
+            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+          </.button>
+        </.card_footer>
+      </.card>
+    </div>
+  </.container>
 
   <div class="mb-40"></div>
 </div>

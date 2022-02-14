@@ -58,6 +58,7 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
+  config :petal_boilerplate, :fathom_id, System.get_env("FATHOM_ID")
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

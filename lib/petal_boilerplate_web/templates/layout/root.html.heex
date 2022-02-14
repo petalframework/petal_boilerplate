@@ -14,6 +14,15 @@
     <script defer src="https://unpkg.com/js-cookie@3.x.x/dist/js.cookie.min.js"></script>
 
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+
+    <%= if Application.get_env(:petal_boilerplate, :fathom_id) do %>
+      <script
+        src="https://cdn.usefathom.com/script.js"
+        data-canonical="false"
+        data-spa="auto"
+        data-site={Application.get_env(:petal_boilerplate, :fathom_id)} defer>
+      </script>
+    <% end %>
   </head>
   <body>
     <%= @inner_content %>

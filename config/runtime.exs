@@ -66,7 +66,8 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  # ## SSL Support
+  config :petal_boilerplate, :fathom_id, System.get_env("FATHOM_ID")
+  # ## Using releases
   #
   # To get SSL working, you will need to add the `https` key
   # to your endpoint configuration:

@@ -8,6 +8,26 @@
     @apply text-sm border-gray-300 rounded-md shadow-sm disabled:bg-gray-100 disabled:cursor-not-allowed focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500 dark:bg-gray-800 dark:text-gray-300 focus:outline-none ;
   }
 
+  label.has-error:not(.phx-no-feedback) {
+    @apply !text-red-900 dark:!text-red-200;
+  }
+
+  textarea.has-error:not(.phx-no-feedback), input.has-error:not(.phx-no-feedback), select.has-error:not(.phx-no-feedback) {
+    @apply !border-red-500 focus:!border-red-500 !text-red-900 !placeholder-red-700 !bg-red-50 dark:!text-red-100 dark:!placeholder-red-300 dark:!bg-red-900;
+  }
+
+  input[type=file_input].has-error:not(.phx-no-feedback) {
+    @apply !border-red-500 !rounded-md focus:!border-red-500 !text-red-900 !placeholder-red-700 !bg-red-50 file:!border-none dark:!border-none dark:!bg-[#160B0B] dark:text-red-400;
+  }
+
+  input[type=checkbox].has-error:not(.phx-no-feedback) {
+    @apply !border-red-500 !text-red-900 dark:!text-red-200;
+  }
+
+  input[type=radio].has-error:not(.phx-no-feedback) {
+    @apply !border-red-500;
+  }
+
   /* If in tailwind.config.json, darkMode: 'media', use this: */
   /* @media (prefers-color-scheme: dark) {
     ::-webkit-calendar-picker-indicator {
@@ -49,11 +69,6 @@
 .alert:empty {
   display: none;
 }
-.invalid-feedback {
-  color: #a94442;
-  display: block;
-  margin: -1rem 0 2rem;
-}
 
 /* LiveView specific classes for your customization */
 .phx-no-feedback.invalid-feedback,
@@ -69,43 +84,9 @@
 .phx-disconnected{
   cursor: wait;
 }
+
 .phx-disconnected *{
   pointer-events: none;
-}
-
-.phx-modal {
-  opacity: 1!important;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-}
-
-.phx-modal-content {
-  background-color: #fefefe;
-  margin: 15vh auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.phx-modal-close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.phx-modal-close:hover,
-.phx-modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 /* Add this to AlpineJS elements that start off hidden. When AlpineJS is loaded it will remove all x-cloak attributes */

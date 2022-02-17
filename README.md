@@ -1,6 +1,6 @@
 # Petal Boilerplate
 
-A clean Phoenix 1.16 install with some extras to get you started:
+A clean install of the latest Phoenix with some extras to get you started:
 - Tailwind CSS - using the [mix library](https://hexdocs.pm/tailwind/Tailwind.html)
 - Alpine JS - using a CDN to avoid needing `node_modules`
 - 🌺 [Petal Components Library](https://github.com/petalframework/petal_components)

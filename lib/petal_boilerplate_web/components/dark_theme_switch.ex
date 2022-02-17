@@ -9,6 +9,7 @@ defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
     ~H"""
     <button
       id="theme-toggle"
+      phx-hook="DarkThemeSwitch"
       type="button"
       class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
     >
@@ -37,39 +38,6 @@ defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
         ></path>
       </svg>
     </button>
-
-    <script>
-      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-      if (!('color-theme' in localStorage)) {
-        let colorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        localStorage.setItem('color-theme', colorTheme);
-      }
-
-      var themeToggleBtn = document.getElementById('theme-toggle');
-
-      themeToggleBtn.addEventListener('click', () => {
-        localStorage.setItem('color-theme', (localStorage.getItem('color-theme') === 'dark' ? 'light' : 'dark'));
-        applyLocalStorageTheme();
-      });
-
-      applyLocalStorageTheme();
-
-      function applyLocalStorageTheme() {
-        if (localStorage.getItem('color-theme') === 'dark') {
-          themeToggleLightIcon.classList.remove('hidden');
-          themeToggleDarkIcon.classList.add('hidden');
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('color-theme', 'dark');
-        } else {
-          themeToggleLightIcon.classList.add('hidden');
-          themeToggleDarkIcon.classList.remove('hidden');
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('color-theme', 'light');
-        }
-      }
-    </script>
     """
   end
 end

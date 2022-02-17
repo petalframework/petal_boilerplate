@@ -81,12 +81,8 @@
   transition: opacity 1s ease-out;
 }
 
-.phx-disconnected{
+.phx-loading{
   cursor: wait;
-}
-
-.phx-disconnected *{
-  pointer-events: none;
 }
 
 /* Add this to AlpineJS elements that start off hidden. When AlpineJS is loaded it will remove all x-cloak attributes */

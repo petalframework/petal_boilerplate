@@ -7,9 +7,9 @@
 // The simplest option is to put them in assets/vendor and
 // import them using relative paths:
 //
-//     import "./vendor/some-package.js"
+//     import "../vendor/some-package.js"
 //
-// Alternatively, you can `npm install some-package` and import
+// Alternatively, you can `npm install some-package --prefix assets` and import
 // them using a path starting with the package name:
 //
 //     import "some-package"
@@ -28,6 +28,17 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
+  hooks: {
+    DarkThemeSwitch: {
+      mounted() {
+        if (window.darkThemeSwitchAlreadyRun) {
+          applyLocalStorageTheme();
+        } else {
+          setupDarkThemeSwitch();
+        }
+      },
+    },
+  },
   dom: {
     onBeforeElUpdated(from, to) {
       if (from._x_dataStack) {
@@ -51,44 +62,47 @@ liveSocket.connect();
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
 
-function setupThemeSwitcher() {
-  const themeSwitch = document.getElementById("theme-switch");
-  const mode = getTheme();
-
-  if (mode === "dark") {
-    themeSwitch.checked = true;
-    setTheme("dark");
+function setupDarkThemeSwitch() {
+  if (!("color-theme" in localStorage)) {
+    let colorTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    localStorage.setItem("color-theme", colorTheme);
   }
 
-  themeSwitch.addEventListener("change", () => {
-    setTheme(themeSwitch.checked ? "dark" : "light");
+  var themeToggleBtn = document.getElementById("theme-toggle");
+
+  themeToggleBtn.addEventListener("click", () => {
+    localStorage.setItem(
+      "color-theme",
+      localStorage.getItem("color-theme") === "dark" ? "light" : "dark"
+    );
+    applyLocalStorageTheme();
   });
+
+  applyLocalStorageTheme();
+
+  window.darkThemeSwitchAlreadyRun = true;
 }
 
-function getTheme() {
-  const persistedColorPreference = window.localStorage.getItem("dark-mode");
-  const hasPersistedPreference = typeof persistedColorPreference === "string";
-  if (hasPersistedPreference) {
-    return persistedColorPreference;
-  }
-  const mql = window.matchMedia("(prefers-color-scheme: dark)");
-  const hasMediaQueryPreference = typeof mql.matches === "boolean";
-  if (hasMediaQueryPreference) {
-    return mql.matches ? "dark" : "light";
-  }
-  return "dark";
-}
+function applyLocalStorageTheme() {
+  var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+  var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
-function setTheme(mode) {
-  if (mode === "dark") {
+  if (localStorage.getItem("color-theme") === "dark") {
+    themeToggleLightIcon.classList.remove("hidden");
+    themeToggleDarkIcon.classList.add("hidden");
     document.documentElement.classList.add("dark");
-    localStorage.setItem("dark-mode", "dark");
+    localStorage.setItem("color-theme", "dark");
   } else {
+    themeToggleLightIcon.classList.add("hidden");
+    themeToggleDarkIcon.classList.remove("hidden");
     document.documentElement.classList.remove("dark");
-    localStorage.setItem("dark-mode", "light");
+    localStorage.setItem("color-theme", "light");
   }
 }
 
+// This runs on static and live views, however on live views it doesn't work properly and need to use a hook (see above in the LiveSocket setup)
 window.onload = () => {
-  setupThemeSwitcher();
+  setupDarkThemeSwitch();
 };

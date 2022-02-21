@@ -41,13 +41,15 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  web_host =
-    System.get_env("WEB_HOST") ||
-      raise "WEB_HOST not available"
+  host =
+    System.get_env("PHX_HOST") ||
+      raise "PHX_HOST not available"
+
+  port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
     server: true,
-    url: [host: web_host, port: 80],
+    url: [host: host, port: 80],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

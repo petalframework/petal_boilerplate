@@ -133,6 +133,21 @@
         </.button>
       </div>
     </div>
+
+    <div class="mt-10">
+      <.h5 label="Icon buttons" />
+      <div class="flex flex-wrap items-end gap-2">
+        <.icon_button to="/" link_type="button" size="xs" color="primary" icon={:clock} />
+        <.icon_button to="/" link_type="button" size="sm" color="secondary" icon={:clock} />
+        <.icon_button to="/" link_type="button" size="md" color="gray" icon={:clock} />
+        <.icon_button to="/" link_type="button" size="md" color="info" icon={:trash} />
+        <.icon_button to="/" link_type="button" size="lg" color="success" icon={:trash} />
+        <.icon_button to="/" link_type="button" size="lg" color="warning" icon={:arrow_circle_up} />
+        <.icon_button to="/" link_type="button" size="xl" color="danger" icon={:arrow_circle_up} />
+        <.icon_button to="/" disabled link_type="button" size="lg" icon={:save} class="!text-green-600" />
+        <.icon_button to="/" disabled loading link_type="button" size="xl" icon={:trash} class="!text-indigo-600 !dark:text-indigo-300" />
+      </div>
+    </div>
   </.container>
 
   <.container class="mt-10">

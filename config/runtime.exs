@@ -9,7 +9,7 @@ import Config
 
 # Start the phoenix server if environment is set and running in a release
 if System.get_env("PHX_SERVER") && System.get_env("RELEASE_NAME") do
-  config :sample_app, SampleAppWeb.Endpoint, server: true
+  config :petal_boilerplate, PetalBoilerplate.Endpoint, server: true
 end
 
 if config_env() == :prod do

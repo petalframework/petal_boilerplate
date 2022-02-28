@@ -369,8 +369,11 @@
         textarea_with_error: {"can't be blank", [validation: :required]},
         select_with_error: {"can't be blank", [validation: :required]},
         checkbox_with_error: {"can't be blank", [validation: :required]},
-        checkbox_group_with_error: {"can't be blank", [validation: :required]},
+        checkbox_group_col_with_error: {"can't be blank", [validation: :required]},
+        checkbox_group_row_with_error: {"can't be blank", [validation: :required]},
         radio_with_error: {"can't be blank", [validation: :required]},
+        radio_group_col_with_error: {"can't be blank", [validation: :required]},
+        radio_group_row_with_error: {"can't be blank", [validation: :required]},
       ]}
     }>
 
@@ -633,7 +636,7 @@
           <.form_field
             type="checkbox_group"
             form={f}
-            field={:checkbox_group}
+            field={:checkbox_group_col}
             options={[
               {"Option 1", "option_1"},
               {"Option 2", "option_2"},
@@ -646,7 +649,7 @@
           <.form_field
             type="checkbox_group"
             form={f}
-            field={:checkbox_group_with_error}
+            field={:checkbox_group_col_with_error}
             options={[
               {"Option 1", "option_1"},
               {"Option 2", "option_2"},
@@ -664,7 +667,7 @@
             label="Checkbox group with row layout"
             layout={:row}
             form={f}
-            field={:checkbox_group}
+            field={:checkbox_group_row}
             options={[
               {"Option 1", "option_1"},
               {"Option 2", "option_2"},
@@ -679,7 +682,7 @@
             label="Checkbox group with row layout and error"
             layout={:row}
             form={f}
-            field={:checkbox_group_with_error}
+            field={:checkbox_group_row_with_error}
             options={[
               {"Option 1", "option_1"},
               {"Option 2", "option_2"},
@@ -696,7 +699,7 @@
           <.form_field
             type="radio_group"
             form={f}
-            field={:radio_group}
+            field={:radio_group_col}
             label="Radio group"
             options={[
               "Option 1": "option_1",
@@ -710,7 +713,7 @@
           <.form_field
             type="radio_group"
             form={f}
-            field={:radio_with_error}
+            field={:radio_group_col_with_error}
             label="Radio group with error"
             options={[
               "Option 1": "option_1",
@@ -727,7 +730,7 @@
           <.form_field
             type="radio_group"
             form={f}
-            field={:radio_group}
+            field={:radio_group_row}
             layout={:row}
             label="Radio group with row layout"
             options={[
@@ -742,7 +745,7 @@
           <.form_field
             type="radio_group"
             form={f}
-            field={:radio_with_error}
+            field={:radio_group_row_with_error}
             layout={:row}
             label="Radio group with row layout and error"
             options={[

@@ -68,7 +68,7 @@
     </div>
 
     <div class="mt-10">
-      <.h5 label="Colors (outline)" />
+      <.h5 label="Outline" />
       <div class="flex flex-wrap gap-2">
         <.button color="primary" label="Primary" variant="outline" />
         <.button color="secondary" label="Secondary" variant="outline" />
@@ -659,26 +659,51 @@
 
       <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
         <div>
-          <.form_label form={f} field={:radio} />
+          <.form_field
+            type="checkbox_group"
+            label="Checkbox group with row layout"
+            layout={:row}
+            form={f}
+            field={:checkbox_group}
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
+          />
+        </div>
+        <div>
+          <.form_field
+            type="checkbox_group"
+            label="Checkbox group with row layout and error"
+            layout={:row}
+            form={f}
+            field={:checkbox_group_with_error}
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
+          />
+        </div>
+      </div>
 
-          <div class="flex flex-col gap-1">
-            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-              <.radio form={f} field={:radio} value="green" />
-              <div>Green</div>
-            </label>
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
 
-            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-              <.radio form={f} field={:radio} value="blue" />
-              <div>Blue</div>
-            </label>
-
-            <label class="inline-flex items-center gap-3 text-sm text-gray-900 dark:text-gray-200">
-              <.radio form={f} field={:radio} value="gray" />
-              <div>Gray</div>
-            </label>
-          </div>
-
-          <.form_field_error form={f} field={:radio} class="mt-1" />
+        <div>
+          <.form_field
+            type="radio_group"
+            form={f}
+            field={:radio_group}
+            label="Radio group"
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
+          />
         </div>
 
         <div>
@@ -686,7 +711,40 @@
             type="radio_group"
             form={f}
             field={:radio_with_error}
-            label="Eye color with error"
+            label="Radio group with error"
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
+
+        <div>
+          <.form_field
+            type="radio_group"
+            form={f}
+            field={:radio_group}
+            layout={:row}
+            label="Radio group with row layout"
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
+          />
+        </div>
+
+        <div>
+          <.form_field
+            type="radio_group"
+            form={f}
+            field={:radio_with_error}
+            layout={:row}
+            label="Radio group with row layout and error"
             options={[
               "Option 1": "option_1",
               "Option 2": "option_2",

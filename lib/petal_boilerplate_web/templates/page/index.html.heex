@@ -1140,43 +1140,47 @@
     <.h5 label="Basic table" />
     <div class="p-1 mt-5 overflow-auto">
       <.table>
-        <.tr>
-          <.th>Name</.th>
-          <.th>Title</.th>
-          <.th>Email</.th>
-        </.tr>
+        <thead>
+          <.tr>
+            <.th>Name</.th>
+            <.th>Title</.th>
+            <.th>Email</.th>
+          </.tr>
+        </thead>
+        <tbody>
+          <.tr>
+            <.td>
+              John Smith
+            </.td>
+            <.td>Engineer</.td>
+            <.td>john.smith@example.com</.td>
+          </.tr>
 
-        <.tr>
-          <.td>
-            John Smith
-          </.td>
-          <.td>Engineer</.td>
-          <.td>john.smith@example.com</.td>
-        </.tr>
 
-        <.tr>
-          <.td>
-            Beth Springs
-          </.td>
-          <.td>Developer</.td>
-          <.td>beth.springs@example.com</.td>
-        </.tr>
+          <.tr>
+            <.td>
+              Beth Springs
+            </.td>
+            <.td>Developer</.td>
+            <.td>beth.springs@example.com</.td>
+          </.tr>
 
-        <.tr>
-          <.td>
-            Peter Knowles
-          </.td>
-          <.td>Programmer</.td>
-          <.td>Peter.knowles@example.com</.td>
-        </.tr>
+          <.tr>
+            <.td>
+              Peter Knowles
+            </.td>
+            <.td>Programmer</.td>
+            <.td>Peter.knowles@example.com</.td>
+          </.tr>
 
-        <.tr>
-          <.td>
-            Sarah Hill
-          </.td>
-          <.td>Marketer</.td>
-          <.td>sarah.hill@example.com</.td>
-        </.tr>
+          <.tr>
+            <.td>
+              Sarah Hill
+            </.td>
+            <.td>Marketer</.td>
+            <.td>sarah.hill@example.com</.td>
+          </.tr>
+        </tbody>
       </.table>
     </div>
 
@@ -1192,14 +1196,15 @@
         </.tr>
 
         <.tr>
-          <.td class="flex items-center gap-3 font-medium text-gray-900 dark:text-gray-300">
-            <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png" />
-            <div class="flex flex-col">John Smith
-              <span class="font-normal text-gray-500">john.smith@example.com</span>
-            </div>
+          <.td>
+            <.user_inner_td
+              avatar_assigns={%{src: "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png"}}
+              label="John Smith"
+              sub_label="john.smith@example.com"
+            />
           </.td>
           <.td>Engineer</.td>
-          <.td>+1 0432 677 943</.td>
+          <.td class="whitespace-nowrap">+1 0432 677 943</.td>
           <.td>
             <.badge color="success" label="Active" />
           </.td>
@@ -1209,14 +1214,15 @@
         </.tr>
 
         <.tr>
-          <.td class="flex items-center gap-3 font-medium text-gray-900 dark:text-gray-300">
-            <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png" />
-            <div class="flex flex-col">Beth Springs
-              <span class="font-normal text-gray-500">beth.springs@example.com</span>
-            </div>
+          <.td>
+            <.user_inner_td
+              avatar_assigns={%{src: "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png"}}
+              label="Beth Springs"
+              sub_label="beth.springs@example.com"
+            />
           </.td>
           <.td>Developer</.td>
-          <.td>+1 0465 899 443</.td>
+          <.td class="whitespace-nowrap">+1 0465 899 443</.td>
           <.td>
             <.badge color="warning" label="Pending" />
           </.td>
@@ -1226,14 +1232,15 @@
         </.tr>
 
         <.tr>
-          <.td class="flex items-center gap-3 font-medium text-gray-900 dark:text-gray-300">
-            <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png" />
-            <div class="flex flex-col">Peter Knowles
-              <span class="font-normal text-gray-500">peter.knowles@example.com</span>
-            </div>
+          <.td>
+            <.user_inner_td
+              avatar_assigns={%{src: "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"}}
+              label="Peter Knowles"
+              sub_label="peter.knowles@example.com"
+            />
           </.td>
           <.td>Programmer</.td>
-          <.td>+1 0472 344 565</.td>
+          <.td class="whitespace-nowrap">+1 0472 344 565</.td>
           <.td>
             <.badge color="gray" label="Cancelled" />
           </.td>
@@ -1243,17 +1250,19 @@
         </.tr>
 
         <.tr>
-          <.td class="flex items-center gap-3 font-medium text-gray-900 dark:text-gray-300">
-          <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
-          <div class="flex flex-col">Sarah Hill
-            <span class="font-normal text-gray-500">sarah.hill@example.com</span>
-          </div>
+          <.td>
+            <.user_inner_td
+              avatar_assigns={%{src: "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"}}
+              label="Sarah Hill"
+              sub_label="sarah.hill@example.com"
+            />
           </.td>
           <.td>Marketer</.td>
-          <.td>+1 0429 996 220</.td>
+          <.td class="whitespace-nowrap">+1 0429 996 220</.td>
           <.td>
             <.badge color="danger" label="Deleted" />
           </.td>
+
           <.td>
             <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>

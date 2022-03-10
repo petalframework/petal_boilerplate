@@ -1,20 +1,19 @@
-defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
+defmodule PetalBoilerplateWeb.Components.ColorSchemeSwitch do
   use Phoenix.Component
 
   @doc """
   A button that switches between light and dark modes.
-  This hasn't been tested in a live view environment.
+  Pairs with css-theme-switch.js
   """
-  def dark_theme_switch(assigns) do
+  def color_scheme_switch(assigns) do
     ~H"""
     <button
-      id="theme-toggle"
-      phx-hook="DarkThemeSwitch"
+      id="color-scheme"
       type="button"
       class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
     >
       <svg
-        id="theme-toggle-dark-icon"
+        id="color-scheme-dark-icon"
         class="hidden w-5 h-5"
         fill="currentColor"
         viewBox="0 0 20 20"
@@ -25,7 +24,7 @@ defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
         ></path>
       </svg>
       <svg
-        id="theme-toggle-light-icon"
+        id="color-scheme-light-icon"
         class="hidden w-5 h-5"
         fill="currentColor"
         viewBox="0 0 20 20"

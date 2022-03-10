@@ -3,7 +3,7 @@ defmodule PetalBoilerplateWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :modal, false)}
+    {:ok, assign(socket, modal: false, pagination_page: 1)}
   end
 
   @impl true
@@ -13,6 +13,8 @@ defmodule PetalBoilerplateWeb.PageLive do
         {:noreply, assign(socket, modal: false)}
       :modal ->
         {:noreply, assign(socket, modal: params["size"])}
+      :pagination ->
+        {:noreply, assign(socket, pagination_page: String.to_integer(params["page"]))}
     end
   end
 
@@ -22,7 +24,7 @@ defmodule PetalBoilerplateWeb.PageLive do
     <div class="h-screen overflow-auto dark:bg-gray-900">
       <nav class="sticky top-0 flex items-center justify-end w-full h-12 bg-white dark:bg-gray-900">
         <div class="flex justify-end pt-3 pr-3">
-          <PetalBoilerplateWeb.Components.DarkThemeSwitch.dark_theme_switch />
+          <PetalBoilerplateWeb.Components.ColorSchemeSwitch.color_scheme_switch />
         </div>
       </nav>
       <.container class="mt-10">
@@ -61,6 +63,13 @@ defmodule PetalBoilerplateWeb.PageLive do
             </div>
           </.modal>
         <% end %>
+
+        <.h2 underline class="mt-10" label="Interactive Pagination" />
+        <.pagination
+          link_type="live_patch"
+          path="/live/pagination/:page"
+          current_page={@pagination_page} total_pages={10}
+        />
 
       </.container>
     </div>

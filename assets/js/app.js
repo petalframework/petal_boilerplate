@@ -21,6 +21,7 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+import "./lib/color-scheme-switch";
 Alpine.start();
 
 let csrfToken = document
@@ -28,17 +29,6 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
-  hooks: {
-    DarkThemeSwitch: {
-      mounted() {
-        if (window.darkThemeSwitchAlreadyRun) {
-          applyLocalStorageTheme();
-        } else {
-          setupDarkThemeSwitch();
-        }
-      },
-    },
-  },
   dom: {
     onBeforeElUpdated(from, to) {
       if (from._x_dataStack) {
@@ -61,48 +51,3 @@ liveSocket.connect();
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
-
-function setupDarkThemeSwitch() {
-  if (!("color-theme" in localStorage)) {
-    let colorTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    localStorage.setItem("color-theme", colorTheme);
-  }
-
-  var themeToggleBtn = document.getElementById("theme-toggle");
-
-  themeToggleBtn.addEventListener("click", () => {
-    localStorage.setItem(
-      "color-theme",
-      localStorage.getItem("color-theme") === "dark" ? "light" : "dark"
-    );
-    applyLocalStorageTheme();
-  });
-
-  applyLocalStorageTheme();
-
-  window.darkThemeSwitchAlreadyRun = true;
-}
-
-function applyLocalStorageTheme() {
-  var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-  var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
-
-  if (localStorage.getItem("color-theme") === "dark") {
-    themeToggleLightIcon.classList.remove("hidden");
-    themeToggleDarkIcon.classList.add("hidden");
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("color-theme", "dark");
-  } else {
-    themeToggleLightIcon.classList.add("hidden");
-    themeToggleDarkIcon.classList.remove("hidden");
-    document.documentElement.classList.remove("dark");
-    localStorage.setItem("color-theme", "light");
-  }
-}
-
-// This runs on static and live views, however on live views it doesn't work properly and need to use a hook (see above in the LiveSocket setup)
-window.onload = () => {
-  setupDarkThemeSwitch();
-};

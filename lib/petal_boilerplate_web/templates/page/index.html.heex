@@ -1,7 +1,7 @@
 <div class="h-screen overflow-auto dark:bg-gray-900">
   <nav class="sticky top-0 flex items-center justify-end w-full h-12 bg-white dark:bg-gray-900">
     <div class="flex justify-end pt-3 pr-3">
-      <PetalBoilerplateWeb.Components.DarkThemeSwitch.dark_theme_switch />
+      <PetalBoilerplateWeb.Components.ColorSchemeSwitch.color_scheme_switch />
     </div>
   </nav>
   <.container class="mt-10">
@@ -841,7 +841,7 @@
 
   <.container class="mt-10">
     <.h2 underline label="Avatar" />
-    <.h5 label="Basic Avatars" />
+    <.h5 label="Basic avatars" />
     <div class="flex flex-wrap items-end gap-2">
       <.avatar size="xs" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
       <.avatar size="sm" src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
@@ -967,7 +967,7 @@
 
   <.container class="mt-10">
     <.h2 underline label="Pagination" />
-    <.h5 label="Basic Pagination" />
+    <.h5 label="Basic pagination" />
     <div class="flex flex-col gap-2 mt-5">
       <.form_label label="a" />
       <.pagination link_type="a" class="mb-5" path="/:page" current_page={1} total_pages={10} />

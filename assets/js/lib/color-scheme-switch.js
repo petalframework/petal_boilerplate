@@ -1,42 +1,50 @@
 // Pairs with color_scheme_switch.ex
-var themeToggleDarkIcon = document.getElementById("color-scheme-dark-icon");
-var themeToggleLightIcon = document.getElementById("color-scheme-light-icon");
 
-if (!("color-scheme" in localStorage)) {
-  let colorTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-  localStorage.setItem("color-scheme", colorTheme);
-}
+window.toggleColorScheme = function () {
+  console.log("toggleColorScheme");
+  let newColorScheme =
+    Cookies.get("color-scheme") === "dark" ? "light" : "dark";
+  applyColorScheme(newColorScheme);
+};
 
-var themeToggleBtn = document.getElementById("color-scheme");
+window.initCurrentColorScheme = function () {
+  let colorScheme = Cookies.get("color-scheme");
 
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener("click", () => {
-    localStorage.setItem(
-      "color-scheme",
-      localStorage.getItem("color-scheme") === "dark" ? "light" : "dark"
-    );
-    applyLocalStorageTheme();
+  if (!colorScheme) {
+    colorScheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  applyColorScheme(colorScheme);
+
+  document.querySelectorAll(".color-scheme").forEach((el) => {
+    el.addEventListener("click", toggleColorScheme);
   });
-}
+};
 
-applyLocalStorageTheme();
-
-function applyLocalStorageTheme() {
-  if (localStorage.getItem("color-scheme") === "dark") {
-    themeToggleLightIcon && themeToggleLightIcon.classList.remove("hidden");
-    themeToggleDarkIcon && themeToggleDarkIcon.classList.add("hidden");
+window.applyColorScheme = function (colorScheme) {
+  if (colorScheme === "dark") {
+    document
+      .querySelectorAll(".color-scheme-dark-icon")
+      .forEach((el) => el.classList.add("hidden"));
+    document
+      .querySelectorAll(".color-scheme-light-icon")
+      .forEach((el) => el.classList.remove("hidden"));
     document.documentElement.classList.add("dark");
-    localStorage.setItem("color-scheme", "dark");
     Cookies.set("color-scheme", "dark", { expires: 9999 });
     console.log("CSS dark theme applied");
   } else {
-    themeToggleLightIcon && themeToggleLightIcon.classList.add("hidden");
-    themeToggleDarkIcon && themeToggleDarkIcon.classList.remove("hidden");
+    document
+      .querySelectorAll(".color-scheme-dark-icon")
+      .forEach((el) => el.classList.remove("hidden"));
+    document
+      .querySelectorAll(".color-scheme-light-icon")
+      .forEach((el) => el.classList.add("hidden"));
     document.documentElement.classList.remove("dark");
-    localStorage.setItem("color-scheme", "light");
     Cookies.set("color-scheme", "light", { expires: 9999 });
     console.log("CSS light theme applied");
   }
-}
+};
+
+window.initCurrentColorScheme();

@@ -22,6 +22,7 @@ import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 import "./lib/color-scheme-switch";
+import ColorThemeHook from "./hooks/color-theme-hook";
 Alpine.start();
 
 let csrfToken = document
@@ -29,6 +30,9 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
+  hooks: {
+    ColorThemeHook,
+  },
   dom: {
     onBeforeElUpdated(from, to) {
       if (from._x_dataStack) {

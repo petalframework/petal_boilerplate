@@ -2,8 +2,12 @@ defmodule PetalBoilerplateWeb.PageLive do
   use PetalBoilerplateWeb, :live_view
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, modal: false, pagination_page: 1)}
+  def mount(_params, session, socket) do
+    {:ok, assign(socket, [
+      modal: false,
+      pagination_page: 1,
+      color_scheme: session["color_scheme"]
+    ])}
   end
 
   @impl true
@@ -24,7 +28,7 @@ defmodule PetalBoilerplateWeb.PageLive do
     <div class="h-screen overflow-auto dark:bg-gray-900">
       <nav class="sticky top-0 flex items-center justify-end w-full h-12 bg-white dark:bg-gray-900">
         <div class="flex justify-end pt-3 pr-3">
-          <PetalBoilerplateWeb.Components.ColorSchemeSwitch.color_scheme_switch />
+          <.color_scheme_switch color_scheme={@color_scheme} />
         </div>
       </nav>
       <.container class="mt-10">

@@ -63,5 +63,6 @@ defmodule PetalBoilerplateWeb.Router do
 
     conn
     |> assign(:color_scheme, color_scheme)
+    |> put_session(:color_scheme, color_scheme)
   end
 end

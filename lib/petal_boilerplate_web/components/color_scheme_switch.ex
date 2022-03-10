@@ -1,21 +1,23 @@
-defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
+defmodule PetalBoilerplateWeb.Components.ColorSchemeSwitch do
   use Phoenix.Component
 
   @doc """
   A button that switches between light and dark modes.
-  This hasn't been tested in a live view environment.
+  Pairs with css-theme-switch.js
   """
-  def dark_theme_switch(assigns) do
+  def color_scheme_switch(assigns) do
+    assigns = assigns
+      |> assign_new(:color_scheme, fn -> nil end)
+
     ~H"""
     <button
-      id="theme-toggle"
-      phx-hook="DarkThemeSwitch"
       type="button"
-      class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+      phx-hook="ColorThemeHook"
+      id={Ecto.UUID.generate()}
+      class="color-scheme text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
     >
       <svg
-        id="theme-toggle-dark-icon"
-        class="hidden w-5 h-5"
+        class={"#{if @color_scheme == "light", do: "", else: "hidden"} w-5 h-5 color-scheme-dark-icon"}
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +27,7 @@ defmodule PetalBoilerplateWeb.Components.DarkThemeSwitch do
         ></path>
       </svg>
       <svg
-        id="theme-toggle-light-icon"
-        class="hidden w-5 h-5"
+        class={"#{if @color_scheme == "dark", do: "", else: "hidden"} w-5 h-5 color-scheme-light-icon"}
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

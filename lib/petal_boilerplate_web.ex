@@ -91,6 +91,11 @@ defmodule PetalBoilerplateWeb do
       import PetalBoilerplateWeb.Gettext
       alias PetalBoilerplateWeb.Router.Helpers, as: Routes
 
+      # Import global components
+      import PetalBoilerplateWeb.Components.{
+        ColorSchemeSwitch
+      }
+
       use PetalComponents
     end
   end

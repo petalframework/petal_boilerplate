@@ -62,8 +62,11 @@
         <.button color="secondary" label="secondary" />
         <.button color="white" label="White" />
         <.button color="pure_white" label="Pure White" />
+        <.button color="info" label="Info" />
         <.button color="success" label="Success" />
+        <.button color="warning" label="Warning" />
         <.button color="danger" label="Danger" />
+        <.button color="gray" label="Gray" />
       </div>
     </div>
 
@@ -73,8 +76,11 @@
         <.button color="primary" label="Primary" variant="outline" />
         <.button color="secondary" label="Secondary" variant="outline" />
         <.button color="white" label="White" variant="outline" />
+        <.button color="info" label="Info" variant="outline" />
         <.button color="success" label="Success" variant="outline" />
+        <.button color="warning" label="Warning" variant="outline" />
         <.button color="danger" label="Danger" variant="outline" />
+        <.button color="gray" label="Gray" variant="outline" />
       </div>
     </div>
 
@@ -84,8 +90,11 @@
         <.button color="primary" label="Primary" variant="shadow" />
         <.button color="secondary" label="Secondary" variant="shadow" />
         <.button color="white" label="White" variant="shadow" />
+        <.button color="info" label="Info" variant="shadow" />
         <.button color="success" label="Success" variant="shadow" />
+        <.button color="warning" label="Warning" variant="shadow" />
         <.button color="danger" label="Danger" variant="shadow" />
+        <.button color="gray" label="Gray" variant="shadow" />
       </div>
     </div>
 
@@ -923,27 +932,31 @@
     <div class="flex flex-col">
       <div class="mt-5">
       <.form_label label="Primary" />
-      <.progress color="primary" value={15} max={100} class="max-w-xl" />
+      <.progress color="primary" value={10} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
       <.form_label label="Secondary" />
-      <.progress color="secondary" value={30} max={100} class="max-w-xl" />
+      <.progress color="secondary" value={20} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
       <.form_label label="Info" />
-      <.progress color="info" value={45} max={100} class="max-w-xl" />
+      <.progress color="info" value={30} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
       <.form_label label="Success" />
-      <.progress color="success" value={60} max={100} class="max-w-xl" />
+      <.progress color="success" value={40} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
       <.form_label label="Warning" />
-      <.progress color="warning" value={75} max={100} class="max-w-xl" />
+      <.progress color="warning" value={50} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
       <.form_label label="Danger" />
-      <.progress color="danger" value={90} max={100} class="max-w-xl" />
+      <.progress color="danger" value={60} max={100} class="max-w-xl" />
+      </div>
+      <div class="mt-5">
+      <.form_label label="Gray" />
+      <.progress color="gray" value={70} max={100} class="max-w-xl" />
       </div>
       <div class="mt-10">
         <.h5 label="Sizes" />

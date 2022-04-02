@@ -5,6 +5,7 @@ defmodule PetalBoilerplateWeb.PageLive do
   def mount(_params, session, socket) do
     {:ok, assign(socket, [
       modal: false,
+      slide_over: false,
       pagination_page: 1,
       color_scheme: session["color_scheme"]
     ])}
@@ -14,9 +15,11 @@ defmodule PetalBoilerplateWeb.PageLive do
   def handle_params(params, _uri, socket) do
     case socket.assigns.live_action do
       :index ->
-        {:noreply, assign(socket, modal: false)}
+        {:noreply, assign(socket, modal: false, slide_over: false)}
       :modal ->
         {:noreply, assign(socket, modal: params["size"])}
+      :slide_over ->
+        {:noreply, assign(socket, slide_over: params["origin"])}
       :pagination ->
         {:noreply, assign(socket, pagination_page: String.to_integer(params["page"]))}
     end
@@ -45,10 +48,8 @@ defmodule PetalBoilerplateWeb.PageLive do
           <.dropdown_menu_item type="live_patch" href="/" label="Live Patch item" />
           <.dropdown_menu_item type="live_redirect" href="/" label="Live Redirect item" />
         </.dropdown>
-      </.container>
 
-      <.container class="mt-10">
-        <.h2 underline class="mt-3" label="Modal" />
+        <.h2 underline class="mt-10" label="Modal" />
 
         <.button label="sm" link_type="live_patch" to={Routes.page_path(@socket, :modal, "sm")} />
         <.button label="md" link_type="live_patch" to={Routes.page_path(@socket, :modal, "md")} />
@@ -68,13 +69,30 @@ defmodule PetalBoilerplateWeb.PageLive do
           </.modal>
         <% end %>
 
+        <.h2 underline class="mt-10" label="SlideOver" />
+
+        <.button label="start" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "start")} />
+        <.button label="top" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "top")} />
+        <.button label="end" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "end")} />
+        <.button label="bottom" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "bottom")} />
+
+        <%= if @slide_over do %>
+          <.slide_over slide_over={@slide_over} max_width="sm" title="SlideOver">
+            <div class="gap-5 text-sm">
+              <.form_label label="Add some text here." />
+              <div class="flex justify-end">
+                <.button label="close" phx-click={PetalComponents.SlideOver.hide_slide_over(@slide_over)} />
+              </div>
+            </div>
+          </.slide_over>
+        <% end %>
+
         <.h2 underline class="mt-10" label="Interactive Pagination" />
         <.pagination
           link_type="live_patch"
           path="/live/pagination/:page"
           current_page={@pagination_page} total_pages={10}
         />
-
       </.container>
     </div>
     """
@@ -82,6 +100,10 @@ defmodule PetalBoilerplateWeb.PageLive do
 
   @impl true
   def handle_event("close_modal", _, socket) do
+    {:noreply, push_patch(socket, to: "/live")}
+  end
+
+  def handle_event("close_slide_over", _, socket) do
     {:noreply, push_patch(socket, to: "/live")}
   end
 end

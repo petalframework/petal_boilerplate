@@ -71,13 +71,13 @@ defmodule PetalBoilerplateWeb.PageLive do
 
         <.h2 underline class="mt-10" label="SlideOver" />
 
-        <.button label="start" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "start")} />
+        <.button label="left" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "left")} />
         <.button label="top" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "top")} />
-        <.button label="end" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "end")} />
+        <.button label="right" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "right")} />
         <.button label="bottom" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "bottom")} />
 
         <%= if @slide_over do %>
-          <.slide_over slide_over={@slide_over} max_width="sm" title="SlideOver">
+          <.slide_over origin={@slide_over} max_width="sm" title="SlideOver">
             <div class="gap-5 text-sm">
               <.form_label label="Add some text here." />
               <div class="flex justify-end">

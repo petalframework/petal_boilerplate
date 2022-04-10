@@ -77,7 +77,7 @@ defmodule PetalBoilerplateWeb.PageLive do
         <.button label="bottom" link_type="live_patch" to={Routes.page_path(@socket, :slide_over, "bottom")} />
 
         <%= if @slide_over do %>
-          <.slide_over origin={@slide_over} max_width="sm" title="SlideOver">
+          <.slide_over origin={@slide_over} title="SlideOver">
             <div class="gap-5 text-sm">
               <.form_label label="Add some text here." />
               <div class="flex justify-end">

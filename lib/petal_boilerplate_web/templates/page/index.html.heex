@@ -281,6 +281,7 @@
     </div>
     <div class="flex items-start max-w-sm mt-4">
       <.alert
+        color="info"
         heading="Optional heading that is too long">
         This is quite a long paragraph that takes up more than one line.
       </.alert>
@@ -383,6 +384,7 @@
         range_input_with_error: {"can't be blank", [validation: :required]},
         textarea_with_error: {"can't be blank", [validation: :required]},
         select_with_error: {"can't be blank", [validation: :required]},
+        switch_with_error: {"can't be blank", [validation: :required]},
         checkbox_with_error: {"can't be blank", [validation: :required]},
         checkbox_group_col_with_error: {"can't be blank", [validation: :required]},
         checkbox_group_row_with_error: {"can't be blank", [validation: :required]},
@@ -426,7 +428,11 @@
         </div>
 
         <div>
-          <.form_field type="email_input" form={f} field={:email_input_with_error} />
+          <.form_field
+            type="email_input"
+            form={f}
+            field={:email_input_with_error}
+          />
         </div>
       </div>
 
@@ -438,7 +444,11 @@
         </div>
 
         <div>
-          <.form_field type="number_input" form={f} field={:number_input_with_error} />
+          <.form_field
+            type="number_input"
+            form={f}
+            field={:number_input_with_error}
+          />
         </div>
       </div>
 
@@ -450,7 +460,11 @@
         </div>
 
         <div>
-          <.form_field type="password_input" form={f} field={:password_input_with_error} />
+          <.form_field
+            type="password_input"
+            form={f}
+            field={:password_input_with_error}
+          />
         </div>
       </div>
 
@@ -462,7 +476,11 @@
         </div>
 
         <div>
-          <.form_field type="search_input" form={f} field={:search_input_with_error} />
+          <.form_field
+            type="search_input"
+            form={f}
+            field={:search_input_with_error}
+          />
         </div>
       </div>
 
@@ -474,7 +492,11 @@
         </div>
 
         <div>
-          <.form_field type="telephone_input" form={f} field={:telephone_input_with_error} />
+          <.form_field
+            type="telephone_input"
+            form={f}
+            field={:telephone_input_with_error}
+          />
         </div>
       </div>
 
@@ -486,7 +508,11 @@
         </div>
 
         <div>
-          <.form_field type="url_input" form={f} field={:url_input_with_error} />
+          <.form_field
+            type="url_input"
+            form={f}
+            field={:url_input_with_error}
+          />
         </div>
       </div>
 
@@ -498,7 +524,11 @@
         </div>
 
         <div>
-          <.form_field type="time_input" form={f} field={:time_input_with_error} />
+          <.form_field
+            type="time_input"
+            form={f}
+            field={:time_input_with_error}
+          />
         </div>
       </div>
 
@@ -510,7 +540,11 @@
         </div>
 
         <div>
-          <.form_field type="time_select" form={f} field={:time_select_with_error} />
+          <.form_field
+            type="time_select"
+            form={f}
+            field={:time_select_with_error}
+          />
         </div>
       </div>
 
@@ -522,7 +556,11 @@
         </div>
 
         <div>
-          <.form_field type="date_input" form={f} field={:date_input_with_error} />
+          <.form_field
+            type="date_input"
+            form={f}
+            field={:date_input_with_error}
+          />
         </div>
       </div>
 
@@ -534,7 +572,11 @@
         </div>
 
         <div>
-          <.form_field type="date_select" form={f} field={:date_select_with_error} />
+          <.form_field
+            type="date_select"
+            form={f}
+            field={:date_select_with_error}
+          />
         </div>
       </div>
 
@@ -546,7 +588,11 @@
         </div>
 
         <div>
-          <.form_field type="datetime_local_input" form={f} field={:datetime_local_input_with_error} />
+          <.form_field
+            type="datetime_local_input"
+            form={f}
+            field={:datetime_local_input_with_error}
+          />
         </div>
       </div>
 
@@ -558,7 +604,11 @@
         </div>
 
         <div>
-          <.form_field type="datetime_select" form={f} field={:datetime_select_with_error} />
+          <.form_field
+            type="datetime_select"
+            form={f}
+            field={:datetime_select_with_error}
+          />
         </div>
       </div>
 
@@ -570,7 +620,11 @@
         </div>
 
         <div>
-          <.form_field type="color_input" form={f} field={:color_input_with_error} />
+          <.form_field
+            type="color_input"
+            form={f}
+            field={:color_input_with_error}
+          />
         </div>
       </div>
 
@@ -582,7 +636,11 @@
         </div>
 
         <div>
-          <.form_field type="file_input" form={f} field={:file_input_with_error} />
+          <.form_field
+            type="file_input"
+            form={f}
+            field={:file_input_with_error}
+          />
         </div>
       </div>
 
@@ -594,7 +652,11 @@
         </div>
 
         <div>
-          <.form_field type="range_input" form={f} field={:range_input_with_error} />
+          <.form_field
+            type="range_input"
+            form={f}
+            field={:range_input_with_error}
+          />
         </div>
       </div>
 
@@ -606,7 +668,11 @@
         </div>
 
         <div>
-          <.form_field type="textarea" form={f} field={:textarea_with_error} />
+          <.form_field
+            type="textarea"
+            form={f}
+            field={:textarea_with_error}
+          />
         </div>
       </div>
 
@@ -627,6 +693,27 @@
             options={["Admin": "admin", "User": "user"]}
             form={f}
             field={:select_with_error}
+          />
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+            <.switch form={f} field={:switch} />
+          <div>Switch</div>
+          </label>
+
+          <.form_field_error form={f} field={:switch} class="mt-1" />
+        </div>
+
+        <div>
+          <.form_field
+            type="switch"
+            form={f}
+            field={:switch_with_error}
+            label="Switch (with error)"
           />
         </div>
       </div>
@@ -931,32 +1018,32 @@
     <.h5 label="Progress bar" />
     <div class="flex flex-col">
       <div class="mt-5">
-      <.form_label label="Primary" />
-      <.progress color="primary" value={10} max={100} class="max-w-xl" />
+        <.form_label label="Primary" />
+        <.progress color="primary" value={10} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Secondary" />
-      <.progress color="secondary" value={20} max={100} class="max-w-xl" />
+        <.form_label label="Secondary" />
+        <.progress color="secondary" value={20} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Info" />
-      <.progress color="info" value={30} max={100} class="max-w-xl" />
+        <.form_label label="Info" />
+        <.progress color="info" value={30} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Success" />
-      <.progress color="success" value={40} max={100} class="max-w-xl" />
+        <.form_label label="Success" />
+        <.progress color="success" value={40} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Warning" />
-      <.progress color="warning" value={50} max={100} class="max-w-xl" />
+        <.form_label label="Warning" />
+        <.progress color="warning" value={50} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Danger" />
-      <.progress color="danger" value={60} max={100} class="max-w-xl" />
+        <.form_label label="Danger" />
+        <.progress color="danger" value={60} max={100} class="max-w-xl" />
       </div>
       <div class="mt-5">
-      <.form_label label="Gray" />
-      <.progress color="gray" value={70} max={100} class="max-w-xl" />
+        <.form_label label="Gray" />
+        <.progress color="gray" value={70} max={100} class="max-w-xl" />
       </div>
       <div class="mt-10">
         <.h5 label="Sizes" />
@@ -1000,7 +1087,7 @@
   <.container class="mt-10">
     <.h2 underline label="Tabs" />
     <.h5 label="Basic tabs" />
-    <.tabs class="flex-col sm:flex-row space-x">
+    <.tabs class="flex-col sm:flex-row">
       <.tab is_active to="/">Home</.tab>
       <.tab link_type="a" to="/" label="About" />
     </.tabs>
@@ -1174,7 +1261,6 @@
             <.td>Engineer</.td>
             <.td>john.smith@example.com</.td>
           </.tr>
-
 
           <.tr>
             <.td>

@@ -23,7 +23,6 @@ import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 import "./lib/color-scheme-switch";
 import ColorThemeHook from "./hooks/color-theme-hook";
-Alpine.start();
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")

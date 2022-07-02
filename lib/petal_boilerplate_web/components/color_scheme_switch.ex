@@ -6,7 +6,8 @@ defmodule PetalBoilerplateWeb.Components.ColorSchemeSwitch do
   Pairs with css-theme-switch.js
   """
   def color_scheme_switch(assigns) do
-    assigns = assigns
+    assigns =
+      assigns
       |> assign_new(:color_scheme, fn -> nil end)
 
     ~H"""

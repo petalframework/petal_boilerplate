@@ -47,16 +47,18 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :petal_components, :error_translator_function, {PetalBoilerplateWeb.ErrorHelpers, :translate_error}
+config :petal_components,
+       :error_translator_function,
+       {PetalBoilerplateWeb.ErrorHelpers, :translate_error}
 
 config :tailwind,
-  version: "3.0.12",
+  version: "3.1.4",
   default: [
     args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
-    ),
+         --config=tailwind.config.js
+         --input=css/app.css
+         --output=../priv/static/assets/app.css
+       ),
     cd: Path.expand("../assets", __DIR__)
   ]
 

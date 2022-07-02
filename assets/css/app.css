@@ -1,91 +1,48 @@
 /* This file is for your main application CSS */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "./petal-components-enhancements.css";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  /* Add base styles here (eg. styles that are the defaults for common elements)
+
+    Example base style:
+    h1 {
+      @apply text-2xl;
+    }
+
+  */
+}
 
 @layer components {
-  .select-wrapper select {
-    @apply text-sm border-gray-300 rounded-md shadow-sm disabled:bg-gray-100 disabled:cursor-not-allowed focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:focus:border-primary-500 dark:bg-gray-800 dark:text-gray-300 focus:outline-none ;
-  }
+  /* Add component styles here (eg. buttons or tabs or anything that uses a number of styles)
 
-  label.has-error:not(.phx-no-feedback) {
-    @apply !text-red-900 dark:!text-red-200;
-  }
-
-  textarea.has-error:not(.phx-no-feedback), input.has-error:not(.phx-no-feedback), select.has-error:not(.phx-no-feedback) {
-    @apply !border-red-500 focus:!border-red-500 !text-red-900 !placeholder-red-700 !bg-red-50 dark:!text-red-100 dark:!placeholder-red-300 dark:!bg-red-900;
-  }
-
-  input[type=file_input].has-error:not(.phx-no-feedback) {
-    @apply !border-red-500 !rounded-md focus:!border-red-500 !text-red-900 !placeholder-red-700 !bg-red-50 file:!border-none dark:!border-none dark:!bg-[#160B0B] dark:text-red-400;
-  }
-
-  input[type=checkbox].has-error:not(.phx-no-feedback) {
-    @apply !border-red-500 !text-red-900 dark:!text-red-200;
-  }
-
-  input[type=radio].has-error:not(.phx-no-feedback) {
-    @apply !border-red-500;
-  }
-
-  /* If in tailwind.config.json, darkMode: 'media', use this: */
-  /* @media (prefers-color-scheme: dark) {
-    ::-webkit-calendar-picker-indicator {
-      filter: invert(1);
+    Example component:
+    .btn-blue {
+      @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
     }
-  } */
+  */
+}
 
-  /* If in tailwind.config.json, darkMode: 'class', use this: */
-  .dark ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+@layer utilities {
+  /* LiveView specific classes for your customization */
+  .phx-no-feedback.invalid-feedback,
+  .phx-no-feedback .invalid-feedback {
+    display: none;
   }
-}
 
-/* Alerts and form errors used by phx.new */
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
-.alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
-}
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-.alert p {
-  margin-bottom: 0;
-}
-.alert:empty {
-  display: none;
-}
+  .phx-click-loading {
+    opacity: 0.5;
+    transition: opacity 1s ease-out;
+  }
 
-/* LiveView specific classes for your customization */
-.phx-no-feedback.invalid-feedback,
-.phx-no-feedback .invalid-feedback {
-  display: none;
-}
+  .phx-loading{
+    cursor: wait;
+  }
 
-.phx-click-loading {
-  opacity: 0.5;
-  transition: opacity 1s ease-out;
-}
-
-.phx-loading{
-  cursor: wait;
-}
-
-/* Add this to AlpineJS elements that start off hidden. When AlpineJS is loaded it will remove all x-cloak attributes */
-[x-cloak=""] {
-  display: none;
+  /* Add this to AlpineJS elements that start off hidden. When AlpineJS is loaded it will remove all x-cloak attributes */
+  [x-cloak=""] {
+    display: none;
+  }
 }

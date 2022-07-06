@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(PetalBoilerplate.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Eblox.Repo, :manual)

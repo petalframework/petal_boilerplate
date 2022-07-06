@@ -15,7 +15,7 @@ Optionally change your database name in `dev.exs`.
 
 ## Renaming your project
 
-Your app module is currently called `PetalBoilerplate`. There is a script file included that will rename your project to anything you like in one go.
+Your app module is currently called `Eblox`. There is a script file included that will rename your project to anything you like in one go.
 Open the file `rename_phoenix_project.sh` and read the instructions at the top.
 
 

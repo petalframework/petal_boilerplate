@@ -5,7 +5,13 @@ defmodule Eblox.Application do
 
   use Application
 
-  @impl true
+  @doc false
+  @spec content_dir :: Path.t()
+  def content_dir do
+    Application.get_env(:eblox, :content_dir, "priv/content")
+  end
+
+  @impl Application
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
@@ -15,7 +21,9 @@ defmodule Eblox.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Eblox.PubSub},
       # Start the Endpoint (http/https)
-      EbloxWeb.Endpoint
+      EbloxWeb.Endpoint,
+      # Siblings is a main cache for posts
+      {Eblox.Data, content_dir()}
       # Start a worker by calling: Eblox.Worker.start_link(arg)
       # {Eblox.Worker, arg}
     ]

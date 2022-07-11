@@ -26,7 +26,8 @@ defmodule Eblox.Data.Listener do
     |> Enum.to_list()
   end
 
-  def action(:created, file) do
+  @spec action(:created | :deleted | :changed, binary()) :: :ok
+  defp action(:created, file) do
     with {:ok, _server} <-
            Siblings.start_child(
              Eblox.Data.PostFSM,
@@ -37,11 +38,11 @@ defmodule Eblox.Data.Listener do
          do: :ok
   end
 
-  def action(:deleted, file) do
+  defp action(:deleted, file) do
     Siblings.transition(file, :delete, nil)
   end
 
-  def action(:changed, file) do
+  defp action(:changed, file) do
     Siblings.transition(file, :parse, nil)
   end
 end

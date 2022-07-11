@@ -24,8 +24,16 @@ defmodule Eblox.Data.PostFSM do
 
   def on_transition(:read, :parse, nil, %{content: content} = payload) do
     case Md.parse(content) do
-      %Md.Parser.State{} = state -> {:ok, :parsed, Map.put(payload, :parsed, state)}
-      _other -> :error
+      %Md.Parser.State{} = parsed ->
+        payload =
+          payload
+          |> Map.put(:md, parsed)
+          |> Map.put(:html, Md.generate(parsed, Md.Parser.Default, format: :none))
+
+        {:ok, :parsed, payload}
+
+      _other ->
+        :error
     end
   end
 

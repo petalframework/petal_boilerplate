@@ -1,0 +1,3 @@
+[submodule "priv/content"]
+	path = priv/content
+	url = https://github.com/am-kantox/eblox_content

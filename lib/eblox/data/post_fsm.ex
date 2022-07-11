@@ -22,6 +22,13 @@ defmodule Eblox.Data.PostFSM do
     end
   end
 
+  def on_transition(:read, :parse, nil, %{content: content} = payload) do
+    case Md.parse(content) do
+      %Md.Parser.State{} = state -> {:ok, :parsed, Map.put(payload, :parsed, state)}
+      _other -> :error
+    end
+  end
+
   @behaviour Siblings.Worker
 
   @impl Siblings.Worker
@@ -29,9 +36,16 @@ defmodule Eblox.Data.PostFSM do
     {:transition, :read, nil}
   end
 
+  @impl Siblings.Worker
+  def perform(:read, _id, _payload) do
+    {:transition, :parse, nil}
+  end
+
   def perform(state, id, payload) do
     ["[PERFORM] ", state, id, payload]
     |> inspect()
     |> Logger.info()
+
+    :noop
   end
 end

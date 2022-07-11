@@ -58,7 +58,20 @@ defmodule Eblox.Data.Monitor do
   @doc false
   @impl GenServer
   def handle_info(:work, %State{} = state) do
-    files = state.directory |> file_list() |> list_to_state(state.directory)
+    files =
+      state.directory
+      |> file_list()
+      |> Flow.from_enumerable()
+      |> Flow.partition()
+      |> Flow.reduce(fn -> %{} end, fn file, acc ->
+        file
+        |> File.read()
+        |> case do
+          {:ok, content} -> Map.put(acc, String.trim_leading(file, state.directory), md5(content))
+          _ -> acc
+        end
+      end)
+      |> Map.new()
 
     files
     |> diff(state.files)
@@ -76,14 +89,6 @@ defmodule Eblox.Data.Monitor do
     end
 
     if String.contains?(directory, ".git"), do: [], else: dig.(File.ls(directory), directory)
-  end
-
-  @spec list_to_state([Path.t()], binary()) :: %{Path.t() => md5()}
-  defp list_to_state(files, root) do
-    for file <- files,
-        {:ok, content} <- [File.read(file)],
-        into: %{},
-        do: {String.trim_leading(file, root), md5(content)}
   end
 
   @spec diff(%{Path.t() => md5()}, %{Path.t() => md5()}) :: message()

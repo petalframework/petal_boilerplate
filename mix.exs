@@ -40,6 +40,7 @@ defmodule Eblox.MixProject do
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.17.5"},
+      {:flow, "~> 1.0"},
       {:estructura, "~> 0.3"},
       {:siblings, "~> 0.3"},
       {:md, "~> 0.8"},

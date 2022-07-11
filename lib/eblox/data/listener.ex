@@ -18,7 +18,12 @@ defmodule Eblox.Data.Listener do
 
   @spec handle_changes(Eblox.Monitor.message()) :: [:ok]
   def handle_changes(%{created: _, deleted: _, changed: _} = changes) do
-    for {action, list} <- changes, elem <- list, do: action(action, elem)
+    changes
+    |> Flow.from_enumerable()
+    |> Flow.flat_map(fn {action, list} -> Enum.map(list, &{action, &1}) end)
+    |> Flow.partition()
+    |> Flow.reduce(fn -> [] end, fn {action, elem}, acc -> [action(action, elem) | acc] end)
+    |> Enum.to_list()
   end
 
   def action(:created, file) do

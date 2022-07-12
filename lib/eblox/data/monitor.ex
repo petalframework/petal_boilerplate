@@ -67,7 +67,7 @@ defmodule Eblox.Data.Monitor do
         file
         |> File.read()
         |> case do
-          {:ok, content} -> Map.put(acc, String.trim_leading(file, state.directory), md5(content))
+          {:ok, content} -> Map.put(acc, Path.relative_to(file, state.directory), md5(content))
           _ -> acc
         end
       end)
@@ -84,7 +84,7 @@ defmodule Eblox.Data.Monitor do
   @spec file_list(Path.t()) :: %{Path.t() => md5()}
   defp file_list(directory) do
     dig = fn
-      {:ok, files}, path -> Enum.flat_map(files, &file_list("#{path}/#{&1}"))
+      {:ok, files}, path -> Enum.flat_map(files, &file_list(Path.join(path, &1)))
       {:error, _}, path -> [path]
     end
 

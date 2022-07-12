@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :eblox, Eblox.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "eventorydbadmin",
+  password: "staging",
   database: "eblox_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -65,7 +65,7 @@ config :eblox, EbloxWeb.Endpoint,
   ]
 
 # Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+config :logger, :console, format: "[$level] $message\n", level: :warn
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

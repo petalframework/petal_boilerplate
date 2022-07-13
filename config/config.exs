@@ -26,6 +26,8 @@ config :eblox, EbloxWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :eblox, Eblox.Mailer, adapter: Swoosh.Adapters.Local
 
+config :md, download_cards: true
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 

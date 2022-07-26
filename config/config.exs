@@ -62,6 +62,9 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
+config :petal_boilerplate, PetalBoilerplateWeb.Storybook,
+  content_path: Path.expand("../petal_boilerplate_web/lib/storybook", __DIR__)
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

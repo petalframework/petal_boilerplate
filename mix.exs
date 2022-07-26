@@ -49,6 +49,7 @@ defmodule PetalBoilerplate.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:phx_live_storybook, git: "https://github.com/phenixdigital/phx_live_storybook"},
       {:petal_components, "~> 0.17.5"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]

@@ -1,5 +1,6 @@
 defmodule PetalBoilerplateWeb.Router do
   use PetalBoilerplateWeb, :router
+  import PhxLiveStorybook.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -23,6 +24,10 @@ defmodule PetalBoilerplateWeb.Router do
     live "/live/modal/:size", PageLive, :modal
     live "/live/slide_over/:origin", PageLive, :slide_over
     live "/live/pagination/:page", PageLive, :pagination
+    live_storybook("/storybook",
+      otp_app: :petal_boilerplate,
+      backend_module: PetalBoilerplateWeb.Storybook
+    )
   end
 
   # Other scopes may use custom stacks.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class={if assigns[:color_scheme] == "dark", do: "dark", else: ""}>
+<html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,6 +14,8 @@
     <script defer src="https://unpkg.com/js-cookie@3.x.x/dist/js.cookie.min.js"></script>
 
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+
+    <.color_scheme_switch_js />
   </head>
   <body>
     <%= @inner_content %>

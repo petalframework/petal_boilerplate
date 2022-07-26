@@ -8,7 +8,6 @@ defmodule PetalBoilerplateWeb.Router do
     plug :put_root_layout, {PetalBoilerplateWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :set_color_scheme
   end
 
   pipeline :api do
@@ -56,14 +55,5 @@ defmodule PetalBoilerplateWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
-  end
-
-  # Use this plug to set a "dark" css class on <html> element
-  defp set_color_scheme(conn, _opts) do
-    color_scheme = conn.cookies["color-scheme"] || "dark"
-
-    conn
-    |> assign(:color_scheme, color_scheme)
-    |> put_session(:color_scheme, color_scheme)
   end
 end

@@ -46,10 +46,10 @@ defmodule PetalBoilerplate.MixProject do
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
+      {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, "~> 0.17.5"},
+      {:petal_components, "~> 0.17.6"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end

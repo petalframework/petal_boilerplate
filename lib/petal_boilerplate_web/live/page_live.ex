@@ -2,12 +2,12 @@ defmodule PetalBoilerplateWeb.PageLive do
   use PetalBoilerplateWeb, :live_view
 
   @impl true
-  def mount(_params, session, socket) do
+  def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
        modal: false,
        slide_over: false,
-       pagination_page: 1,
+       pagination_page: 1
      )}
   end
 

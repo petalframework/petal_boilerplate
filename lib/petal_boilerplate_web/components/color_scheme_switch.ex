@@ -1,7 +1,7 @@
 defmodule PetalBoilerplateWeb.Components.ColorSchemeSwitch do
   use Phoenix.Component
 
- @doc """
+  @doc """
   A button that switches between light and dark modes.
   Pairs with css-theme-switch.js
   """

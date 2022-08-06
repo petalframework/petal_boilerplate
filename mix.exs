@@ -7,10 +7,24 @@ defmodule Eblox.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:gettext] ++ Mix.compilers(),
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        credo: :ci,
+        dialyzer: :ci,
+        tests: :test,
+        "coveralls.json": :test,
+        "coveralls.html": :test,
+        "quality.ci": :ci
+      ],
+      dialyzer: [
+        plt_file: {:no_warn, ".dialyzer/plts/dialyzer.plt"},
+        plt_add_apps: [:floki],
+        ignore_warnings: ".dialyzer/ignore.exs"
+      ]
     ]
   end
 
@@ -45,6 +59,10 @@ defmodule Eblox.MixProject do
       {:siblings, "~> 0.3"},
       {:md, "~> 0.8"},
       {:floki, "~> 0.30"},
+      {:credo, "~> 1.0", only: :ci, runtime: false},
+      {:excoveralls, "~> 0.14", only: :test, runtime: false},
+      {:dialyxir, "~> 1.0", only: :ci, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
@@ -74,6 +92,13 @@ defmodule Eblox.MixProject do
         "tailwind default --minify",
         "esbuild default --minify",
         "phx.digest"
+      ],
+      quality: ["format", "credo --strict", "dialyzer"],
+      tests: ["coveralls.html --trace"],
+      "quality.ci": [
+        "format --check-formatted",
+        "credo --strict",
+        "dialyzer --halt-exit-status"
       ]
     ]
   end

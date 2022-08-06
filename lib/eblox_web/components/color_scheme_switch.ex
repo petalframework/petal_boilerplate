@@ -1,4 +1,6 @@
 defmodule EbloxWeb.Components.ColorSchemeSwitch do
+  @moduledoc false
+
   use Phoenix.Component
 
   @doc """

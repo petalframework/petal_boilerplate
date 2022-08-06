@@ -5,11 +5,13 @@ defmodule Eblox.Application do
 
   use Application
 
-  @doc false
-  @spec content_dir :: Path.t()
-  def content_dir do
-    Application.get_env(:eblox, :content_dir, "priv/content")
-  end
+  @data_providers Application.compile_env(:eblox, :data_providers, [
+                    {Eblox.Data.Provider,
+                     {Eblox.Data.Providers.FileSystem,
+                      id: Eblox.Data.Providers.FileSystem,
+                      content_dir:
+                        Application.compile_env(:eblox, :content_dir, "priv/test_content")}}
+                  ])
 
   @impl Application
   def start(_type, _args) do
@@ -23,7 +25,7 @@ defmodule Eblox.Application do
       # Start the Endpoint (http/https)
       EbloxWeb.Endpoint,
       # Siblings is a main cache for posts
-      {Eblox.Data, content_dir()}
+      {Eblox.Data.Providers, @data_providers}
       # Start a worker by calling: Eblox.Worker.start_link(arg)
       # {Eblox.Worker, arg}
     ]

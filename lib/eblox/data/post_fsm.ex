@@ -1,4 +1,8 @@
 defmodule Eblox.Data.PostFSM do
+  @moduledoc """
+  The process backing up content
+  """
+
   require Logger
 
   @fsm """

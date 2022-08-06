@@ -33,7 +33,7 @@ config :swoosh, :api_client, false
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.0",
+  version: "0.14.50",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -54,7 +54,7 @@ config :petal_components,
        {EbloxWeb.ErrorHelpers, :translate_error}
 
 config :tailwind,
-  version: "3.1.4",
+  version: "3.1.6",
   default: [
     args: ~w(
          --config=tailwind.config.js

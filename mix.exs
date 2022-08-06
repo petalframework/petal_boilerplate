@@ -53,7 +53,7 @@ defmodule Eblox.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17.5"},
+      {:phoenix_live_view, "~> 0.17"},
       {:flow, "~> 1.0"},
       {:estructura, "~> 0.3"},
       {:siblings, "~> 0.3"},
@@ -64,14 +64,15 @@ defmodule Eblox.MixProject do
       {:dialyxir, "~> 1.0", only: :ci, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:phoenix_live_dashboard, "~> 0.6"},
-      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
       {:telemetria, "~> 0.5"},
       {:telemetry_metrics, "~> 0.6"},
-      {:gettext, "~> 0.18"},
+      {:telemetry_poller, "~> 1.0"},
+      {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, "~> 0.17.0"},
+      {:petal_components, "~> 0.17.6"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end

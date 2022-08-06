@@ -2,13 +2,12 @@ defmodule EbloxWeb.PageLive do
   use EbloxWeb, :live_view
 
   @impl true
-  def mount(_params, session, socket) do
+  def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
        modal: false,
        slide_over: false,
-       pagination_page: 1,
-       color_scheme: session["color_scheme"]
+       pagination_page: 1
      )}
   end
 
@@ -111,7 +110,7 @@ defmodule EbloxWeb.PageLive do
               Follow us
             </span>
           </a>
-          <.color_scheme_switch color_scheme={@color_scheme} />
+          <.color_scheme_switch />
         </div>
       </nav>
       <.container class="mt-10 mb-32">

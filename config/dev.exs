@@ -58,14 +58,9 @@ config :eblox, EbloxWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-<<<<<<< HEAD
       ~r"lib/eblox_web/(live|views)/.*(ex)$",
       ~r"lib/eblox_web/templates/.*(eex)$",
       ~r"../petal_components/lib/.*(ex)$"
-=======
-      ~r"lib/petal_boilerplate_web/(live|views)/.*(ex)$",
-      ~r"lib/petal_boilerplate_web/templates/.*(eex)$"
->>>>>>> 5f1e543ef6a65370a798f61b2ea4835bd1c02f27
     ]
   ]
 

@@ -1,8 +1,8 @@
 defmodule EbloxWeb.PostController do
   use EbloxWeb, :controller
 
-  def show(conn, %{"id" => [<<year::binary-size(4), ?-, _::binary>> = id]}) do
-    html = year |> Path.join(id) |> html()
+  def show(conn, %{"id" => [<<_year::binary-size(4), ?-, _::binary>> = id]}) do
+    html = html(id)
     render(conn, "show.html", content: html)
   end
 
@@ -12,7 +12,7 @@ defmodule EbloxWeb.PostController do
   end
 
   defp html(path) do
-    case Siblings.payload(Eblox.Siblings, path) do
+    case Siblings.payload(Eblox.Data.Content, "priv/test_content/" <> path) do
       %{html: html} -> html
       other -> "<b font-color='white'>#{inspect(other)}</b>"
     end

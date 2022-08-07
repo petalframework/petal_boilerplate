@@ -7,10 +7,10 @@ defmodule Eblox.Application do
 
   @data_providers Application.compile_env(:eblox, :data_providers, [
                     {Eblox.Data.Provider,
-                     {Eblox.Data.Providers.FileSystem,
-                      id: Eblox.Data.Providers.FileSystem,
-                      content_dir:
-                        Application.compile_env(:eblox, :content_dir, "priv/test_content")}}
+                     impl: Eblox.Data.Providers.FileSystem,
+                     resources: %{},
+                     content_dir:
+                       Application.compile_env(:eblox, :content_dir, "priv/test_content")}
                   ])
 
   @impl Application

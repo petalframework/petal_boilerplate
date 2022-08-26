@@ -10,7 +10,6 @@ defmodule Eblox.Data.Providers do
     children = [
       Siblings.child_spec(name: Eblox.Data.Providers, workers: providers),
       Siblings.child_spec(name: Eblox.Data.Content)
-      # {Eblox.Data.Monitor, content: providers}
     ]
 
     Supervisor.init(children, strategy: :rest_for_one)

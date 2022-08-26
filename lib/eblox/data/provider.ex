@@ -63,15 +63,14 @@ defmodule Eblox.Data.Provider do
     |> Enum.to_list()
   end
 
-  @interval Application.compile_env(:eblox, :interval, 60_000)
-  defp random_interval, do: Enum.random(div(@interval, 2)..@interval//1_000)
+  @interval Application.compile_env(:eblox, :parse_interval, 10)
 
   @spec action(:created | :deleted | :changed, binary()) :: :ok
   defp action(:created, file) do
     with {:ok, _server} <-
            Siblings.start_child(Eblox.Data.PostFSM, file, %{file: file},
              name: Eblox.Data.Content,
-             interval: random_interval()
+             interval: @interval
            ),
          do: :ok
   end

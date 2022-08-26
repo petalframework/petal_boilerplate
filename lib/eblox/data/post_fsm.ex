@@ -19,6 +19,8 @@ defmodule Eblox.Data.PostFSM do
 
   use Finitomata, @fsm
 
+  @interval_after_parse 60_000
+
   def on_transition(:idle, :read, nil, %{file: file} = payload) do
     case File.read(file) do
       {:ok, content} -> {:ok, :read, Map.put(payload, :content, content)}
@@ -51,6 +53,10 @@ defmodule Eblox.Data.PostFSM do
   @impl Siblings.Worker
   def perform(:read, _id, _payload) do
     {:transition, :parse, nil}
+  end
+
+  def perform(:parsed, _id, _payload) do
+    {:reschedule, @interval_after_parse}
   end
 
   def perform(state, id, payload) do

@@ -63,5 +63,5 @@
   "telemetry_metrics": {:hex, :telemetry_metrics, "0.6.1", "315d9163a1d4660aedc3fee73f33f1d355dcc76c5c3ab3d59e76e3edf80eef1f", [:mix], [{:telemetry, "~> 0.4 or ~> 1.0", [hex: :telemetry, repo: "hexpm", optional: false]}], "hexpm", "7be9e0871c41732c233be71e4be11b96e56177bf15dde64a8ac9ce72ac9834c6"},
   "telemetry_poller": {:hex, :telemetry_poller, "1.0.0", "db91bb424e07f2bb6e73926fcafbfcbcb295f0193e0a00e825e589a0a47e8453", [:rebar3], [{:telemetry, "~> 1.0", [hex: :telemetry, repo: "hexpm", optional: false]}], "hexpm", "b3a24eafd66c3f42da30fc3ca7dda1e9d546c12250a2d60d7b81d264fbec4f6e"},
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.7.0", "bc84380c9ab48177092f43ac89e4dfa2c6d62b40b8bd132b1059ecc7232f9a78", [:rebar3], [], "hexpm", "25eee6d67df61960cf6a794239566599b09e17e668d3700247bc498638152521"},
-  "xml_builder_ex": {:hex, :xml_builder_ex, "3.1.0", "5159813e57b1f27bde500ca91d530f93d44e1c0cd16c18d8a5ad252f12fda24d", [:mix], [], "hexpm", "5f62bcba17bfb2fbfcf2326c813bdb5b99c341fe7f80bdc65a5b1e8229032fec"},
+  "xml_builder_ex": {:hex, :xml_builder_ex, "3.1.1", "6c02514aceda54a1628d86dbbd11d01184f6fec9abe3bf3d42132e76d539c14b", [:mix], [], "hexpm", "4efb0f62081909677e11a5f5d6dd4f5507db9e407d18e990ebb01919fdab46b6"},
 }

@@ -1,0 +1,29 @@
+name: Dialyzer
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MIX_ENV: ci
+    name: OTP ${{matrix.pair.otp}} / Elixir ${{matrix.pair.elixir}}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pair:
+              otp: 25.0
+              elixir: 1.13.4
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-elixir@v1
+        with:
+          otp-version: ${{matrix.pair.otp}}
+          elixir-version: ${{matrix.pair.elixir}}
+      - name: "Compile and QA Everything"
+        run: |
+          mix do deps.get, deps.compile, compile
+          mix quality.ci

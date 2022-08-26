@@ -1,0 +1,38 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:11
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      MIX_ENV: test
+    name: OTP ${{matrix.pair.otp}} / Elixir ${{matrix.pair.elixir}}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pair:
+              otp: 25.0
+              elixir: 1.13.4
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-elixir@v1
+        with:
+          otp-version: ${{matrix.pair.otp}}
+          elixir-version: ${{matrix.pair.elixir}}
+      - name: "Compile and Test Everything"
+        run: |
+          mix do deps.get, deps.compile, compile
+          mix test

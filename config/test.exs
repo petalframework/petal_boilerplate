@@ -28,3 +28,10 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Configure the database for GitHub Actions
+if System.get_env("GITHUB_ACTIONS") do
+  config :app, Eblox.Repo,
+    username: "postgres",
+    password: "postgres"
+end

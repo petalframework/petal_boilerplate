@@ -68,7 +68,7 @@ defmodule Eblox.Data.Provider do
   @spec action(:created | :deleted | :changed, binary()) :: :ok
   defp action(:created, file) do
     with {:ok, _server} <-
-           Siblings.start_child(Eblox.Data.PostFSM, file, %{file: file},
+           Siblings.start_child(Eblox.Data.Post, file, %{file: file},
              name: Eblox.Data.Content,
              interval: @interval
            ),

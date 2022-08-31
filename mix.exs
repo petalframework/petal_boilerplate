@@ -56,7 +56,7 @@ defmodule Eblox.MixProject do
       {:phoenix_live_view, "~> 0.17"},
       {:flow, "~> 1.0"},
       {:estructura, "~> 0.3"},
-      {:siblings, "~> 0.4"},
+      {:siblings, "~> 0.5"},
       {:md, "~> 0.8"},
       {:floki, "~> 0.30"},
       {:credo, "~> 1.0", only: :ci, runtime: false},

@@ -1,5 +1,8 @@
 defmodule Eblox.Data.Providers do
-  @moduledoc false
+  @moduledoc """
+  Supervisor for all data providers.
+  """
+
   use Supervisor
 
   def start_link(providers),

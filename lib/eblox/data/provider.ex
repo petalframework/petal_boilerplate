@@ -1,6 +1,6 @@
 defmodule Eblox.Data.Provider do
   @moduledoc """
-  The behaviour sdpecifying the data provider to be plugged into `Eblox`.
+  The behaviour specifying the data provider to be plugged into `Eblox`.
 
   Data providers define how the data is collected from different data sources
     and mix the content into the whole content pool available to `Eblox`.

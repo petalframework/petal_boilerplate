@@ -27,16 +27,20 @@ defmodule Eblox.Data.Post do
 
     @impl Md.Transforms
     def apply(md, text) do
-      {:a, %{class: "tag", href: URI.encode_www_form(@href <> text)}, [md <> text]}
+      href = @href <> URI.encode_www_form(text)
+      tag = String.downcase(text)
+      {:a, %{class: "tag", "data-tag": tag, href: href}, [md <> text]}
     end
   end
 
   defmodule EbloxParser do
     @moduledoc false
+
+    @tag_terminators [:ascii_punctuation]
     @eblox_syntax Md.Parser.Syntax.merge(
                     Application.compile_env(:eblox_syntax, :md_syntax, %{
                       magnet: [
-                        {"🏷️", %{transform: Tag, terminators: [], greedy: false}}
+                        {"%", %{transform: Tag, terminators: @tag_terminators, greedy: false}}
                       ]
                     })
                   )
@@ -46,14 +50,16 @@ defmodule Eblox.Data.Post do
 
   defmodule Walker do
     @moduledoc false
-    def prewalk({:a, %{class: "tag"}, text} = elem, acc),
-      do: {elem, Map.update(acc, :tags, [text], &[text | &1])}
+    def prewalk({:a, %{class: "tag", "data-tag": tag}, _text} = elem, acc) do
+      {elem, Map.update(acc, :tags, [tag], &Enum.uniq([tag | &1]))}
+    end
 
     def prewalk(elem, acc),
       do: {elem, acc}
   end
 
   @interval_after_parse 60_000
+  @default_properties %{tags: []}
 
   def on_transition(:idle, :read, nil, %{file: file} = payload) do
     case File.read(file) do
@@ -64,14 +70,14 @@ defmodule Eblox.Data.Post do
 
   def on_transition(:read, :parse, nil, %{content: content} = payload) do
     case EbloxParser.parse(content) do
-      {_, %Md.Parser.State{} = parsed} ->
+      {"", %Md.Parser.State{} = parsed} ->
         {html, properties} = Md.generate(parsed, walker: &Walker.prewalk/2, format: :none)
 
         payload =
           payload
           |> Map.put(:md, parsed)
           |> Map.put(:html, html)
-          |> Map.put(:properties, properties)
+          |> Map.put(:properties, Map.merge(@default_properties, properties))
 
         {:ok, :parsed, payload}
 

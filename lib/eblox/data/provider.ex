@@ -27,6 +27,11 @@ defmodule Eblox.Data.Provider do
   """
   @callback scan(options :: map()) :: {map(), t()}
 
+  @doc """
+  The providers must implement this callback returning the initial post's properties
+  """
+  @callback initial_properties(term()) :: map()
+
   @fsm """
   idle --> |scan| ready
   ready --> |scan| ready
@@ -41,7 +46,7 @@ defmodule Eblox.Data.Provider do
     {impl, options} = Map.pop(payload, :impl)
     {options, %Provider{} = result} = impl.scan(options)
 
-    handle_changes(result)
+    handle_changes(impl, result)
 
     {:ok, :ready, Map.put(options, :impl, impl)}
   end
@@ -53,33 +58,34 @@ defmodule Eblox.Data.Provider do
   def perform(:died, _id, payload), do: {:transition, :*, payload}
   def perform(_state, _id, payload), do: {:transition, :scan, payload}
 
-  @spec handle_changes(t()) :: [:ok]
-  def handle_changes(%Provider{created: _, deleted: _, changed: _} = changes) do
+  @spec handle_changes(module(), t()) :: [:ok]
+  def handle_changes(impl, %Provider{created: _, deleted: _, changed: _} = changes) do
     changes
     |> Flow.from_enumerable()
     |> Flow.flat_map(fn {action, list} -> Enum.map(list, &{action, &1}) end)
     |> Flow.partition()
-    |> Flow.reduce(fn -> [] end, fn {action, elem}, acc -> [action(action, elem) | acc] end)
+    |> Flow.reduce(fn -> [] end, fn {action, elem}, acc -> [action(impl, action, elem) | acc] end)
     |> Enum.to_list()
   end
 
   @interval Application.compile_env(:eblox, :parse_interval, 10)
 
-  @spec action(:created | :deleted | :changed, binary()) :: :ok
-  defp action(:created, file) do
-    with {:ok, _server} <-
-           Siblings.start_child(Eblox.Data.Post, file, %{file: file},
+  @spec action(module(), :created | :deleted | :changed, binary()) :: :ok
+  defp action(impl, :created, file) do
+    with properties = %{} <- impl.initial_properties(file),
+         {:ok, _server} <-
+           Siblings.start_child(Eblox.Data.Post, file, properties,
              name: Eblox.Data.Content,
              interval: @interval
            ),
          do: :ok
   end
 
-  defp action(:deleted, file) do
+  defp action(_impl, :deleted, file) do
     Siblings.transition(Eblox.Data.Content, file, :delete, nil)
   end
 
-  defp action(:changed, file) do
+  defp action(_impl, :changed, file) do
     Siblings.transition(Eblox.Data.Content, file, :parse, nil)
   end
 end

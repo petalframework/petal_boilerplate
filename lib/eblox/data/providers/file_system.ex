@@ -7,6 +7,19 @@ defmodule Eblox.Data.Providers.FileSystem do
 
   @behaviour Provider
 
+  @children_dir_prefix "children-"
+
+  @impl Provider
+  def initial_properties(file) do
+    file
+    |> Path.dirname()
+    |> Path.basename()
+    |> case do
+      @children_dir_prefix <> parent_id -> %{file: file, links: [parent_id]}
+      _ -> %{file: file}
+    end
+  end
+
   @impl Provider
   def scan(options) do
     content_dir = Map.get(options, :content_dir, File.cwd())

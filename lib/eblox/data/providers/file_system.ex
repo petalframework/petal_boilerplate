@@ -7,16 +7,17 @@ defmodule Eblox.Data.Providers.FileSystem do
 
   @behaviour Provider
 
-  @children_dir_prefix "children-"
+  @children_dir_suffix "-children"
 
   @impl Provider
-  def initial_properties(file) do
-    file
-    |> Path.dirname()
-    |> Path.basename()
+  def initial_payload(file) do
+    dir = Path.dirname(file)
+
+    dir
+    |> String.replace_suffix(@children_dir_suffix, "")
     |> case do
-      @children_dir_prefix <> parent_id -> %{file: file, links: [parent_id]}
-      _ -> %{file: file}
+      ^dir -> %{file: file}
+      parent_id -> %{file: file, properties: %{links: [parent_id]}}
     end
   end
 

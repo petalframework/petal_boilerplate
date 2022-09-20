@@ -28,9 +28,9 @@ defmodule Eblox.Data.Provider do
   @callback scan(options :: map()) :: {map(), t()}
 
   @doc """
-  The providers must implement this callback returning the initial post's properties
+  The providers must implement this callback returning the initial post's payload
   """
-  @callback initial_properties(term()) :: map()
+  @callback initial_payload(term()) :: map()
 
   @fsm """
   idle --> |scan| ready
@@ -72,7 +72,7 @@ defmodule Eblox.Data.Provider do
 
   @spec action(module(), :created | :deleted | :changed, binary()) :: :ok
   defp action(impl, :created, file) do
-    with properties = %{} <- impl.initial_properties(file),
+    with properties = %{} <- impl.initial_payload(file),
          {:ok, _server} <-
            Siblings.start_child(Eblox.Data.Post, file, properties,
              name: Eblox.Data.Content,

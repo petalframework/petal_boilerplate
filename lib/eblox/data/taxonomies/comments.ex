@@ -7,6 +7,8 @@ defmodule Eblox.Data.Taxonomies.Comments do
 
   @behaviour Taxonomy
 
+  @root_id "root"
+
   @impl Taxonomy
   def registry_options(opts \\ []) do
     Keyword.merge([keys: :duplicate, name: __MODULE__], opts)
@@ -14,8 +16,7 @@ defmodule Eblox.Data.Taxonomies.Comments do
 
   @impl Taxonomy
   def on_add(registry, post_id) do
-    # TODO: Get parent ID from the payload when it's available.
-    %{file: parent_id} = Siblings.payload(Eblox.Data.Content, post_id)
+    parent_id = post_parent_id(post_id)
 
     registry
     |> Registry.register(parent_id, post_id)
@@ -24,9 +25,15 @@ defmodule Eblox.Data.Taxonomies.Comments do
 
   @impl Taxonomy
   def on_remove(registry, post_id) do
-    # TODO: Get parent ID from the payload when it's available.
-    %{file: parent_id} = Siblings.payload(Eblox.Data.Content, post_id)
+    parent_id = post_parent_id(post_id)
 
     Registry.unregister_match(registry, parent_id, post_id)
+  end
+
+  defp post_parent_id(post_id) do
+    case Siblings.payload(Eblox.Data.Content, post_id) do
+      %{properties: %{links: [parent_id]}} -> parent_id
+      _ -> @root_id
+    end
   end
 end

@@ -59,7 +59,7 @@ defmodule Eblox.Data.Post do
   end
 
   @interval_after_parse 60_000
-  @default_properties %{tags: []}
+  @default_properties %{tags: [], links: []}
 
   def on_transition(:idle, :read, nil, %{file: file} = payload) do
     case File.read(file) do
@@ -71,13 +71,19 @@ defmodule Eblox.Data.Post do
   def on_transition(:read, :parse, nil, %{content: content} = payload) do
     case EbloxParser.parse(content) do
       {"", %Md.Parser.State{} = parsed} ->
-        {html, properties} = Md.generate(parsed, walker: &Walker.prewalk/2, format: :none)
+        {initial_properties, payload} = Map.pop(payload, :properties, %{})
+        {html, parsed_properties} = Md.generate(parsed, walker: &Walker.prewalk/2, format: :none)
+
+        properties =
+          @default_properties
+          |> Map.merge(initial_properties)
+          |> Map.merge(parsed_properties)
 
         payload =
           payload
           |> Map.put(:md, parsed)
           |> Map.put(:html, html)
-          |> Map.put(:properties, Map.merge(@default_properties, properties))
+          |> Map.put(:properties, properties)
 
         {:ok, :parsed, payload}
 

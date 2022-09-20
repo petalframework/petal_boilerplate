@@ -20,14 +20,24 @@ defmodule Eblox.Data.Taxonomies.CommentsTest do
     # TODO: Wait until parsing is completed.
     Process.sleep(100)
 
-    Enum.each(~w|post-1 post-2 comment-1-1 comment-1-2 comment-1-2-1|, fn name ->
-      Taxonomy.add(@taxonomy, post_id(name))
+    root_id = "root"
+    post_1_id = post_id("post-1")
+    post_2_id = post_id("post-2")
+    comment_1_1_id = post_id("post-1-children/comment-1-1")
+    comment_1_2_id = post_id("post-1-children/comment-1-2")
+    comment_1_2_1_id = post_id("post-1-children/comment-1-2-children/comment-1-2-1")
+
+    Enum.each([post_1_id, post_2_id, comment_1_1_id, comment_1_2_id, comment_1_2_1_id], fn name ->
+      Taxonomy.add(@taxonomy, name)
     end)
 
-    assert [post_id("post-1")] == Taxonomy.lookup(@taxonomy, post_id("post-1"))
+    assert [post_1_id, post_2_id] == Taxonomy.lookup(@taxonomy, root_id) |> Enum.sort()
 
-    Taxonomy.remove(@taxonomy, post_id("comment-1-1"))
+    assert [comment_1_1_id, comment_1_2_id] ==
+             Taxonomy.lookup(@taxonomy, post_1_id) |> Enum.sort()
 
-    assert [] == Taxonomy.lookup(@taxonomy, post_id("comment-1-1"))
+    assert [] == Taxonomy.lookup(@taxonomy, post_2_id)
+    assert [] == Taxonomy.lookup(@taxonomy, comment_1_1_id)
+    assert [comment_1_2_1_id] == Taxonomy.lookup(@taxonomy, comment_1_2_id)
   end
 end

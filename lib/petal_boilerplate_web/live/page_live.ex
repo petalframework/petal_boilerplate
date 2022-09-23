@@ -140,7 +140,7 @@ defmodule PetalBoilerplateWeb.PageLive do
         </div>
       </nav>
       <.container class="mt-10 mb-32">
-        <.link class="underline dark:text-gray-400" to="/">Back</.link>
+        <.a class="underline dark:text-gray-400" to="/">Back</.a>
         <.h1 class="mt-5" label="Petal Live View JS Components" />
 
         <.h2 underline class="mt-10" label="Dropdowns" />

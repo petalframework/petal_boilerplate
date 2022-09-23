@@ -78,8 +78,11 @@ defmodule PetalBoilerplateWeb do
 
   defp view_helpers do
     quote do
+      use Phoenix.Component
+
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+      import Phoenix.HTML.Form
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers

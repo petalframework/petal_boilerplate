@@ -109,7 +109,7 @@
 
   <.container class="mt-10">
     <.h1>Petal Components</.h1>
-    <.link to="/live" class="underline dark:text-gray-400">View Live View JS components</.link>
+    <.a to="/live" class="underline dark:text-gray-400">View Live View JS components</.a>
   </.container>
 
   <.container class="mt-10">
@@ -149,25 +149,25 @@
       <.h2 underline label="Links" />
       <.h5 label="Types" />
       <div class="flex flex-wrap gap-2 text-gray-300">
-        <.link
+        <.a
           link_type="a"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Link"
         /> |
-        <.link
+        <.a
           method={:put}
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Link with method"
         /> |
-        <.link
+        <.a
           link_type="live_patch"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Live Patch"
         /> |
-        <.link
+        <.a
           link_type="live_redirect"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
@@ -294,30 +294,66 @@
     <div class="mt-10">
       <.h5 label="Icon buttons" />
       <div class="flex flex-wrap items-end gap-2">
-        <.icon_button to="/" link_type="button" size="xs" color="primary" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="sm" color="secondary" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="md" color="gray" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="md" color="info" icon={:trash} />
-        <.icon_button to="/" link_type="button" size="lg" color="success" icon={:trash} />
-        <.icon_button to="/" link_type="button" size="lg" color="warning" icon={:arrow_circle_up} />
-        <.icon_button to="/" link_type="button" size="xl" color="danger" icon={:arrow_circle_up} />
+        <.icon_button to="/" link_type="button" size="xs" color="primary" icon>
+          <:icon>
+            <Heroicons.Solid.clock class={PetalComponents.Button.get_icon_button_size_classes("xs")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="secondary" icon>
+          <:icon>
+            <Heroicons.Solid.clock class={PetalComponents.Button.get_icon_button_size_classes("sm")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="gray" icon>
+          <:icon>
+            <Heroicons.Solid.clock class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="info" icon>
+          <:icon>
+            <Heroicons.Solid.trash class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="success" icon>
+          <:icon>
+            <Heroicons.Solid.trash class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="warning" icon>
+          <:icon>
+            <Heroicons.Solid.arrow_up_circle class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+          </:icon>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="danger" icon>
+          <:icon>
+            <Heroicons.Solid.arrow_up_circle class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+          </:icon>
+        </.icon_button>
         <.icon_button
           to="/"
           disabled
           link_type="button"
-          size="lg"
-          icon={:save}
+          icon
           class="!text-green-600"
-        />
+        >
+          <:icon>
+            <Heroicons.Solid.arrow_down_on_square class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+          </:icon>
+        </.icon_button>
+
         <.icon_button
           to="/"
           disabled
           loading
           link_type="button"
-          size="xl"
-          icon={:trash}
+          icon
           class="!text-indigo-600 !dark:text-indigo-300"
-        />
+        >
+          <:icon>
+            <Heroicons.Solid.trash class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+          </:icon>
+        </.icon_button>
+
       </div>
     </div>
   </.container>
@@ -366,10 +402,10 @@
     <.h5 label="Heroicons solid" />
 
     <div class="flex">
-      <Heroicons.Solid.home />
+      <Heroicons.Solid.home class="w-6 h-6" />
       <Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
       <Heroicons.Solid.home class="w-6 h-6 text-green-500" />
-      <Heroicons.Solid.chart_pie />
+      <Heroicons.Solid.chart_pie class="w-6 h-6" />
       <Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
       <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
     </div>
@@ -377,7 +413,7 @@
     <.h5 label="Heroicons outline" class="mt-5" />
 
     <div class="flex">
-      <Heroicons.Outline.home />
+      <Heroicons.Outline.home class="w-6 h-6" />
       <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
       <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
     </div>
@@ -427,10 +463,10 @@
         <Heroicons.Solid.clock class="w-3 h-3 pb-[0.05rem]" /> 2 hours ago
       </.badge>
       <.badge color="secondary" variant="dark" label="md" size="md">
-        <Heroicons.Solid.mail class="w-4 h-4 mr-1 pb-[0.05rem]" /> New messages
+        <Heroicons.Solid.envelope class="w-4 h-4 mr-1 pb-[0.05rem]" /> New messages
       </.badge>
       <.badge color="success" variant="outline" label="lg" size="lg">
-        <Heroicons.Solid.status_online class="w-5 h-5 mr-1 pb-[0.025rem]" /> Online now
+        <Heroicons.Solid.wifi class="w-5 h-5 mr-1 pb-[0.025rem]" /> Get online now
       </.badge>
     </div>
   </.container>
@@ -522,7 +558,7 @@
     <.h2 underline label="Forms" class="mt-10" />
 
     <.form
-      let={f}
+      :let={f}
       multipart
       as={:user}
       for={
@@ -1295,7 +1331,7 @@
         <Heroicons.Solid.home class="w-5 h-5 mr-2" /> Home
       </.tab>
       <.tab link_type="a" to="/">
-        <Heroicons.Solid.office_building class="w-5 h-5 mr-2" /> Company
+        <Heroicons.Solid.building_office class="w-5 h-5 mr-2" /> Company
       </.tab>
     </.tabs>
     <.h5 label="Tabs underlined with outline icons" class="mt-10" />
@@ -1304,7 +1340,7 @@
         <Heroicons.Outline.home class="w-5 h-5 mr-2" /> Home
       </.tab>
       <.tab underline link_type="a" to="/">
-        <Heroicons.Outline.office_building class="w-5 h-5 mr-2" /> Company
+        <Heroicons.Outline.building_office class="w-5 h-5 mr-2" /> Company
       </.tab>
     </.tabs>
   </.container>
@@ -1498,7 +1534,7 @@
             <.badge color="success" label="Active" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1521,7 +1557,7 @@
             <.badge color="warning" label="Pending" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1544,7 +1580,7 @@
             <.badge color="gray" label="Cancelled" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1568,7 +1604,7 @@
           </.td>
 
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
       </.table>
@@ -1579,25 +1615,6 @@
     <.h2 underline label="Accordion" />
     <.h5 label="Basic accordion" />
     <.accordion>
-      <:item heading="Accordion">
-        <.p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </.p>
-      </:item>
-      <:item heading="Accordion 2">
-        <.p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </.p>
-      </:item>
-      <:item heading="Accordion 3">
-        <.p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </.p>
-      </:item>
-    </.accordion>
-
-    <.h5 class="mt-10" label="Accordion with alternative icon" />
-    <.accordion icon={:arrow_sm_down}>
       <:item heading="Accordion">
         <.p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

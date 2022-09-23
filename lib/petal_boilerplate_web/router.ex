@@ -37,11 +37,12 @@ defmodule PetalBoilerplateWeb.Router do
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
   if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+    # LiveDashboard doesn't work with LiveView 0.18 yet. Commented out until it is fixed.
+    # import Phoenix.LiveDashboard.Router
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: PetalBoilerplateWeb.Telemetry
+      # live_dashboard "/dashboard", metrics: PetalBoilerplateWeb.Telemetry
     end
   end
 

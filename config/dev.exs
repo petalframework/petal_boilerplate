@@ -59,7 +59,8 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/petal_boilerplate_web/(live|views)/.*(ex)$",
-      ~r"lib/petal_boilerplate_web/templates/.*(eex)$"
+      ~r"lib/petal_boilerplate_web/templates/.*(eex)$",
+      ~r"../petal_components/lib/.*(ex)$",
     ]
   ]
 

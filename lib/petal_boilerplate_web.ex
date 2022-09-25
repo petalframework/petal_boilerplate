@@ -83,6 +83,7 @@ defmodule PetalBoilerplateWeb do
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
+      use Phoenix.Component
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

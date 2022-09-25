@@ -109,7 +109,8 @@
 
   <.container class="mt-10">
     <.h1>Petal Components</.h1>
-    <.link to="/live" class="underline dark:text-gray-400">View Live View JS components</.link>
+
+    <.a to="/live" class="underline dark:text-gray-400">View Live View JS components</.a>
   </.container>
 
   <.container class="mt-10">
@@ -149,25 +150,25 @@
       <.h2 underline label="Links" />
       <.h5 label="Types" />
       <div class="flex flex-wrap gap-2 text-gray-300">
-        <.link
+        <.a
           link_type="a"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Link"
         /> |
-        <.link
+        <.a
           method={:put}
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Link with method"
         /> |
-        <.link
+        <.a
           link_type="live_patch"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
           label="Live Patch"
         /> |
-        <.link
+        <.a
           link_type="live_redirect"
           to="/"
           class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
@@ -286,7 +287,7 @@
       <.h5 label="Button with icon" />
       <div class="flex flex-wrap items-end gap-2">
         <.button icon link_type="a" to="/">
-          <Heroicons.Solid.home class="w-5 h-5" /> With icon
+          <Heroicons.home solid class="w-5 h-5" /> With icon
         </.button>
       </div>
     </div>
@@ -294,30 +295,45 @@
     <div class="mt-10">
       <.h5 label="Icon buttons" />
       <div class="flex flex-wrap items-end gap-2">
-        <.icon_button to="/" link_type="button" size="xs" color="primary" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="sm" color="secondary" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="md" color="gray" icon={:clock} />
-        <.icon_button to="/" link_type="button" size="md" color="info" icon={:trash} />
-        <.icon_button to="/" link_type="button" size="lg" color="success" icon={:trash} />
-        <.icon_button to="/" link_type="button" size="lg" color="warning" icon={:arrow_circle_up} />
-        <.icon_button to="/" link_type="button" size="xl" color="danger" icon={:arrow_circle_up} />
+        <.icon_button to="/" link_type="button" size="xs" color="primary">
+          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("xs")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="secondary">
+          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("sm")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="gray">
+          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="info">
+          <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="success">
+          <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="warning">
+          <Heroicons.arrow_up_circle solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+        </.icon_button>
+        <.icon_button to="/" link_type="button" size="xs" color="danger">
+          <Heroicons.arrow_up_circle solid class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+        </.icon_button>
         <.icon_button
           to="/"
           disabled
           link_type="button"
-          size="lg"
-          icon={:save}
           class="!text-green-600"
-        />
+        >
+          <Heroicons.arrow_down_on_square solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+        </.icon_button>
+
         <.icon_button
           to="/"
           disabled
           loading
           link_type="button"
-          size="xl"
-          icon={:trash}
           class="!text-indigo-600 !dark:text-indigo-300"
-        />
+        >
+            <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+        </.icon_button>
       </div>
     </div>
   </.container>
@@ -362,28 +378,6 @@
   </.container>
 
   <.container class="mt-10">
-    <.h2 underline label="Heroicons" />
-    <.h5 label="Heroicons solid" />
-
-    <div class="flex">
-      <Heroicons.Solid.home />
-      <Heroicons.Solid.home class="w-6 h-6 text-blue-500" />
-      <Heroicons.Solid.home class="w-6 h-6 text-green-500" />
-      <Heroicons.Solid.chart_pie />
-      <Heroicons.Solid.chart_pie class="w-10 h-10 text-blue-500 rotate-90" />
-      <Heroicons.Solid.chart_pie class="w-20 h-20 text-green-500 rotate-180" />
-    </div>
-
-    <.h5 label="Heroicons outline" class="mt-5" />
-
-    <div class="flex">
-      <Heroicons.Outline.home />
-      <Heroicons.Outline.home class="w-6 h-6 text-blue-500" />
-      <Heroicons.Outline.home class="w-6 h-6 text-green-500" />
-    </div>
-  </.container>
-
-  <.container class="mt-10">
     <.h2 underline label="Badges" />
     <.h5 label="Light" />
     <div class="flex flex-wrap gap-2">
@@ -424,13 +418,13 @@
     <.h5 label="With icon" class="mt-10" />
     <div class="flex flex-wrap items-end gap-2">
       <.badge color="gray" variant="light" icon label="SM" size="sm">
-        <Heroicons.Solid.clock class="w-3 h-3 pb-[0.05rem]" /> 2 hours ago
+        <Heroicons.clock solid class="w-3 h-3 pb-[0.05rem]" /> 2 hours ago
       </.badge>
       <.badge color="secondary" variant="dark" label="md" size="md">
-        <Heroicons.Solid.mail class="w-4 h-4 mr-1 pb-[0.05rem]" /> New messages
+        <Heroicons.envelope solid class="w-4 h-4 mr-1 pb-[0.05rem]" /> New messages
       </.badge>
       <.badge color="success" variant="outline" label="lg" size="lg">
-        <Heroicons.Solid.status_online class="w-5 h-5 mr-1 pb-[0.025rem]" /> Online now
+        <Heroicons.wifi solid class="w-5 h-5 mr-1 pb-[0.025rem]" /> Online now
       </.badge>
     </div>
   </.container>
@@ -985,7 +979,7 @@
     <div class="flex items-center gap-5">
       <.dropdown label="Dropdown">
         <.dropdown_menu_item>
-          <Heroicons.Outline.home class="w-5 h-5 text-gray-500" /> Button item with icon
+          <Heroicons.home class="w-5 h-5 text-gray-500" /> Button item with icon
         </.dropdown_menu_item>
         <.dropdown_menu_item link_type="button" label="button item" />
         <.dropdown_menu_item link_type="a" to="/" label="Link" />
@@ -1014,7 +1008,7 @@
               size="sm"
               src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
             />
-            <Heroicons.Solid.chevron_down class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
+            <Heroicons.chevron_down solid class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
           </div>
         </:trigger_element>
         <.dropdown_menu_item label="Item 1" />
@@ -1292,19 +1286,19 @@
     <.h5 label="Basic tabs with icons" class="mt-10" />
     <.tabs>
       <.tab is_active to="/">
-        <Heroicons.Solid.home class="w-5 h-5 mr-2" /> Home
+        <Heroicons.home solid class="w-5 h-5 mr-2" /> Home
       </.tab>
       <.tab link_type="a" to="/">
-        <Heroicons.Solid.office_building class="w-5 h-5 mr-2" /> Company
+        <Heroicons.building_office solid class="w-5 h-5 mr-2" /> Company
       </.tab>
     </.tabs>
     <.h5 label="Tabs underlined with outline icons" class="mt-10" />
     <.tabs underline>
       <.tab underline is_active to="/">
-        <Heroicons.Outline.home class="w-5 h-5 mr-2" /> Home
+        <Heroicons.home class="w-5 h-5 mr-2" /> Home
       </.tab>
       <.tab underline link_type="a" to="/">
-        <Heroicons.Outline.office_building class="w-5 h-5 mr-2" /> Company
+        <Heroicons.building_office class="w-5 h-5 mr-2" /> Company
       </.tab>
     </.tabs>
   </.container>
@@ -1385,7 +1379,7 @@
 
         <.card_footer>
           <.button to="/" label="View">
-            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+            <Heroicons.eye solid class="w-4 h-4 mr-2" />View
           </.button>
         </.card_footer>
       </.card>
@@ -1399,7 +1393,7 @@
 
         <.card_footer>
           <.button to="/" label="View">
-            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+            <Heroicons.eye solid class="w-4 h-4 mr-2" />View
           </.button>
         </.card_footer>
       </.card>
@@ -1413,7 +1407,7 @@
 
         <.card_footer>
           <.button to="/" label="View">
-            <Heroicons.Solid.eye class="w-4 h-4 mr-2" />View
+            <Heroicons.eye solid class="w-4 h-4 mr-2" />View
           </.button>
         </.card_footer>
       </.card>
@@ -1498,7 +1492,7 @@
             <.badge color="success" label="Active" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1521,7 +1515,7 @@
             <.badge color="warning" label="Pending" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1544,7 +1538,7 @@
             <.badge color="gray" label="Cancelled" />
           </.td>
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
 
@@ -1568,7 +1562,7 @@
           </.td>
 
           <.td>
-            <.link to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
+            <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
           </.td>
         </.tr>
       </.table>

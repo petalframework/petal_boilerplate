@@ -295,44 +295,53 @@
     <div class="mt-10">
       <.h5 label="Icon buttons" />
       <div class="flex flex-wrap items-end gap-2">
-        <.icon_button to="/" link_type="button" size="xs" color="primary">
-          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("xs")}/>
+        <.icon_button to="/" size="xs" link_type="button" color="primary">
+          <Heroicons.clock solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="secondary">
-          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("sm")}/>
+        <.icon_button to="/" size="xs" link_type="button" color="secondary">
+          <Heroicons.clock solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="gray">
-          <Heroicons.clock solid class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+        <.icon_button to="/" size="sm" link_type="button" color="gray">
+          <Heroicons.clock solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="info">
-          <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("md")}/>
+        <.icon_button to="/" size="md" link_type="button" color="info">
+          <Heroicons.trash solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="success">
-          <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+        <.icon_button to="/" size="md" link_type="button" color="success">
+          <Heroicons.trash solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="warning">
-          <Heroicons.arrow_up_circle solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+        <.icon_button to="/" size="lg" link_type="button" color="warning">
+          <Heroicons.arrow_up_circle solid/>
         </.icon_button>
-        <.icon_button to="/" link_type="button" size="xs" color="danger">
-          <Heroicons.arrow_up_circle solid class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+        <.icon_button to="/" size="lg" link_type="button" color="danger">
+          <Heroicons.arrow_up_circle solid/>
         </.icon_button>
         <.icon_button
           to="/"
+          size="lg"
           disabled
           link_type="button"
           class="!text-green-600"
         >
-          <Heroicons.arrow_down_on_square solid class={PetalComponents.Button.get_icon_button_size_classes("lg")}/>
+          <Heroicons.arrow_down_on_square solid />
         </.icon_button>
-
         <.icon_button
           to="/"
+          size="sm"
           disabled
           loading
           link_type="button"
           class="!text-indigo-600 !dark:text-indigo-300"
         >
-            <Heroicons.trash solid class={PetalComponents.Button.get_icon_button_size_classes("xl")}/>
+          <Heroicons.trash solid />
+        </.icon_button>
+        <.icon_button
+          to="/"
+          size="lg"
+          link_type="button"
+          class="!text-indigo-600 !dark:text-indigo-300"
+        >
+          <HeroiconsV1.Solid.trash class={PetalComponents.Button.get_heroiconv1_icon_button_size_classes("lg")} />
         </.icon_button>
       </div>
     </div>

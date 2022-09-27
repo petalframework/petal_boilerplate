@@ -296,33 +296,27 @@
       <.h5 label="Icon buttons" />
       <div class="flex flex-wrap items-end gap-2">
         <.icon_button to="/" size="xs" link_type="button" color="primary">
-          <Heroicons.clock solid/>
+          <Heroicons.clock solid />
         </.icon_button>
         <.icon_button to="/" size="xs" link_type="button" color="secondary">
-          <Heroicons.clock solid/>
+          <Heroicons.clock solid />
         </.icon_button>
         <.icon_button to="/" size="sm" link_type="button" color="gray">
-          <Heroicons.clock solid/>
+          <Heroicons.clock solid />
         </.icon_button>
         <.icon_button to="/" size="md" link_type="button" color="info">
-          <Heroicons.trash solid/>
+          <Heroicons.trash solid />
         </.icon_button>
         <.icon_button to="/" size="md" link_type="button" color="success">
-          <Heroicons.trash solid/>
+          <Heroicons.trash solid />
         </.icon_button>
         <.icon_button to="/" size="lg" link_type="button" color="warning">
-          <Heroicons.arrow_up_circle solid/>
+          <Heroicons.arrow_up_circle solid />
         </.icon_button>
         <.icon_button to="/" size="lg" link_type="button" color="danger">
-          <Heroicons.arrow_up_circle solid/>
+          <Heroicons.arrow_up_circle solid />
         </.icon_button>
-        <.icon_button
-          to="/"
-          size="lg"
-          disabled
-          link_type="button"
-          class="!text-green-600"
-        >
+        <.icon_button to="/" size="lg" disabled link_type="button" class="!text-green-600">
           <Heroicons.arrow_down_on_square solid />
         </.icon_button>
         <.icon_button
@@ -341,7 +335,7 @@
           link_type="button"
           class="!text-indigo-600 !dark:text-indigo-300"
         >
-          <HeroiconsV1.Solid.trash class={PetalComponents.Button.get_heroiconv1_icon_button_size_classes("lg")} />
+          <HeroiconsV1.Solid.trash />
         </.icon_button>
       </div>
     </div>
@@ -525,7 +519,7 @@
     <.h2 underline label="Forms" class="mt-10" />
 
     <.form
-      let={f}
+      :let={f}
       multipart
       as={:user}
       for={
@@ -847,14 +841,12 @@
             type="checkbox_group"
             form={f}
             field={:checkbox_group_col}
-            options={
-              [
-                {"Option 1", "option_1"},
-                {"Option 2", "option_2"},
-                {"Option 3", "option_3"},
-                {"Option 4", "option_4"}
-              ]
-            }
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
           />
         </div>
         <div>
@@ -862,14 +854,12 @@
             type="checkbox_group"
             form={f}
             field={:checkbox_group_col_with_error}
-            options={
-              [
-                {"Option 1", "option_1"},
-                {"Option 2", "option_2"},
-                {"Option 3", "option_3"},
-                {"Option 4", "option_4"}
-              ]
-            }
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
           />
         </div>
       </div>
@@ -882,14 +872,12 @@
             layout={:row}
             form={f}
             field={:checkbox_group_row}
-            options={
-              [
-                {"Option 1", "option_1"},
-                {"Option 2", "option_2"},
-                {"Option 3", "option_3"},
-                {"Option 4", "option_4"}
-              ]
-            }
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
           />
         </div>
         <div>
@@ -899,14 +887,12 @@
             layout={:row}
             form={f}
             field={:checkbox_group_row_with_error}
-            options={
-              [
-                {"Option 1", "option_1"},
-                {"Option 2", "option_2"},
-                {"Option 3", "option_3"},
-                {"Option 4", "option_4"}
-              ]
-            }
+            options={[
+              {"Option 1", "option_1"},
+              {"Option 2", "option_2"},
+              {"Option 3", "option_3"},
+              {"Option 4", "option_4"}
+            ]}
           />
         </div>
       </div>
@@ -918,13 +904,11 @@
             form={f}
             field={:radio_group_col}
             label="Radio group"
-            options={
-              [
-                "Option 1": "option_1",
-                "Option 2": "option_2",
-                "Option 3": "option_3"
-              ]
-            }
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
           />
         </div>
 
@@ -934,13 +918,11 @@
             form={f}
             field={:radio_group_col_with_error}
             label="Radio group with error"
-            options={
-              [
-                "Option 1": "option_1",
-                "Option 2": "option_2",
-                "Option 3": "option_3"
-              ]
-            }
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
           />
         </div>
       </div>
@@ -953,13 +935,11 @@
             field={:radio_group_row}
             layout={:row}
             label="Radio group with row layout"
-            options={
-              [
-                "Option 1": "option_1",
-                "Option 2": "option_2",
-                "Option 3": "option_3"
-              ]
-            }
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
           />
         </div>
 
@@ -970,13 +950,11 @@
             field={:radio_group_row_with_error}
             layout={:row}
             label="Radio group with row layout and error"
-            options={
-              [
-                "Option 1": "option_1",
-                "Option 2": "option_2",
-                "Option 3": "option_3"
-              ]
-            }
+            options={[
+              "Option 1": "option_1",
+              "Option 2": "option_2",
+              "Option 3": "option_3"
+            ]}
           />
         </div>
       </div>
@@ -1017,7 +995,10 @@
               size="sm"
               src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
             />
-            <Heroicons.chevron_down solid class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100" />
+            <Heroicons.chevron_down
+              solid
+              class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100"
+            />
           </div>
         </:trigger_element>
         <.dropdown_menu_item label="Item 1" />
@@ -1042,37 +1023,31 @@
     <.h2 underline label="Breadcrumbs" />
 
     <.h5 label="Slash" />
-    <.breadcrumbs links={
-      [
-        %{label: "Link 1", to: "#"},
-        %{label: "Link 2", to: "#"},
-        %{label: "Link 3", to: "#"}
-      ]
-    } />
+    <.breadcrumbs links={[
+      %{label: "Link 1", to: "#"},
+      %{label: "Link 2", to: "#"},
+      %{label: "Link 3", to: "#"}
+    ]} />
 
     <.h5 label="Chevron" class="mt-10" />
     <.breadcrumbs
       separator="chevron"
-      links={
-        [
-          %{label: "Link 1", to: "#"},
-          %{label: "Link 2", to: "#", link_type: "live_patch"},
-          %{label: "Link 3", to: "#", link_type: "live_redirect"}
-        ]
-      }
+      links={[
+        %{label: "Link 1", to: "#"},
+        %{label: "Link 2", to: "#", link_type: "live_patch"},
+        %{label: "Link 3", to: "#", link_type: "live_redirect"}
+      ]}
     />
 
     <.h5 label="Custom CSS" class="mt-10" />
     <.breadcrumbs
       class="mt-3"
       link_class="!text-blue-500 text-sm font-semibold"
-      links={
-        [
-          %{label: "Link 1", to: "#"},
-          %{label: "Link 2", to: "#", link_type: "live_patch"},
-          %{label: "Link 3", to: "#", link_type: "live_redirect"}
-        ]
-      }
+      links={[
+        %{label: "Link 1", to: "#"},
+        %{label: "Link 2", to: "#", link_type: "live_patch"},
+        %{label: "Link 3", to: "#", link_type: "live_redirect"}
+      ]}
     />
   </.container>
 
@@ -1114,58 +1089,48 @@
     <.h5 label="Avatar groups stacked" class="mt-10" />
     <div class="flex flex-wrap items-center gap-10">
       <.avatar_group
-        avatars={
-          [
-            "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
-          ]
-        }
+        avatars={[
+          "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
+        ]}
         size="xs"
       />
       <.avatar_group
-        avatars={
-          [
-            "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
-          ]
-        }
+        avatars={[
+          "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
+        ]}
         size="sm"
       />
       <.avatar_group
-        avatars={
-          [
-            "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
-          ]
-        }
+        avatars={[
+          "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
+        ]}
         size="md"
       />
       <.avatar_group
-        avatars={
-          [
-            "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
-          ]
-        }
+        avatars={[
+          "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
+        ]}
         size="lg"
       />
       <.avatar_group
-        avatars={
-          [
-            "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
-            "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
-          ]
-        }
+        avatars={[
+          "https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_1_lc8plf.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595188/dummy_data/avatar_2_jhs6ww.png",
+          "https://res.cloudinary.com/wickedsites/image/upload/v1636595189/dummy_data/avatar_14_rkiyfa.png"
+        ]}
         size="xl"
       />
     </div>

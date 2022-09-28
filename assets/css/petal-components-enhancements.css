@@ -17,11 +17,11 @@ input[type="file_input"].has-error:not(.phx-no-feedback) {
 }
 
 input[type="checkbox"].has-error:not(.phx-no-feedback) {
-  @apply !border-red-500 !text-red-900 dark:!text-red-200;
+  @apply !border-red-500 !bg-red-500 dark:!bg-red-800 !text-red-900 dark:!text-red-200;
 }
 
 input[type="radio"].has-error:not(.phx-no-feedback) {
-  @apply !border-red-500;
+  @apply !border-red-500 !bg-red-500 dark:!bg-red-800 !text-red-900 dark:!text-red-200;
 }
 
 /* If in tailwind.config.json, darkMode: 'media', use this: */

@@ -32,7 +32,7 @@ defmodule PetalBoilerplateWeb.PageLive do
   def render(assigns) do
     ~H"""
     <div class="h-screen overflow-auto dark:bg-gray-900">
-      <nav class="sticky top-0 flex items-center justify-between w-full h-16 bg-white dark:bg-gray-900">
+      <nav class="sticky top-0 z-30 flex items-center justify-between w-full h-16 bg-white dark:bg-gray-900">
         <div class="flex ml-3 sm:ml-10">
           <a class="inline-flex hover:opacity-90" href="/">
             <svg

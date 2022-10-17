@@ -1,5 +1,5 @@
 <div class="h-screen overflow-auto dark:bg-gray-900">
-  <nav class="sticky top-0 flex items-center justify-between w-full h-16 bg-white dark:bg-gray-900">
+  <nav class="sticky top-0 z-30 flex items-center justify-between w-full h-16 bg-white dark:bg-gray-900">
     <div class="flex ml-3 sm:ml-10">
       <a class="inline-flex hover:opacity-90" href="/">
         <svg
@@ -265,28 +265,38 @@
         <.form_label label="Disabled" />
       </div>
       <div class="flex flex-wrap items-end gap-2 mt-2">
-        <.button disabled size="xs" to="/" label="Disabled xs" />
-        <.button disabled size="sm" to="/" label="Disabled sm" />
-        <.button disabled size="md" to="/" label="Disabled md" />
-        <.button disabled size="lg" to="/" label="Disabled lg" />
-        <.button disabled size="xl" to="/" label="Disabled xl" />
+        <.button disabled size="xs" to="#" label="Disabled xs" />
+        <.button disabled size="sm" to="#" label="Disabled sm" />
+        <.button disabled size="md" to="#" label="Disabled md" />
+        <.button disabled size="lg" to="#" label="Disabled lg" />
+        <.button disabled size="xl" to="#" label="Disabled xl" />
       </div>
       <div class="mt-5">
         <.form_label label="Loading" />
       </div>
       <div class="flex flex-wrap items-end gap-2 mt-2">
-        <.button loading size="xs" label="Loading xs" />
-        <.button loading size="sm" label="Loading sm" />
-        <.button loading size="md" label="Loading md" />
-        <.button loading size="lg" label="Loading lg" />
-        <.button loading size="xl" label="Loading xl" />
+        <.button loading size="xs">
+          Loading xs
+        </.button>
+        <.button loading size="sm">
+          Loading sm
+        </.button>
+        <.button loading size="md">
+          Loading md
+        </.button>
+        <.button loading size="lg">
+          Loading lg
+        </.button>
+        <.button loading size="xl">
+          Loading xl
+        </.button>
       </div>
     </div>
 
     <div class="mt-10">
       <.h5 label="Button with icon" />
       <div class="flex flex-wrap items-end gap-2">
-        <.button icon link_type="a" to="/">
+        <.button with_icon link_type="a" to="/">
           <Heroicons.home solid class="w-5 h-5" /> With icon
         </.button>
       </div>
@@ -420,13 +430,13 @@
     </div>
     <.h5 label="With icon" class="mt-10" />
     <div class="flex flex-wrap items-end gap-2">
-      <.badge color="gray" variant="light" icon label="SM" size="sm">
+      <.badge variant="outline" with_icon label="SM" size="sm">
         <Heroicons.clock solid class="w-3 h-3 pb-[0.05rem]" /> 2 hours ago
       </.badge>
-      <.badge color="secondary" variant="dark" label="md" size="md">
+      <.badge color="secondary" with_icon variant="dark" label="md" size="md">
         <Heroicons.envelope solid class="w-4 h-4 mr-1 pb-[0.05rem]" /> New messages
       </.badge>
-      <.badge color="success" variant="outline" label="lg" size="lg">
+      <.badge color="success" with_icon variant="outline" label="lg" size="lg">
         <Heroicons.wifi solid class="w-5 h-5 mr-1 pb-[0.025rem]" /> Online now
       </.badge>
     </div>
@@ -436,13 +446,19 @@
     <.h2 underline label="Alerts" />
     <.h5 label="Default" class="mt-10" />
     <div class="flex items-start">
-      <.alert color="info" label="This is an info state" />
+      <.alert color="info">
+        This is an info state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
-      <.alert color="success" label="This is a success state" />
+      <.alert color="success">
+        This is a success state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
-      <.alert color="warning" label="This is a warning state" />
+      <.alert color="warning">
+        This is a warning state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
       <.alert color="danger">
@@ -456,13 +472,19 @@
     </div>
     <.h5 label="With state icon" class="mt-10" />
     <div class="flex items-start">
-      <.alert with_icon color="info" label="This is an info state" />
+      <.alert with_icon color="info">
+        This is an info state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
-      <.alert with_icon color="success" label="This is a success state" />
+      <.alert with_icon color="success">
+        This is a success state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
-      <.alert with_icon color="warning" label="This is a warning state" />
+      <.alert with_icon color="warning">
+        This is a warning state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
       <.alert with_icon color="danger">
@@ -476,20 +498,14 @@
     </div>
     <.h5 label="Dismissable" class="mt-10" />
     <div class="flex items-start">
-      <.alert
-        with_icon
-        close_button_properties={["phx-click": "do_something"]}
-        color="info"
-        label="This is an info state"
-      />
+      <.alert with_icon close_button_properties={["phx-click": "do_something"]} color="info">
+        This is an info state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
-      <.alert
-        with_icon
-        close_button_properties={["phx-click": "do_something"]}
-        color="success"
-        label="This is a success state"
-      />
+      <.alert with_icon close_button_properties={["phx-click": "do_something"]} color="success">
+        This is a success state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
       <.alert
@@ -497,7 +513,9 @@
         close_button_properties={["phx-click": "do_something"]}
         color="warning"
         label="This is a warning state"
-      />
+      >
+        This is a warning state
+      </.alert>
     </div>
     <div class="flex items-start mt-4">
       <.alert with_icon close_button_properties={["phx-click": "do_something"]} color="danger">

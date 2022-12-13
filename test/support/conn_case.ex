@@ -19,21 +19,20 @@ defmodule PetalBoilerplateWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint PetalBoilerplateWeb.Endpoint
+
+      use PetalBoilerplateWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import PetalBoilerplateWeb.ConnCase
-
-      alias PetalBoilerplateWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint PetalBoilerplateWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(PetalBoilerplate.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    PetalBoilerplate.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

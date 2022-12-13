@@ -13,9 +13,12 @@ config :petal_boilerplate,
 # Configures the endpoint
 config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PetalBoilerplateWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    formats: [html: PetalBoilerplateWeb.ErrorHTML, json: PetalBoilerplateWeb.ErrorJSON],
+    layout: false
+  ],
   pubsub_server: PetalBoilerplate.PubSub,
-  live_view: [signing_salt: "Fd8SWPu3"]
+  live_view: [signing_salt: "Nwp6Nmtc"]
 
 # Configures the mailer
 #
@@ -26,9 +29,6 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :petal_boilerplate, PetalBoilerplate.Mailer, adapter: Swoosh.Adapters.Local
 
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
-
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.15.5",
@@ -37,6 +37,18 @@ config :esbuild,
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+# Configure tailwind (the version is required)
+config :tailwind,
+  version: "3.2.4",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
@@ -49,18 +61,7 @@ config :phoenix, :json_library, Jason
 
 config :petal_components,
        :error_translator_function,
-       {PetalBoilerplateWeb.ErrorHelpers, :translate_error}
-
-config :tailwind,
-  version: "3.1.8",
-  default: [
-    args: ~w(
-         --config=tailwind.config.js
-         --input=css/app.css
-         --output=../priv/static/assets/app.css
-       ),
-    cd: Path.expand("../assets", __DIR__)
-  ]
+       {PetalBoilerplateWeb.CoreComponents, :translate_error}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

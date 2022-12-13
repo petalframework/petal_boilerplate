@@ -4,8 +4,9 @@ import Config
 config :petal_boilerplate, PetalBoilerplate.Repo,
   username: "postgres",
   password: "postgres",
-  database: "petal_boilerplate_dev",
   hostname: "localhost",
+  database: "petal_boilerplate_dev",
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -22,7 +23,7 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "47TFd8fpLTZROcN4Lxz/OQ5fz4hVFMNCsSxHKwSrRGZGxDcWKyGH+1uxAtGYn1/Q",
+  secret_key_base: "ukpF68Q3LDULmUU6dX+IvlxG+bCDjJpDNjAP04W5hwt6G6UraVzzZBWEtAvkxlUi",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
@@ -36,7 +37,6 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
 #
 #     mix phx.gen.cert
 #
-# Note that this task requires Erlang/OTP 20 or later.
 # Run `mix help phx.gen.cert` for more information.
 #
 # The `http:` config above can be replaced with:
@@ -58,10 +58,12 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/petal_boilerplate_web/(live|views)/.*(ex)$",
-      ~r"lib/petal_boilerplate_web/templates/.*(eex)$"
+      ~r"lib/petal_boilerplate_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
+
+# Enable dev routes for dashboard and mailbox
+config :petal_boilerplate, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -72,3 +74,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Disable swoosh api client as it is only required for production adapters.
+config :swoosh, :api_client, false

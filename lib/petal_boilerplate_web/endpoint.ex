@@ -7,7 +7,8 @@ defmodule PetalBoilerplateWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_petal_boilerplate_key",
-    signing_salt: "S+qhbMV3"
+    signing_salt: "svUTG9wx",
+    same_site: "Lax"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -20,7 +21,7 @@ defmodule PetalBoilerplateWeb.Endpoint do
     at: "/",
     from: :petal_boilerplate,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: PetalBoilerplateWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

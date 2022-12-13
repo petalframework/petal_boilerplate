@@ -8,12 +8,14 @@ defmodule PetalBoilerplate.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      PetalBoilerplate.Repo,
       # Start the Telemetry supervisor
       PetalBoilerplateWeb.Telemetry,
+      # Start the Ecto repository
+      PetalBoilerplate.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: PetalBoilerplate.PubSub},
+      # Start Finch
+      {Finch, name: PetalBoilerplate.Finch},
       # Start the Endpoint (http/https)
       PetalBoilerplateWeb.Endpoint
       # Start a worker by calling: PetalBoilerplate.Worker.start_link(arg)

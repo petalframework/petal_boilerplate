@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%= csrf_meta_tag() %>
-    <%= live_title_tag(assigns[:page_title] || "PetalBoilerplate", suffix: " · Phoenix Framework") %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Phoenix Framework">
+      <%= assigns[:page_title] || "PetalBoilerplate" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+
     <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js">
     </script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js">
@@ -14,18 +16,12 @@
     <!-- Used in css-theme-switch.js - remove if you don't support light/dark mode -->
     <script defer src="https://unpkg.com/js-cookie@3.x.x/dist/js.cookie.min.js">
     </script>
-
-    <script
-      defer
-      phx-track-static
-      type="text/javascript"
-      src={Routes.static_path(@conn, "/assets/app.js")}
-    >
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
 
     <.color_scheme_switch_js />
   </head>
-  <body>
+  <body class="antialiased bg-white dark:bg-gray-900">
     <%= @inner_content %>
   </body>
 </html>

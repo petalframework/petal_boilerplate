@@ -20,7 +20,6 @@
     </script>
 
     <.color_scheme_switch_js />
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
 
     <%= if Application.get_env(:petal_boilerplate, :fathom_id) do %>
       <script

@@ -30,6 +30,6 @@ Petal Pro currently comes with a generator to build CRUD interfaces with Petal C
 ## Renaming your project
 
 Your app module is currently called `PetalBoilerplate`. There is a script file included that will rename your project to anything you like in one go.
-Open the file `rename_phoenix_project.sh` and read the instructions at the top.
+Run the file `sh rename_phoenix_project.sh -a your_app_name` or `sh rename_phoenix_project.sh -h` for help with its options.
 
 

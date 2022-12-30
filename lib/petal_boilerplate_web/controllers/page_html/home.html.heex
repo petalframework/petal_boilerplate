@@ -475,10 +475,13 @@
         <.email_input form={f} field={:email_input} />
         <.form_field_error form={f} field={:email_input} class="mt-1" />
         <.form_help_text help_text="Help text" class="mt-2">
-          Help text with a <.a link_type="a"
+          Help text with a
+          <.a
+            link_type="a"
             to="#"
             class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
-            label="link" />
+            label="link"
+          />
         </.form_help_text>
       </div>
 
@@ -487,10 +490,13 @@
         <.email_input form={f} field={:email_input_with_error} />
         <.form_field_error form={f} field={:email_input_with_error} class="mt-1" />
         <.form_help_text help_text="Help text" class="mt-2">
-          Help text with <.a link_type="a"
+          Help text with
+          <.a
+            link_type="a"
             to="#"
             class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
-            label="Link" />
+            label="Link"
+          />
         </.form_help_text>
       </div>
     </div>

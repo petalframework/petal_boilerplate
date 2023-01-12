@@ -171,8 +171,12 @@
   <div class="mt-10">
     <.h5 label="Button with icon" />
     <div class="flex flex-wrap items-end gap-2">
+      <.button icon={:home} label="Home" />
       <.button with_icon link_type="a" to="/">
-        <Heroicons.home solid class="w-5 h-5" /> With icon
+        <Heroicons.home solid class="w-5 h-5" /> Home
+      </.button>
+      <.button with_icon link_type="a" to="/">
+        <Heroicons.home class="w-5 h-5" /> Home
       </.button>
     </div>
   </div>

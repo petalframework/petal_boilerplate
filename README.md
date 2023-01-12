@@ -3,6 +3,7 @@
 A clean install of the Phoenix 1.7 (RC) along with:
 - Alpine JS - using a CDN to avoid needing `node_modules`
 - 🌺 [Petal Components Library](https://github.com/petalframework/petal_components)
+- Maintained and sponsored by [Petal Framework](https://petal.build)
 
 ## Get up and running
 

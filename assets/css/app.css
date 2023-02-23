@@ -17,9 +17,13 @@
 @layer components {
   /* Add component styles here (eg. buttons or tabs or anything that uses a number of styles)
 
-    Example component:
-    .btn-blue {
-      @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+    Example change button styles:
+
+    .pc-button {
+      @apply inline-flex items-center justify-center font-semibold tracking-wider uppercase transition duration-150 ease-in-out border-2 rounded-none focus:outline-none;
+    }
+    .pc-button--primary {
+      @apply text-black border-black bg-primary-400 hover:bg-primary-700 focus:bg-primary-700 active:bg-primary-800 focus:shadow-primary-500/50;
     }
   */
 }

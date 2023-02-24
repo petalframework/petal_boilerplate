@@ -17,7 +17,7 @@ config :petal_boilerplate, PetalBoilerplate.Repo,
 # you can enable the server option below.
 config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "10cUi5xvBJLqT92W/93/bMrQYfcVyE/myN9nnebmmQoDxGDn83PRMqYSZkAntu9D",
+  secret_key_base: "twi598leTbcJNAxvKitZGPMr8ZDu9ONMsUY1vk6ubAxy5Dmzx/7QrR9at+voP4X2",
   server: false
 
 # In test we don't send emails.

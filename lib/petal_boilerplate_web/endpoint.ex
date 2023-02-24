@@ -7,7 +7,7 @@ defmodule PetalBoilerplateWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_petal_boilerplate_key",
-    signing_salt: "svUTG9wx",
+    signing_salt: "fodlg9j/",
     same_site: "Lax"
   ]
 

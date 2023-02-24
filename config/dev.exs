@@ -23,7 +23,7 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "ukpF68Q3LDULmUU6dX+IvlxG+bCDjJpDNjAP04W5hwt6G6UraVzzZBWEtAvkxlUi",
+  secret_key_base: "qXyAXb8wM9khEccdBemhob07c1Yt8nliLd49XNOSVX4xy31QW+8vBUqH38uFZpHg",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}

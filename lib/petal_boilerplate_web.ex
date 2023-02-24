@@ -39,7 +39,6 @@ defmodule PetalBoilerplateWeb do
   def controller do
     quote do
       use Phoenix.Controller,
-        namespace: PetalBoilerplateWeb,
         formats: [:html, :json],
         layouts: [html: PetalBoilerplateWeb.Layouts]
 

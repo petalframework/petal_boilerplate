@@ -39,58 +39,16 @@ let liveSocket = new LiveSocket("/live", Socket, {
 });
 
 // Show progress bar on live navigation and form submits
-topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
-window.addEventListener("phx:page-loading-start", (info) =>
-  topbar.delayedShow(200)
-);
-window.addEventListener("phx:page-loading-stop", (info) => topbar.hide());
+topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
+window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
 // connect if there are any LiveViews on the page
-liveSocket.connect();
+liveSocket.connect()
 
 // expose liveSocket on window for web console debug logs and latency simulation:
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
-window.liveSocket = liveSocket;
+window.liveSocket = liveSocket
 
-/*
-  The following code allows hooks to be run in dead views.
-  To allow a hook to run in a dead view, add the following to the hook:
-
-      function MyHook() {
-        deadViewCompatible: true,
-
-        mounted() {
-          // do stuff
-        }
-      }
-
-  Only works with hooks that don't communicate with a live view.
-*/
-onDocReady(() => {
-  if (!liveSocket.boundTopLevelEvents) {
-    [...document.querySelectorAll("[phx-hook]")].map((hookEl) => {
-      let hookName = hookEl.getAttribute("phx-hook");
-      let hook = hooks[hookName];
-
-      if (hook.deadViewCompatible) {
-        let mountedFn = hook.mounted.bind({ ...hook, el: hookEl });
-        mountedFn();
-      }
-    });
-  }
-});
-
-function onDocReady(fn) {
-  // see if DOM is already available
-  if (
-    document.readyState === "complete" ||
-    document.readyState === "interactive"
-  ) {
-    // call on next available tick
-    setTimeout(fn, 1);
-  } else {
-    document.addEventListener("DOMContentLoaded", fn);
-  }
-}

@@ -18,7 +18,7 @@ config :petal_boilerplate, PetalBoilerplateWeb.Endpoint,
     layout: false
   ],
   pubsub_server: PetalBoilerplate.PubSub,
-  live_view: [signing_salt: "Nwp6Nmtc"]
+  live_view: [signing_salt: "8Hv+cWMw"]
 
 # Configures the mailer
 #

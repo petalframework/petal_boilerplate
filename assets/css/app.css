@@ -43,9 +43,4 @@
   .phx-loading{
     cursor: wait;
   }
-
-  /* Add this to AlpineJS elements that start off hidden. When AlpineJS is loaded it will remove all x-cloak attributes */
-  [x-cloak=""] {
-    display: none;
-  }
 }

@@ -301,16 +301,16 @@ defmodule PetalBoilerplateWeb.CoreComponents do
                                    pattern placeholder readonly required rows size step)
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def phx_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
     |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
-    |> input()
+    |> phx_input()
   end
 
-  def input(%{type: "checkbox", value: value} = assigns) do
+  def phx_input(%{type: "checkbox", value: value} = assigns) do
     assigns =
       assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
 
@@ -334,10 +334,10 @@ defmodule PetalBoilerplateWeb.CoreComponents do
     """
   end
 
-  def input(%{type: "select"} = assigns) do
+  def phx_input(%{type: "select"} = assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
+      <.phx_label for={@id}><%= @label %></.phx_label>
       <select
         id={@id}
         name={@name}
@@ -353,10 +353,10 @@ defmodule PetalBoilerplateWeb.CoreComponents do
     """
   end
 
-  def input(%{type: "textarea"} = assigns) do
+  def phx_input(%{type: "textarea"} = assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
+      <.phx_label for={@id}><%= @label %></.phx_label>
       <textarea
         id={@id || @name}
         name={@name}
@@ -374,10 +374,10 @@ defmodule PetalBoilerplateWeb.CoreComponents do
     """
   end
 
-  def input(assigns) do
+  def phx_input(assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
+      <.phx_label for={@id}><%= @label %></.phx_label>
       <input
         type={@type}
         name={@name}
@@ -403,7 +403,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
   attr :for, :string, default: nil
   slot :inner_block, required: true
 
-  def label(assigns) do
+  def phx_label(assigns) do
     ~H"""
     <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
       <%= render_slot(@inner_block) %>

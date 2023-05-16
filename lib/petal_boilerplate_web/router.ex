@@ -18,6 +18,7 @@ defmodule PetalBoilerplateWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/form", FormLive, :index
     live "/live", PageLive, :index
     live "/live/modal/:size", PageLive, :modal
     live "/live/slide_over/:origin", PageLive, :slide_over

@@ -8,6 +8,14 @@
       placeholder="Text"
       phx-debounce="blur"
     />
+    <.field
+      help_text="This is some help text"
+      type="textarea"
+      field={@form[:textarea]}
+      placeholder="Text"
+      rows="2"
+      phx-debounce="blur"
+    />
     <.field type="select" field={@form[:select]} options={["Option 1", "Option 2", "Option 3"]} />
 
     <.field

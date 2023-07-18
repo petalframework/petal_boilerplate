@@ -51,7 +51,7 @@ defmodule PetalBoilerplate.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, in_umbrella: true},
+      {:petal_components, "~> 1.2"},
       {:rename_project, "~> 0.1.0", only: :dev}
     ]
   end

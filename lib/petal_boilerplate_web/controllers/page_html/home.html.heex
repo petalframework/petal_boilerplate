@@ -1,33 +1,54 @@
+<.container class="mt-24">
+  <.avatar_group random_color avatars={[]} size="sm" />
+</.container>
+
 <.container class="mt-10">
   <.h2 underline label="Containers" />
 </.container>
 
-<.container
-  max_width="full"
-  class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
->
-  Max width "full"
-</.container>
+<.container>
+  <.container
+    max_width="full"
+    class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+  >
+    "full"
+  </.container>
 
-<.container
-  max_width="lg"
-  class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
->
-  Max width "lg"
-</.container>
+  <div class="px-6">
+    <.container
+      max_width="xl"
+      class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+    >
+      "xl"
+    </.container>
+  </div>
 
-<.container
-  max_width="md"
-  class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
->
-  Max width "md"
-</.container>
+  <div class="px-12">
+    <.container
+      max_width="lg"
+      class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+    >
+      "lg"
+    </.container>
+  </div>
 
-<.container
-  max_width="sm"
-  class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
->
-  Max width "sm"
+  <div class="px-20">
+    <.container
+      max_width="md"
+      class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+    >
+      "md"
+    </.container>
+  </div>
+
+  <div class="px-24">
+    <.container
+      max_width="sm"
+      class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+    >
+      "sm"
+    </.container>
+  </div>
 </.container>
 
 <.container>
@@ -88,6 +109,7 @@
       <.button color="warning" label="Warning" />
       <.button color="danger" label="Danger" />
       <.button color="gray" label="Gray" />
+      <.button color="light" label="Light" />
     </div>
   </div>
 
@@ -102,6 +124,7 @@
       <.button color="warning" label="Warning" variant="outline" />
       <.button color="danger" label="Danger" variant="outline" />
       <.button color="gray" label="Gray" variant="outline" />
+      <.button color="light" label="Light" variant="outline" />
     </div>
   </div>
 
@@ -116,6 +139,7 @@
       <.button color="warning" label="Warning" variant="inverted" />
       <.button color="danger" label="Danger" variant="inverted" />
       <.button color="gray" label="Gray" variant="inverted" />
+      <.button color="light" label="Light" variant="inverted" />
     </div>
   </div>
 
@@ -130,6 +154,7 @@
       <.button color="warning" label="Warning" variant="shadow" />
       <.button color="danger" label="Danger" variant="shadow" />
       <.button color="gray" label="Gray" variant="shadow" />
+      <.button color="light" label="Light" variant="shadow" />
     </div>
   </div>
 
@@ -432,6 +457,18 @@
       This is quite a long paragraph that takes up more than one line.
     </.alert>
   </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Rating" />
+  <.h5 label="Full" />
+  <.rating rating={5} total={5} />
+  <.h5 class="mt-10" label="Half" />
+  <.rating rating={2.5} total={5} />
+  <.h5 class="mt-10" label="Empty" />
+  <.rating rating={0} total={5} />
+  <.h5 class="mt-10" label="Including label" />
+  <.rating include_label rating={3.3} total={5} />
 </.container>
 
 <.container>
@@ -1367,7 +1404,7 @@
 <.container class="mt-10">
   <.h2 underline label="Dropdowns" />
   <div class="flex items-center gap-5">
-    <.dropdown label="Dropdown">
+    <.dropdown label="Dropdown" placement="right">
       <.dropdown_menu_item>
         <Heroicons.home class="w-5 h-5 text-gray-500" /> Button item with icon
       </.dropdown_menu_item>
@@ -1378,7 +1415,7 @@
       <.dropdown_menu_item phx-click="some_phoenix_click_event" label="Phoenix click event" />
     </.dropdown>
 
-    <.dropdown>
+    <.dropdown placement="right">
       <:trigger_element>
         <.avatar src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg" />
       </:trigger_element>
@@ -1408,6 +1445,44 @@
       <.dropdown_menu_item label="Item 2" />
     </.dropdown>
   </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Menu" />
+  <div class={[
+    "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
+  ]}>
+    <div>
+      <.nav_menu
+        menu_items={[
+          %{
+            name: :home,
+            label: "Home",
+            path: "#",
+            icon: :home
+          },
+          %{
+            name: :sign_in,
+            label: "Sign in",
+            path: "#",
+            icon: :key
+          }
+        ]}
+        current_page={3}
+        title="Menu items"
+      />
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="User Dropdown Menu" />
+
+  <.user_menu_dropdown
+    user_menu_items={[%{path: "#", icon: :home, label: "blah"}]}
+    avatar_src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
+    current_user_name="Betty"
+  />
 </.container>
 
 <.container class="mt-10">

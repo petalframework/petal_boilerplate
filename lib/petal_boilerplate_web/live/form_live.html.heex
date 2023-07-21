@@ -7,6 +7,7 @@
       field={@form[:text]}
       placeholder="Text"
       phx-debounce="blur"
+      required
     />
     <.field
       help_text="This is some help text"
@@ -16,7 +17,13 @@
       rows="2"
       phx-debounce="blur"
     />
-    <.field type="select" field={@form[:select]} options={["Option 1", "Option 2", "Option 3"]} />
+
+    <.field
+      type="select"
+      field={@form[:select]}
+      options={["Option 1", "Option 2", "Option 3"]}
+      selected="Option 2"
+    />
 
     <.field
       type="checkbox-group"

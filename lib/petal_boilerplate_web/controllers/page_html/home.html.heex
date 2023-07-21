@@ -1453,7 +1453,7 @@
     "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
   ]}>
     <div>
-      <.nav_menu
+      <.menu
         menu_items={[
           %{
             name: :home,
@@ -1468,7 +1468,7 @@
             icon: :key
           }
         ]}
-        current_page={3}
+        current_page={:current_page}
         title="Menu items"
       />
     </div>
@@ -1478,7 +1478,7 @@
 <.container class="mt-10">
   <.h2 underline label="User Dropdown Menu" />
 
-  <.user_menu_dropdown
+  <.user_dropdown_menu
     user_menu_items={[%{path: "#", icon: :home, label: "blah"}]}
     avatar_src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
     current_user_name="Betty"

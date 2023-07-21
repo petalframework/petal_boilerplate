@@ -1449,28 +1449,76 @@
 
 <.container class="mt-10">
   <.h2 underline label="Menu" />
-  <div class={[
-    "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
-  ]}>
-    <div>
-      <.menu
-        menu_items={[
-          %{
-            name: :home,
-            label: "Home",
-            path: "#",
-            icon: :home
-          },
-          %{
-            name: :sign_in,
-            label: "Sign in",
-            path: "#",
-            icon: :key
-          }
-        ]}
-        current_page={:current_page}
-        title="Menu items"
-      />
+  <div class="flex gap-5">
+    <div class={[
+      "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
+    ]}>
+      <div>
+        <.vertical_menu
+          menu_items={[
+            %{
+              name: :home,
+              label: "Home",
+              path: "#",
+              icon: :home
+            },
+            %{
+              name: :sign_in,
+              label: "Sign in",
+              path: "#",
+              icon: :key
+            }
+          ]}
+          current_page={:current_page}
+          title="Menu items"
+        />
+      </div>
+    </div>
+    <div class={[
+      "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
+    ]}>
+      <div>
+        <.vertical_menu
+          menu_items={[
+            %{
+              title: "Menu group 1",
+              menu_items: [
+                %{
+                  name: :home,
+                  label: "Home",
+                  path: "#",
+                  icon: :home
+                },
+                %{
+                  name: :sign_in,
+                  label: "Sign in",
+                  path: "#",
+                  icon: :key
+                }
+              ]
+            },
+            %{
+              title: "Menu group 2",
+              menu_items: [
+                %{
+                  name: :home,
+                  label: "Components",
+                  path: "#",
+                  icon: :puzzle_piece
+                },
+                %{
+                  name: :sign_in,
+                  label: "School",
+                  path: "#",
+                  icon: :academic_cap
+                }
+              ]
+            }
+          ]}
+          current_page={:current_page}
+          title="Menu items"
+        />
+      </div>
     </div>
   </div>
 </.container>

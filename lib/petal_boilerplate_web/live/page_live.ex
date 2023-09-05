@@ -8,6 +8,7 @@ defmodule PetalBoilerplateWeb.PageLive do
        modal: false,
        slide_over: false,
        pagination_page: 1,
+       total_pages: 10,
        active_tab: :live
      )}
   end
@@ -91,7 +92,7 @@ defmodule PetalBoilerplateWeb.PageLive do
         link_type="live_patch"
         path="/live/pagination/:page"
         current_page={@pagination_page}
-        total_pages={10}
+        total_pages={@total_pages}
       />
 
       <.h2 underline class="mt-10" label="Accordion" />
@@ -123,5 +124,11 @@ defmodule PetalBoilerplateWeb.PageLive do
 
   def handle_event("close_slide_over", _, socket) do
     {:noreply, push_patch(socket, to: "/live")}
+  end
+
+  @impl true
+  def handle_event("goto-page", %{"page" => page}, socket) do
+    IO.inspect(page)
+    {:noreply, push_patch(socket, to: ~p"/live/pagination/#{page}")}
   end
 end

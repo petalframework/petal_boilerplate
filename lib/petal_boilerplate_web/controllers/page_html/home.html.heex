@@ -8,7 +8,7 @@
     "full"
   </.container>
 
-  <div class="px-6">
+  <div class="px-6 mt-6">
     <.container
       max_width="xl"
       class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -17,7 +17,7 @@
     </.container>
   </div>
 
-  <div class="px-12">
+  <div class="px-12 mt-6">
     <.container
       max_width="lg"
       class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -26,7 +26,7 @@
     </.container>
   </div>
 
-  <div class="px-20">
+  <div class="px-20 mt-6">
     <.container
       max_width="md"
       class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -35,7 +35,7 @@
     </.container>
   </div>
 
-  <div class="px-24">
+  <div class="px-24 mt-6">
     <.container
       max_width="sm"
       class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -1562,7 +1562,7 @@
 
   <.h5 label="Slash" />
   <.breadcrumbs links={[
-    %{label: "Link 1", to: "#"},
+    %{label: "Link 1", to: "#", icon: :home},
     %{label: "Link 2", to: "#"},
     %{label: "Link 3", to: "#"}
   ]} />
@@ -2077,6 +2077,14 @@
           <.a to="/" label="Edit" class="text-primary-600 dark:text-primary-400" />
         </.td>
       </.tr>
+    </.table>
+
+    <.h5 class="mt-10" label="Table with an empty state" />
+    <.table class="my-class" id="posts" row_id={fn post -> "row_#{post.id}" end} rows={[]}>
+      <:col :let={post} label="Name" class="col-class" row_class="row-class">
+        <%= post.name %>
+      </:col>
+      <:empty_state row_class="empty-class">This table is empty</:empty_state>
     </.table>
   </div>
 </.container>

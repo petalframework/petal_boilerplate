@@ -41,7 +41,7 @@ defmodule PetalBoilerplate.MixProject do
       {:phoenix_live_view, "~> 0.19", override: true},
       {:heroicons, "~> 0.5.3"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.0"},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},

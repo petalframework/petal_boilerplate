@@ -13,6 +13,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import PetalBoilerplateWeb.Gettext
+  import PetalComponents.Icon
 
   @doc """
   Renders a modal.
@@ -79,7 +80,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
                   class="flex-none p-3 -m-3 opacity-20 hover:opacity-40"
                   aria-label={gettext("close")}
                 >
-                  <Heroicons.x_mark solid class="w-5 h-5 stroke-current" />
+                  <.icon name="hero-x-mark-solid" class="w-5 h-5 stroke-current" />
                 </phx_button>
               </div>
               <div id={"#{@id}-content"}>
@@ -157,8 +158,8 @@ defmodule PetalBoilerplateWeb.CoreComponents do
       {@rest}
     >
       <p :if={@title} class="flex items-center gap-1.5 text-[0.8125rem] font-semibold leading-6">
-        <Heroicons.information_circle :if={@kind == :info} mini class="w-4 h-4" />
-        <Heroicons.exclamation_circle :if={@kind == :error} mini class="w-4 h-4" />
+        <.icon name="hero-information-circle" :if={@kind == :info} mini class="w-4 h-4" />
+        <.icon name="hero-exclamation-circle" :if={@kind == :error} mini class="w-4 h-4" />
         <%= @title %>
       </p>
       <p class="mt-2 text-[0.8125rem] leading-5"><%= msg %></p>
@@ -168,7 +169,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
         class="absolute p-2 group top-2 right-1"
         aria-label={gettext("close")}
       >
-        <Heroicons.x_mark solid class="w-5 h-5 stroke-current opacity-40 group-hover:opacity-70" />
+        <.icon name="hero-x-mark-solid" class="w-5 h-5 stroke-current opacity-40 group-hover:opacity-70" />
       </button>
     </div>
     """
@@ -196,7 +197,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
       phx-disconnected={show("#disconnected")}
       phx-connected={hide("#disconnected")}
     >
-      Attempting to reconnect <Heroicons.arrow_path class="inline w-3 h-3 ml-1 animate-spin" />
+      Attempting to reconnect <.icon name="hero-arrow-path" class="inline w-3 h-3 ml-1 animate-spin" />
     </.flash>
     """
   end
@@ -419,7 +420,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
   def error(assigns) do
     ~H"""
     <p class="flex gap-3 mt-3 text-sm leading-6 phx-no-feedback:hidden text-rose-600">
-      <Heroicons.exclamation_circle mini class="mt-0.5 h-5 w-5 flex-none fill-rose-500" />
+      <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none fill-rose-500" />
       <%= render_slot(@inner_block) %>
     </p>
     """
@@ -570,7 +571,7 @@ defmodule PetalBoilerplateWeb.CoreComponents do
         navigate={@navigate}
         class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
       >
-        <Heroicons.arrow_left solid class="inline w-3 h-3 stroke-current" />
+        <.icon name="hero-arrow-left-solid" class="inline w-3 h-3 stroke-current" />
         <%= render_slot(@inner_block) %>
       </.link>
     </div>

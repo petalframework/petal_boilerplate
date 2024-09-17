@@ -36,9 +36,9 @@ defmodule PetalBoilerplateWeb.PageLive do
     <.container class="mt-10 mb-32">
       <.h2 underline class="mt-10" label="Dropdowns" />
       <.h3 label="" />
-      <.dropdown label="Dropdown" js_lib="live_view_js">
+      <.dropdown label="Dropdown" js_lib="live_view_js" placement="right">
         <.dropdown_menu_item type="button">
-          <HeroiconsV1.Outline.home class="w-5 h-5 text-gray-500 dark:text-gray-300" />
+          <.icon name="hero-home" class="w-5 h-5 text-gray-500 dark:text-gray-300" />
           Button item with icon
         </.dropdown_menu_item>
         <.dropdown_menu_item type="a" to="/" label="a item" />
@@ -128,7 +128,6 @@ defmodule PetalBoilerplateWeb.PageLive do
 
   @impl true
   def handle_event("goto-page", %{"page" => page}, socket) do
-    IO.inspect(page)
     {:noreply, push_patch(socket, to: ~p"/live/pagination/#{page}")}
   end
 end

@@ -197,7 +197,7 @@
       <.button icon="hero-home-mini" label="Home" />
       <.button with_icon link_type="a" to="/">
         <.icon name="hero-home-solid" class="w-5 h-5" /> Home
-      </.button>      
+      </.button>
 
       <.button with_icon link_type="a" to="/">
         <.icon name="hero-home" class="w-5 h-5" /> Home
@@ -215,7 +215,7 @@
         color="primary"
         tooltip="Here is a really long tooltip"
       >
-        <.icon name="hero-clock-mini"  />
+        <.icon name="hero-clock-mini" />
       </.icon_button>
       <.icon_button
         to="/"
@@ -224,7 +224,7 @@
         color="secondary"
         tooltip="Here is a really long tooltip"
       >
-        <.icon name="hero-clock-mini"  />
+        <.icon name="hero-clock-mini" />
       </.icon_button>
       <.icon_button
         to="/"
@@ -236,7 +236,7 @@
         <.icon name="hero-home-mini" class="w-6 h-6" />
       </.icon_button>
       <.icon_button to="/" size="md" link_type="button" color="info">
-        <.icon name="hero-trash-solid"  />
+        <.icon name="hero-trash-solid" />
       </.icon_button>
       <.icon_button
         to="/"
@@ -245,7 +245,7 @@
         color="success"
         tooltip="Here is a really long tooltip"
       >
-        <.icon name="hero-trash-solid"  />
+        <.icon name="hero-trash-solid" />
       </.icon_button>
       <.icon_button to="/" size="lg" link_type="button" color="warning">
         <.icon name="hero-arrow-up-circle-solid" class="w-7 h-7" />
@@ -282,6 +282,15 @@
       </.icon_button>
     </div>
   </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Button Group" />
+
+  <.button_group aria_label="Size options">
+    <:button to="#">Prev</:button>
+    <:button to="#">Next</:button>
+  </.button_group>
 </.container>
 
 <.container class="mt-10">
@@ -1434,7 +1443,8 @@
             size="sm"
             src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
           />
-          <.icon name="hero-chevron-down-solid"
+          <.icon
+            name="hero-chevron-down-solid"
             class="w-4 h-4 ml-1 -mr-1 text-gray-400 dark:text-gray-100"
           />
         </div>
@@ -1928,7 +1938,48 @@
 
 <.container class="mt-10">
   <.h2 underline label="Table" />
-  <.h5 label="Basic table" />
+  <.h5 label="Basic table (ghost variant)" />
+
+  <div class="p-1 mt-5 overflow-auto">
+    <.table variant="ghost">
+      <tbody>
+        <.tr>
+          <.td>
+            John Smith
+          </.td>
+          <.td>Engineer</.td>
+          <.td>john.smith@example.com</.td>
+        </.tr>
+
+        <.tr>
+          <.td>
+            Beth Springs
+          </.td>
+          <.td>Developer</.td>
+          <.td>beth.springs@example.com</.td>
+        </.tr>
+
+        <.tr>
+          <.td>
+            Peter Knowles
+          </.td>
+          <.td>Programmer</.td>
+          <.td>Peter.knowles@example.com</.td>
+        </.tr>
+
+        <.tr>
+          <.td>
+            Sarah Hill
+          </.td>
+          <.td>Marketer</.td>
+          <.td>sarah.hill@example.com</.td>
+        </.tr>
+      </tbody>
+    </.table>
+  </div>
+
+  <.h5 label="Basic Table (surface variant)" class="mt-20 " />
+
   <div class="p-1 mt-5 overflow-auto">
     <.table>
       <thead>
@@ -2109,6 +2160,26 @@
       </.p>
     </:item>
   </.accordion>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Skeleton" />
+  <.h5 label="Default Skeleton" />
+  <.skeleton />
+  <.h5 class="mt-5" label="Image Skeleton" />
+  <.skeleton kind={:image} />
+  <.h5 class="mt-5" label="Video Skeleton" />
+  <.skeleton kind={:video} />
+  <.h5 class="mt-5" label="Text Skeleton" />
+  <.skeleton kind={:text} />
+  <.h5 class="mt-5" label="Card Skeleton" />
+  <.skeleton kind={:card} />
+  <.h5 class="mt-5" label="Widget Skeleton" />
+  <.skeleton kind={:widget} />
+  <.h5 class="mt-5" label="List Skeleton" />
+  <.skeleton kind={:list} />
+  <.h5 class="mt-5" label="Testomonial Skeleton" />
+  <.skeleton kind={:testimonial} />
 </.container>
 
 <div class="mb-40"></div>

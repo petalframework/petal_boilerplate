@@ -7,6 +7,7 @@ defmodule PetalBoilerplateWeb.PageLive do
      assign(socket,
        modal: false,
        slide_over: false,
+       group_size: "md",
        pagination_page: 1,
        total_pages: 10,
        active_tab: :live
@@ -28,6 +29,11 @@ defmodule PetalBoilerplateWeb.PageLive do
       :pagination ->
         {:noreply, assign(socket, pagination_page: String.to_integer(params["page"]))}
     end
+  end
+
+  @impl true
+  def handle_event("change_size", %{"size" => size}, socket) do
+    {:noreply, assign(socket, group_size: size)}
   end
 
   @impl true
@@ -54,6 +60,16 @@ defmodule PetalBoilerplateWeb.PageLive do
       <.button label="xl" link_type="live_patch" to={~p"/live/modal/xl"} />
       <.button label="2xl" link_type="live_patch" to={~p"/live/modal/2xl"} />
       <.button label="full" link_type="live_patch" to={~p"/live/modal/full"} />
+
+      <.h2 underline class="mt-10" label="Button Group" />
+
+      <.button_group aria_label="Size options" size={@group_size}>
+        <:button phx-click="change_size" phx-value-size="xs">XS</:button>
+        <:button phx-click="change_size" phx-value-size="sm">SM</:button>
+        <:button phx-click="change_size" phx-value-size="md">MD</:button>
+        <:button phx-click="change_size" phx-value-size="lg">LG</:button>
+        <:button phx-click="change_size" phx-value-size="xl">XL</:button>
+      </.button_group>
 
       <%= if @modal do %>
         <.modal max_width={@modal} title="Modal">

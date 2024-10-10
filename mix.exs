@@ -40,11 +40,11 @@ defmodule PetalBoilerplate.MixProject do
       {:phoenix_live_reload, "~> 1.5", only: [:dev, :test]},
       {:phoenix_live_view, "~> 0.19", override: true},
       {:heroicons,
-        github: "tailwindlabs/heroicons",
-        tag: "v2.1.5",
-        app: false,
-        compile: false,
-        sparse: "optimized"},
+       github: "tailwindlabs/heroicons",
+       tag: "v2.1.5",
+       app: false,
+       compile: false,
+       sparse: "optimized"},
       {:floki, "~> 0.35", only: [:dev, :test]},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
@@ -56,7 +56,7 @@ defmodule PetalBoilerplate.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, "~> 2.0.3"},
+      {:petal_components, "~> 2.2.0"},
       {:rename_project, "~> 0.1.0", only: :dev}
     ]
   end

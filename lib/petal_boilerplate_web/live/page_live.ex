@@ -32,11 +32,6 @@ defmodule PetalBoilerplateWeb.PageLive do
   end
 
   @impl true
-  def handle_event("change_size", %{"size" => size}, socket) do
-    {:noreply, assign(socket, group_size: size)}
-  end
-
-  @impl true
   def render(assigns) do
     ~H"""
     <.container class="mt-10 mb-32">
@@ -131,6 +126,11 @@ defmodule PetalBoilerplateWeb.PageLive do
       </.accordion>
     </.container>
     """
+  end
+
+  @impl true
+  def handle_event("change_size", %{"size" => size}, socket) do
+    {:noreply, assign(socket, group_size: size)}
   end
 
   @impl true

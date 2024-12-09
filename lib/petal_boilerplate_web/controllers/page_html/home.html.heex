@@ -480,53 +480,18 @@
 </.container>
 
 <.container>
-  <.h2 underline label="Forms V2" class="mt-10" />
+  <.h2 underline label="Forms" class="mt-10" />
 
-  <% form =
-    Phoenix.Component.to_form(
-      %Ecto.Changeset{
-        action: :update,
-        data: %{name: ""},
-        errors: [
-          text_with_error: {"can't be blank", [validation: :required]},
-          text_with_error: {"must be at least 2 characters", [validation: :minimum]},
-          number_with_error: {"can't be blank", [validation: :required]},
-          email_with_error: {"can't be blank", [validation: :required]},
-          password_with_error: {"can't be blank", [validation: :required]},
-          search_with_error: {"can't be blank", [validation: :required]},
-          tel_with_error: {"can't be blank", [validation: :required]},
-          url_with_error: {"can't be blank", [validation: :required]},
-          time_with_error: {"can't be blank", [validation: :required]},
-          date_with_error: {"can't be blank", [validation: :required]},
-          week_with_error: {"can't be blank", [validation: :required]},
-          month_with_error: {"can't be blank", [validation: :required]},
-          datetime_local_with_error: {"can't be blank", [validation: :required]},
-          color_with_error: {"can't be blank", [validation: :required]},
-          file_with_error: {"can't be blank", [validation: :required]},
-          range_with_error: {"can't be blank", [validation: :required]},
-          textarea_with_error: {"can't be blank", [validation: :required]},
-          select_with_error: {"can't be blank", [validation: :required]},
-          switch_with_error: {"can't be blank", [validation: :required]},
-          checkbox_with_error: {"can't be blank", [validation: :required]},
-          checkbox_group_col_with_error: {"can't be blank", [validation: :required]},
-          checkbox_group_row_with_error: {"can't be blank", [validation: :required]},
-          radio_with_error: {"can't be blank", [validation: :required]},
-          radio_group_col_with_error: {"can't be blank", [validation: :required]},
-          radio_group_row_with_error: {"can't be blank", [validation: :required]}
-        ]
-      },
-      as: :object
-    ) %>
-  <.form multipart for={form}>
+  <.form multipart for={@form}>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="text" field={form[:text]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="text" field={@form[:text]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div>
         <.field
           type="text"
-          field={form[:text_with_error]}
+          field={@form[:text_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -535,13 +500,18 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="email" field={form[:email]} placeholder="Placeholder" help_text="Help text" />
+        <.field
+          type="email"
+          field={@form[:email]}
+          placeholder="Placeholder"
+          help_text="Help text"
+        />
       </div>
 
       <div class="mb-6">
         <.field
           type="email"
-          field={form[:email_with_error]}
+          field={@form[:email_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -552,7 +522,7 @@
       <div>
         <.field
           type="number"
-          field={form[:number]}
+          field={@form[:number]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -561,7 +531,7 @@
       <div class="mb-6">
         <.field
           type="number"
-          field={form[:number_with_error]}
+          field={@form[:number_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -572,7 +542,7 @@
       <div>
         <.field
           type="password"
-          field={form[:password]}
+          field={@form[:password]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -581,7 +551,7 @@
       <div class="mb-6">
         <.field
           type="password"
-          field={form[:password_with_error]}
+          field={@form[:password_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -592,7 +562,7 @@
       <div>
         <.field
           type="search"
-          field={form[:search]}
+          field={@form[:search]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -601,7 +571,7 @@
       <div class="mb-6">
         <.field
           type="search"
-          field={form[:search_with_error]}
+          field={@form[:search_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -610,13 +580,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="tel" field={form[:tel]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="tel" field={@form[:tel]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="tel"
-          field={form[:tel_with_error]}
+          field={@form[:tel_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -625,13 +595,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="url" field={form[:url]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="url" field={@form[:url]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="url"
-          field={form[:url_with_error]}
+          field={@form[:url_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -640,13 +610,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="time" field={form[:time]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="time" field={@form[:time]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="time"
-          field={form[:time_with_error]}
+          field={@form[:time_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -655,13 +625,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="week" field={form[:week]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="week" field={@form[:week]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="week"
-          field={form[:week_with_error]}
+          field={@form[:week_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -670,13 +640,18 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="month" field={form[:month]} placeholder="Placeholder" help_text="Help text" />
+        <.field
+          type="month"
+          field={@form[:month]}
+          placeholder="Placeholder"
+          help_text="Help text"
+        />
       </div>
 
       <div class="mb-6">
         <.field
           type="month"
-          field={form[:month_with_error]}
+          field={@form[:month_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -685,13 +660,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="date" field={form[:date]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="date" field={@form[:date]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="date"
-          field={form[:date_with_error]}
+          field={@form[:date_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -702,7 +677,7 @@
       <div>
         <.field
           type="datetime-local"
-          field={form[:datetime_local]}
+          field={@form[:datetime_local]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -711,7 +686,7 @@
       <div class="mb-6">
         <.field
           type="datetime-local"
-          field={form[:datetime_local_with_error]}
+          field={@form[:datetime_local_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -720,13 +695,18 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="color" field={form[:color]} placeholder="Placeholder" help_text="Help text" />
+        <.field
+          type="color"
+          field={@form[:color]}
+          placeholder="Placeholder"
+          help_text="Help text"
+        />
       </div>
 
       <div class="mb-6">
         <.field
           type="color"
-          field={form[:color_with_error]}
+          field={@form[:color_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -735,13 +715,13 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="file" field={form[:file]} placeholder="Placeholder" help_text="Help text" />
+        <.field type="file" field={@form[:file]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div class="mb-6">
         <.field
           type="file"
-          field={form[:file_with_error]}
+          field={@form[:file_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -750,13 +730,18 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="range" field={form[:range]} placeholder="Placeholder" help_text="Help text" />
+        <.field
+          type="range"
+          field={@form[:range]}
+          placeholder="Placeholder"
+          help_text="Help text"
+        />
       </div>
 
       <div class="mb-6">
         <.field
           type="range"
-          field={form[:range_with_error]}
+          field={@form[:range_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -767,7 +752,7 @@
       <div>
         <.field
           type="textarea"
-          field={form[:textarea]}
+          field={@form[:textarea]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -776,7 +761,7 @@
       <div class="mb-6">
         <.field
           type="textarea"
-          field={form[:textarea_with_error]}
+          field={@form[:textarea_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -788,7 +773,7 @@
         <.field
           type="select"
           options={[Admin: "admin", User: "user"]}
-          field={form[:select]}
+          field={@form[:select]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -798,7 +783,7 @@
         <.field
           type="select"
           options={[Admin: "admin", User: "user"]}
-          field={form[:select_with_error]}
+          field={@form[:select_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -809,7 +794,7 @@
       <div>
         <.field
           type="switch"
-          field={form[:switch]}
+          field={@form[:switch]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -818,7 +803,7 @@
       <div class="mb-6">
         <.field
           type="switch"
-          field={form[:switch_with_error]}
+          field={@form[:switch_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -829,7 +814,7 @@
       <div>
         <.field
           type="checkbox"
-          field={form[:checkbox]}
+          field={@form[:checkbox]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -838,7 +823,7 @@
       <div class="mb-6">
         <.field
           type="checkbox"
-          field={form[:checkbox_with_error]}
+          field={@form[:checkbox_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -851,7 +836,7 @@
           type="checkbox-group"
           group_layout="col"
           options={[Admin: "admin", User: "user"]}
-          field={form[:checkbox_group_col]}
+          field={@form[:checkbox_group_col]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -862,7 +847,7 @@
           type="checkbox-group"
           group_layout="col"
           options={[Admin: "admin", User: "user"]}
-          field={form[:checkbox_group_col_with_error]}
+          field={@form[:checkbox_group_col_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -875,7 +860,7 @@
           type="checkbox-group"
           layout="row"
           options={[Admin: "admin", User: "user"]}
-          field={form[:checkbox_group_row]}
+          field={@form[:checkbox_group_row]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -886,7 +871,7 @@
           type="checkbox-group"
           layout="row"
           options={[Admin: "admin", User: "user"]}
-          field={form[:checkbox_group_row_with_error]}
+          field={@form[:checkbox_group_row_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -899,7 +884,7 @@
           type="radio-group"
           layout="col"
           options={[Admin: "admin", User: "user"]}
-          field={form[:radio_group_col]}
+          field={@form[:radio_group_col]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -910,7 +895,7 @@
           type="radio-group"
           layout="col"
           options={[Admin: "admin", User: "user"]}
-          field={form[:radio_group_col_with_error]}
+          field={@form[:radio_group_col_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -923,7 +908,7 @@
           type="radio-group"
           layout="row"
           options={[Admin: "admin", User: "user"]}
-          field={form[:radio_group_row]}
+          field={@form[:radio_group_row]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -934,7 +919,7 @@
           type="radio-group"
           layout="row"
           options={[Admin: "admin", User: "user"]}
-          field={form[:radio_group_row_with_error]}
+          field={@form[:radio_group_row_with_error]}
           placeholder="Placeholder"
           help_text="Help text"
         />
@@ -944,45 +929,7 @@
 
   <.h2 underline label="Forms V1" class="mt-10" />
 
-  <.form
-    :let={f}
-    multipart
-    as={:user}
-    for={
-      %Ecto.Changeset{
-        action: :update,
-        data: %{name: ""},
-        errors: [
-          text_input_with_error: {"can't be blank", [validation: :required]},
-          text_input_with_error: {"must be at least 2 characters", [validation: :minimum]},
-          number_input_with_error: {"can't be blank", [validation: :required]},
-          email_input_with_error: {"can't be blank", [validation: :required]},
-          password_input_with_error: {"can't be blank", [validation: :required]},
-          search_input_with_error: {"can't be blank", [validation: :required]},
-          telephone_input_with_error: {"can't be blank", [validation: :required]},
-          url_input_with_error: {"can't be blank", [validation: :required]},
-          time_input_with_error: {"can't be blank", [validation: :required]},
-          time_select_with_error: {"can't be blank", [validation: :required]},
-          date_select_with_error: {"can't be blank", [validation: :required]},
-          date_input_with_error: {"can't be blank", [validation: :required]},
-          datetime_select_with_error: {"can't be blank", [validation: :required]},
-          datetime_local_input_with_error: {"can't be blank", [validation: :required]},
-          color_input_with_error: {"can't be blank", [validation: :required]},
-          file_input_with_error: {"can't be blank", [validation: :required]},
-          range_input_with_error: {"can't be blank", [validation: :required]},
-          textarea_with_error: {"can't be blank", [validation: :required]},
-          select_with_error: {"can't be blank", [validation: :required]},
-          switch_with_error: {"can't be blank", [validation: :required]},
-          checkbox_with_error: {"can't be blank", [validation: :required]},
-          checkbox_group_col_with_error: {"can't be blank", [validation: :required]},
-          checkbox_group_row_with_error: {"can't be blank", [validation: :required]},
-          radio_with_error: {"can't be blank", [validation: :required]},
-          radio_group_col_with_error: {"can't be blank", [validation: :required]},
-          radio_group_row_with_error: {"can't be blank", [validation: :required]}
-        ]
-      }
-    }
-  >
+  <.form :let={f} multipart as={:user} for={@changeset}>
     <!--
       When creating form fields you can do it two ways:
 
@@ -2133,7 +2080,7 @@
     <.h5 class="mt-10" label="Table with an empty state" />
     <.table class="my-class" id="posts" row_id={fn post -> "row_#{post.id}" end} rows={[]}>
       <:col :let={post} label="Name" class="col-class" row_class="row-class">
-        <%= post.name %>
+        {post.name}
       </:col>
       <:empty_state row_class="empty-class">This table is empty</:empty_state>
     </.table>

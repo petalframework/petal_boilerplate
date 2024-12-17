@@ -38,7 +38,7 @@ defmodule PetalBoilerplate.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.5", only: [:dev, :test]},
-      {:phoenix_live_view, "~> 1.0.0"},
+      {:phoenix_live_view, "~> 1.0.1"},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.1.5",
@@ -56,7 +56,7 @@ defmodule PetalBoilerplate.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, "~> 2.8.0"},
+      {:petal_components, "~> 2.8.1"},
       {:rename_project, "~> 0.1.0", only: :dev}
     ]
   end

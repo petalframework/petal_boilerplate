@@ -71,7 +71,7 @@ defmodule PetalBoilerplateWeb.PageLive do
           <div class="gap-5 text-sm">
             <.form_label label="Add some text here." />
             <div class="flex justify-end">
-              <.button label="close" phx-click={PetalComponents.Modal.hide_modal()} />
+              <.button label="close" phx-click={JS.exec("data-cancel", to: "#modal")} />
             </div>
           </div>
         </.modal>

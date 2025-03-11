@@ -48,7 +48,7 @@ defmodule PetalBoilerplate.MixProject do
       {:floki, "~> 0.35", only: [:dev, :test]},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.5"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
@@ -56,7 +56,7 @@ defmodule PetalBoilerplate.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:petal_components, "~> 2.8.2"},
+      {:petal_components, "~> 2.9.0"},
       {:rename_project, "~> 0.1.0", only: :dev}
     ]
   end

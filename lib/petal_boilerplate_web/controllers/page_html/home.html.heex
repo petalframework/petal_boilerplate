@@ -53,25 +53,25 @@
       <.a
         link_type="a"
         to="/"
-        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
+        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 hover:underline"
         label="Link"
       /> |
       <.a
         method={:put}
         to="/"
-        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
+        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 hover:underline"
         label="Link with method"
       /> |
       <.a
         link_type="live_patch"
         to="/"
-        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
+        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 hover:underline"
         label="Live Patch"
       /> |
       <.a
         link_type="live_redirect"
         to="/"
-        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 hover:underline"
+        class="text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 hover:underline"
         label="Live Redirect"
       />
     </div>
@@ -858,7 +858,7 @@
       <div>
         <.field
           type="checkbox-group"
-          layout="row"
+          group_layout="row"
           options={[Admin: "admin", User: "user"]}
           field={@form[:checkbox_group_row]}
           placeholder="Placeholder"
@@ -869,7 +869,7 @@
       <div class="mb-6">
         <.field
           type="checkbox-group"
-          layout="row"
+          group_layout="row"
           options={[Admin: "admin", User: "user"]}
           field={@form[:checkbox_group_row_with_error]}
           placeholder="Placeholder"
@@ -882,7 +882,7 @@
       <div>
         <.field
           type="radio-group"
-          layout="col"
+          group_layout="col"
           options={[Admin: "admin", User: "user"]}
           field={@form[:radio_group_col]}
           placeholder="Placeholder"
@@ -893,7 +893,7 @@
       <div class="mb-6">
         <.field
           type="radio-group"
-          layout="col"
+          group_layout="col"
           options={[Admin: "admin", User: "user"]}
           field={@form[:radio_group_col_with_error]}
           placeholder="Placeholder"
@@ -906,7 +906,7 @@
       <div>
         <.field
           type="radio-group"
-          layout="row"
+          group_layout="row"
           options={[Admin: "admin", User: "user"]}
           field={@form[:radio_group_row]}
           placeholder="Placeholder"
@@ -917,7 +917,7 @@
       <div class="mb-6">
         <.field
           type="radio-group"
-          layout="row"
+          group_layout="row"
           options={[Admin: "admin", User: "user"]}
           field={@form[:radio_group_row_with_error]}
           placeholder="Placeholder"
@@ -1063,7 +1063,7 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} />
+        <.form_label form={f} field={:time_select} />
         <.time_select form={f} field={:time_select} />
         <.form_field_error form={f} field={:time_select} class="mt-1" />
       </div>
@@ -1087,7 +1087,7 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} />
+        <.form_label form={f} field={:date_select} />
         <.date_select form={f} field={:date_select} />
         <.form_field_error form={f} field={:date_select} class="mt-1" />
       </div>
@@ -1115,7 +1115,7 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} />
+        <.form_label form={f} field={:datetime_select} />
         <.datetime_select form={f} field={:datetime_select} />
         <.form_field_error form={f} field={:datetime_select} class="mt-1" />
       </div>
@@ -1127,7 +1127,7 @@
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.form_label form={f} />
+        <.form_label form={f} field={:color_input} />
         <.color_input form={f} field={:color_input} />
         <.form_field_error form={f} field={:color_input} class="mt-1" />
       </div>
@@ -1385,7 +1385,7 @@
 
     <.dropdown>
       <:trigger_element>
-        <div class="inline-flex items-center justify-center w-full align-middle focus:outline-none">
+        <div class="inline-flex items-center justify-center w-full align-middle focus:outline-hidden">
           <.avatar
             size="sm"
             src="https://res.cloudinary.com/wickedsites/image/upload/v1604268092/unnamed_sagz0l.jpg"
@@ -1406,7 +1406,7 @@
   <.h2 underline label="Menu" />
   <div class="flex gap-5">
     <div class={[
-      "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
+      "shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
     ]}>
       <div>
         <.vertical_menu
@@ -1430,7 +1430,7 @@
       </div>
     </div>
     <div class={[
-      "flex-shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
+      "shrink-0 w-64 p-4 no-scrollbar bg-gray-100 dark:bg-gray-800 rounded-2xl"
     ]}>
       <div>
         <.vertical_menu

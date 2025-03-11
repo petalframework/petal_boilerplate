@@ -1,7 +1,18 @@
-@import "tailwindcss/base";
+@import "tailwindcss";
+
+@source "../../deps/petal_components/**/*.*ex";
 @import "../../deps/petal_components/assets/default.css";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+
+@import "./colors.css";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+@plugin "./tailwind_heroicons.js";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@variant phx-click-loading ([".phx-click-loading&", ".phx-click-loading &"]);
+@variant phx-submit-loading ([".phx-submit-loading&", ".phx-submit-loading &"]);
+@variant phx-change-loading ([".phx-change-loading&", ".phx-change-loading &"]);
 
 @layer base {
   /* Add base styles here (eg. styles that are the defaults for common elements)
@@ -12,6 +23,12 @@
     }
 
   */
+
+  /* Use the pointer for buttons */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer components {
@@ -20,7 +37,7 @@
     Example change button styles:
 
     .pc-button {
-      @apply inline-flex items-center justify-center font-semibold tracking-wider uppercase transition duration-150 ease-in-out border-2 rounded-none focus:outline-none;
+      @apply inline-flex items-center justify-center font-semibold tracking-wider uppercase transition duration-150 ease-in-out border-2 rounded-none focus:outline-hidden;
     }
     .pc-button--primary {
       @apply text-black border-black bg-primary-400 hover:bg-primary-700 focus:bg-primary-700 active:bg-primary-800 focus:shadow-primary-500/50;
@@ -28,14 +45,12 @@
   */
 }
 
-@layer utilities {
-  /* LiveView specific classes for your customization */
-  .phx-click-loading {
-    opacity: 0.5;
-    transition: opacity 1s ease-out;
-  }
+/* LiveView specific classes for your customization */
+@utility phx-click-loading {
+  opacity: 0.5;
+  transition: opacity 1s ease-out;
+}
 
-  .phx-loading {
-    cursor: wait;
-  }
+@utility phx-loading {
+  cursor: wait;
 }

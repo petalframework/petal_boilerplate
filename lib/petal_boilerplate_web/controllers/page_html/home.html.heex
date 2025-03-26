@@ -1,6 +1,5 @@
-<.container class="mt-10">
+<.container class="mt-12">
   <.h2 underline label="Containers" />
-
   <.container
     max_width="full"
     class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -109,6 +108,19 @@
   </div>
 
   <div class="mt-10">
+    <.h5 label="Light" />
+    <div class="flex flex-wrap gap-2">
+      <.button color="primary" label="Primary" variant="light" />
+      <.button color="secondary" label="secondary" variant="light" />
+      <.button color="info" label="Info" variant="light" />
+      <.button color="success" label="Success" variant="light" />
+      <.button color="warning" label="Warning" variant="light" />
+      <.button color="danger" label="Danger" variant="light" />
+      <.button color="gray" label="Gray" variant="light" />
+    </div>
+  </div>
+
+  <div class="mt-10">
     <.h5 label="Outline" />
     <div class="flex flex-wrap gap-2">
       <.button color="primary" label="Primary" variant="outline" />
@@ -141,6 +153,19 @@
   </div>
 
   <div class="mt-10">
+    <.h5 label="Ghost" />
+    <div class="flex flex-wrap gap-2">
+      <.button color="primary" label="Primary" variant="ghost" />
+      <.button color="secondary" label="Secondary" variant="ghost" />
+      <.button color="info" label="Info" variant="ghost" />
+      <.button color="success" label="Success" variant="ghost" />
+      <.button color="warning" label="Warning" variant="ghost" />
+      <.button color="danger" label="Danger" variant="ghost" />
+      <.button color="gray" label="Gray" variant="ghost" />
+    </div>
+  </div>
+
+  <div class="mt-10">
     <.h5 label="Shadow" />
     <div class="flex flex-wrap gap-2">
       <.button color="primary" label="Primary" variant="shadow" />
@@ -164,6 +189,18 @@
       <.button size="md" label="md" />
       <.button size="lg" label="lg" />
       <.button size="xl" label="xl" />
+    </div>
+  </div>
+
+  <div class="mt-10">
+    <.h5 label="Radius" />
+    <div class="flex flex-wrap items-end gap-2">
+      <.button radius="none" label="None" />
+      <.button radius="sm" label="sm" />
+      <.button radius="md" label="md" />
+      <.button radius="lg" label="lg" />
+      <.button radius="xl" label="xl" />
+      <.button radius="full" label="full" />
     </div>
   </div>
 
@@ -287,7 +324,11 @@
 <.container class="mt-10">
   <.h2 underline label="Button Group" />
 
-  <.button_group aria_label="Size options">
+  <.button_group
+    aria_label="Size options"
+    button_bg_class="dark:bg-gray-800 dark:hover:bg-gray-700"
+    button_border_class="dark:border-gray-700"
+  >
     <:button to="#">Prev</:button>
     <:button to="#">Next</:button>
   </.button_group>
@@ -353,6 +394,16 @@
     <.badge color="warning" label="Warning" variant="dark" />
     <.badge color="danger" label="Danger" variant="dark" />
     <.badge color="gray" label="Gray" variant="dark" />
+  </div>
+  <.h5 label="Soft" class="mt-10" />
+  <div class="flex flex-wrap gap-2">
+    <.badge color="primary" label="Primary" variant="soft" />
+    <.badge color="secondary" label="Secondary" variant="soft" />
+    <.badge color="info" label="Info" variant="soft" />
+    <.badge color="success" label="Success" variant="soft" />
+    <.badge color="warning" label="Warning" variant="soft" />
+    <.badge color="danger" label="Danger" variant="soft" />
+    <.badge color="gray" label="Gray" variant="soft" />
   </div>
   <.h5 label="Outline" class="mt-10" />
   <div class="flex flex-wrap gap-2">
@@ -482,10 +533,47 @@
 <.container>
   <.h2 underline label="Forms" class="mt-10" />
 
-  <.form multipart for={@form}>
+  <% form =
+    Phoenix.Component.to_form(
+      %Ecto.Changeset{
+        action: :update,
+        data: %{name: ""},
+        errors: [
+          text_with_error: {"can't be blank", [validation: :required]},
+          text_with_error: {"must be at least 2 characters", [validation: :minimum]},
+          number_with_error: {"can't be blank", [validation: :required]},
+          email_with_error: {"can't be blank", [validation: :required]},
+          password_with_error: {"can't be blank", [validation: :required]},
+          search_with_error: {"can't be blank", [validation: :required]},
+          tel_with_error: {"can't be blank", [validation: :required]},
+          url_with_error: {"can't be blank", [validation: :required]},
+          time_with_error: {"can't be blank", [validation: :required]},
+          date_with_error: {"can't be blank", [validation: :required]},
+          week_with_error: {"can't be blank", [validation: :required]},
+          month_with_error: {"can't be blank", [validation: :required]},
+          datetime_local_with_error: {"can't be blank", [validation: :required]},
+          color_with_error: {"can't be blank", [validation: :required]},
+          file_with_error: {"can't be blank", [validation: :required]},
+          range_with_error: {"can't be blank", [validation: :required]},
+          textarea_with_error: {"can't be blank", [validation: :required]},
+          select_with_error: {"can't be blank", [validation: :required]},
+          switch_with_error: {"can't be blank", [validation: :required]},
+          checkbox_with_error: {"can't be blank", [validation: :required]},
+          checkbox_group_col_with_error: {"can't be blank", [validation: :required]},
+          checkbox_group_row_with_error: {"can't be blank", [validation: :required]},
+          radio_with_error: {"can't be blank", [validation: :required]},
+          radio_card_with_error: {"can't be blank", [validation: :required]},
+          radio_group_col_with_error: {"can't be blank", [validation: :required]},
+          radio_group_row_with_error: {"can't be blank", [validation: :required]}
+        ]
+      },
+      as: :object
+    ) %>
+  <.form multipart for={form}>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <.field type="text" field={@form[:text]} placeholder="Placeholder" help_text="Help text" />
+        <.field field={form[:text]} clearable placeholder="Enter text" label="Text Input" />
+        <.field type="text" field={form[:text]} placeholder="Placeholder" help_text="Help text" />
       </div>
 
       <div>
@@ -545,6 +633,8 @@
           field={@form[:password]}
           placeholder="Placeholder"
           help_text="Help text"
+          viewable
+          no_margin
         />
       </div>
 
@@ -680,6 +770,7 @@
           field={@form[:datetime_local]}
           placeholder="Placeholder"
           help_text="Help text"
+          disabled
         />
       </div>
 
@@ -792,6 +883,10 @@
 
     <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
       <div>
+        <.field type="switch" field={form[:xs]} placeholder="Placeholder" help_text="Help text" />
+      </div>
+
+      <div class="mb-6">
         <.field
           type="switch"
           field={@form[:switch]}
@@ -925,6 +1020,100 @@
         />
       </div>
     </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.field
+          type="radio-card"
+          field={form[:radio_card]}
+          label="Radio card row"
+          options={[
+            %{label: "8-core CPU", value: "high", description: "32 GB RAM"},
+            %{label: "6-core CPU", value: "mid", description: "24 GB RAM"},
+            %{
+              label: "4-core CPU",
+              value: "low",
+              description: "16 GB RAM",
+              disabled: true
+            }
+          ]}
+          size="sm"
+          variant="outline"
+          help_text="Choose the plan that best suits your needs."
+          required
+        />
+      </div>
+
+      <div>
+        <.field
+          type="radio-card"
+          field={form[:radio_card_with_error]}
+          label="Radio card row (with error)"
+          options={[
+            %{label: "8-core CPU", value: "high", description: "32 GB RAM"},
+            %{label: "6-core CPU", value: "mid", description: "24 GB RAM"},
+            %{
+              label: "4-core CPU",
+              value: "low",
+              description: "16 GB RAM",
+              disabled: true
+            }
+          ]}
+          size="sm"
+          variant="outline"
+          help_text="This field is required."
+          required
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.field
+          type="radio-card"
+          field={form[:radio_card]}
+          label="Radio card col"
+          options={[
+            %{label: "8-core CPU", value: "high", description: "32 GB RAM"},
+            %{label: "6-core CPU", value: "mid", description: "24 GB RAM"},
+            %{
+              label: "4-core CPU",
+              value: "low",
+              description: "16 GB RAM",
+              disabled: true
+            }
+          ]}
+          size="sm"
+          group_layout="col"
+          variant="outline"
+          help_text="Choose the plan that best suits your needs."
+          required
+        />
+      </div>
+
+      <div>
+        <.field
+          type="radio-card"
+          field={form[:radio_card_with_error]}
+          label="Radio card col (with error)"
+          options={[
+            %{label: "8-core CPU", value: "high", description: "32 GB RAM"},
+            %{label: "6-core CPU", value: "mid", description: "24 GB RAM"},
+            %{
+              label: "4-core CPU",
+              value: "low",
+              description: "16 GB RAM",
+              disabled: true
+            }
+          ]}
+          size="sm"
+          group_layout="col"
+          variant="outline"
+          help_text="This field is required."
+          required
+        />
+      </div>
+    </div>
   </.form>
 
   <.h2 underline label="Forms V1" class="mt-10" />
@@ -953,6 +1142,7 @@
           field={:text_input_with_error}
           placeholder="Placeholder"
           help_text="Help text"
+          no_margin
         />
       </div>
     </div>
@@ -1152,7 +1342,7 @@
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
         <.form_label form={f} field={:range_input} />
-        <.range_input form={f} field={:range_input} />
+        <.range_input form={f} field={:range_input} class="pc-range-input" />
         <.form_field_error form={f} field={:range_input} class="mt-1" />
       </div>
 
@@ -1193,7 +1383,7 @@
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
         <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
-          <.switch form={f} field={:switch} />
+          <.switch size="xs" form={f} field={:switch} />
           <div>Switch</div>
         </label>
 
@@ -1203,6 +1393,79 @@
       <div>
         <.form_field
           type="switch"
+          size="xs"
+          form={f}
+          field={:switch_with_error}
+          label="Switch (with error)"
+        />
+      </div>
+      <div>
+        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+          <.switch size="sm" form={f} field={:switch} />
+          <div>Switch</div>
+        </label>
+
+        <.form_field_error form={f} field={:switch} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="switch"
+          size="sm"
+          form={f}
+          field={:switch_with_error}
+          label="Switch (with error)"
+        />
+      </div>
+      <div>
+        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+          <.switch size="md" form={f} field={:switch} />
+          <div>Switch</div>
+        </label>
+
+        <.form_field_error form={f} field={:switch} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="switch"
+          size="md"
+          form={f}
+          field={:switch_with_error}
+          label="Switch (with error)"
+        />
+      </div>
+      <div>
+        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+          <.switch size="lg" form={f} field={:switch} />
+          <div>Switch</div>
+        </label>
+
+        <.form_field_error form={f} field={:switch} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="switch"
+          size="lg"
+          form={f}
+          field={:switch_with_error}
+          label="Switch (with error)"
+        />
+      </div>
+      <div>
+        <label class="inline-flex items-center gap-3 mb-6 text-sm text-gray-900 dark:text-gray-200">
+          <.switch size="xl" form={f} field={:switch} />
+          <div>Switch</div>
+        </label>
+
+        <.form_field_error form={f} field={:switch} class="mt-1" />
+      </div>
+
+      <div>
+        <.form_field
+          type="switch"
+          size="xl"
           form={f}
           field={:switch_with_error}
           label="Switch (with error)"
@@ -2089,8 +2352,43 @@
 
 <.container class="mt-10">
   <.h2 underline label="Accordion" />
-  <.h5 label="Basic accordion" />
-  <.accordion>
+  <.h5 label="Ghost accordion" />
+
+  <.accordion variant="ghost" open_index={1}>
+    <:item heading="Why don't some couples go to the gym?">
+      <.p class="text-base leading-7 text-gray-600 dark:text-gray-400">
+        Because some relationships don't work out.
+        They start strong, but eventually, one partner's enthusiasm just fizzles out. It's like buying a treadmill and using it as a fancy clothes hanger. Love needs cardio too, but not everyone's ready to break a sweat!
+      </.p>
+    </:item>
+    <:item heading="Why did the bicycle fall over?">
+      <.p class="text-base leading-7 text-gray-600 dark:text-gray-400">
+        Because it was two-tired.
+        After all those uphill battles and no gears to change, it just couldn't keep it together anymore. I mean, who wouldn't wobble under that pressure? Sometimes even a bike needs a break… or maybe just a kickstand!
+      </.p>
+    </:item>
+    <:item heading="Why don't scientists trust atoms?">
+      <.p class="text-base leading-7 text-gray-600 dark:text-gray-400">
+        Because they make up everything.
+        Seriously, they can't help but fabricate all the stuff around us. They're like the ultimate storytellers, weaving tales of reality while we're just trying to live in it. They'll have you believing in the periodic table like it's some kind of life hack.
+      </.p>
+    </:item>
+    <:item heading="Why did the tomato blush?">
+      <.p class="text-base leading-7 text-gray-600 dark:text-gray-400">
+        Because it saw the salad dressing.
+        It's hard to stay cool when everyone's watching you mix it up with those fresh greens. The poor tomato wasn't ready for that kind of exposure. A little too much vinaigrette and, well, things get steamy in the kitchen real fast!
+      </.p>
+    </:item>
+    <:item heading="What do you call fake spaghetti?">
+      <.p class="text-base leading-7 text-gray-600 dark:text-gray-400">
+        An impasta.
+        It's always trying to blend in with the real deal, but you can tell something's off. Too much starch, maybe? It tries to twirl around your fork, but you know it's just not the same. Fake pasta: the ultimate culinary con artist!
+      </.p>
+    </:item>
+  </.accordion>
+
+  <.h5 label="Basic accordion" class="mt-5" />
+  <.accordion open_index={1}>
     <:item heading="Accordion">
       <.p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

@@ -39,6 +39,27 @@
       options={[{"Option 1", "1"}, {"Option 2", "2"}, {"Option 3", "3"}]}
     />
 
+    <.field
+      type="radio-card"
+      field={@form[:radio_card]}
+      label="Radio card"
+      options={[
+        %{label: "8-core CPU", value: "high", description: "32 GB RAM"},
+        %{label: "6-core CPU", value: "mid", description: "24 GB RAM"},
+        %{
+          label: "4-core CPU",
+          value: "low",
+          description: "16 GB RAM",
+          disabled: true
+        }
+      ]}
+      size="md"
+      variant="outline"
+      group_layout="row"
+      help_text="This field is required."
+      required
+    />
+
     <.field type="switch" field={@form[:switch]} />
     <.field type="checkbox" field={@form[:checkbox]} />
     <.field type="color" field={@form[:color]} />
@@ -50,9 +71,9 @@
     <.field type="month" field={@form[:month]} />
     <.field type="number" field={@form[:number]} />
     <.field type="password" field={@form[:password]} />
-    <.field type="range" field={@form[:range]} />
-    <.field type="search" field={@form[:search]} />
-    <.field type="tel" field={@form[:tel]} />
+    <.field type="range" field={@form[:range]} class="pc-range-input" />
+    <.field type="search" field={@form[:search]} clearable />
+    <.field type="tel" field={@form[:tel]} clearable />
     <.field type="time" field={@form[:time]} />
     <.field type="url" field={@form[:url]} />
     <.field type="week" field={@form[:week]} />
@@ -84,8 +105,8 @@
       <.input type="number" field={@form2[:number]} />
       <.input type="password" field={@form2[:password]} />
       <.input type="radio" field={@form2[:radio]} />
-      <.input type="range" field={@form2[:range]} />
-      <.input type="search" field={@form2[:search]} />
+      <.input type="range" field={@form2[:range]} class="pc-range-input" />
+      <.input type="search" field={@form2[:search]} clearable />
       <.input type="tel" field={@form2[:tel]} />
       <.input type="time" field={@form2[:time]} />
       <.input type="url" field={@form2[:url]} />

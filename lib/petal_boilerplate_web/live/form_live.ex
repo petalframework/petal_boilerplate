@@ -65,6 +65,7 @@ defmodule PetalBoilerplateWeb.FormLive do
       number: :integer,
       password: :string,
       radio: :string,
+      radio_card: :string,
       range: :integer,
       search: :string,
       tel: :string,

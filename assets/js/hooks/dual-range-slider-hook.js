@@ -22,7 +22,7 @@ const DualRangeSliderHook = {
       `[data-slider-id="${this.sliderId}"][data-slider-type="max"]`
     );
     const rangeElement = document.querySelector(
-      `[data-slider-id="${this.sliderId}"].slider-range`
+      `[data-slider-id="${this.sliderId}"].pc-slider-range`
     );
 
     if (!minSlider || !maxSlider || !rangeElement) {

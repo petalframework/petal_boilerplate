@@ -43,8 +43,7 @@ defmodule PetalBoilerplateWeb do
         layouts: [html: PetalBoilerplateWeb.Layouts]
 
       import Plug.Conn
-      import PetalBoilerplateWeb.Gettext
-
+      use Gettext, backend: PetalBoilerplateWeb.Gettext
       unquote(verified_routes())
     end
   end
@@ -86,8 +85,7 @@ defmodule PetalBoilerplateWeb do
       # Core UI components and translation
       import PetalBoilerplateWeb.CoreComponents
       use PetalComponents
-      import PetalBoilerplateWeb.Gettext
-
+      use Gettext, backend: PetalBoilerplateWeb.Gettext
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
 

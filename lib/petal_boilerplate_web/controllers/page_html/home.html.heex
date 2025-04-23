@@ -1,4 +1,84 @@
 <.container class="mt-12">
+  <!-- Carousel Examples -->
+  <div class="space-y-8">
+    <div>
+      <h2 class="pc-test-text">
+        Basic Carousel with Fade Transition
+      </h2>
+      <div class="h-96">
+        <.carousel id="carousel-1" transition_type="fade" indicator={true}>
+          <:slide
+            content_position="center"
+            title="Welcome to Petal"
+            description="A beautiful UI component library for Phoenix LiveView"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          />
+          <:slide
+            content_position="end"
+            title="Built with Tailwind CSS"
+            description="Modern utility-first CSS framework"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          />
+        </.carousel>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mb-4 text-2xl font-bold dark:text-white">
+        Carousel with Slide Transition and Autoplay
+      </h2>
+      <div class="h-96">
+        <.carousel
+          id="carousel-2"
+          transition_type="slide"
+          indicator={true}
+          autoplay={true}
+          autoplay_interval={3000}
+        >
+          <:slide
+            content_position="start"
+            title="Feature 1"
+            description="Amazing features for your application"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          />
+          <:slide
+            content_position="center"
+            title="Feature 2"
+            description="Built with modern technologies"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          />
+          <:slide
+            content_position="end"
+            title="Feature 3"
+            description="Easy to customize and extend"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          />
+        </.carousel>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mb-4 text-2xl font-bold">Carousel with Navigation Links</h2>
+      <div class="h-96">
+        <.carousel id="carousel-3" transition_type="fade" indicator={true}>
+          <:slide
+            content_position="center"
+            title="Click to Navigate"
+            description="This slide has a navigation link"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+            navigate="/components"
+          />
+          <:slide
+            content_position="end"
+            title="External Link"
+            description="This slide has an external link"
+            image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+            href="https://github.com/petalframework/petal_components"
+          />
+        </.carousel>
+      </div>
+    </div>
+  </div>
   <.h2 underline label="Containers" />
   <.container
     max_width="full"

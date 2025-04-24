@@ -20,7 +20,37 @@ const CarouselHook = {
       slide.style.width = "100%";
       slide.style.height = "100%";
       slide.style.transition = `opacity ${this.transitionDuration}ms ease-in-out, transform ${this.transitionDuration}ms ease-in-out`;
+      
+      // Add styles for carousel images
+      const imageWrapper = slide.querySelector('.pc-carousel__image-wrapper');
+      if (imageWrapper) {
+        imageWrapper.style.width = "100%";
+        imageWrapper.style.height = "100%";
+        imageWrapper.style.position = "absolute";
+        imageWrapper.style.top = "0";
+        imageWrapper.style.left = "0";
+        imageWrapper.style.zIndex = "0";
+        
+        const image = imageWrapper.querySelector('.pc-carousel__image');
+        if (image) {
+          image.style.width = "100%";
+          image.style.height = "100%";
+          image.style.objectFit = "cover";
+        }
+      }
+      
+      // Style carousel links
+      const link = slide.querySelector('.pc-carousel__link');
+      if (link) {
+        link.style.display = "block";
+        link.style.width = "100%";
+        link.style.height = "100%";
+        link.style.position = "relative";
+        link.style.zIndex = "5";
+        link.style.cursor = "pointer";
+      }
 
+      // Handle active/inactive state
       if (index === this.activeIndex) {
         slide.classList.add("pc-carousel__slide--active");
         slide.style.opacity = "1";

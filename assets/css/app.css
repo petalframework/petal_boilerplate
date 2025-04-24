@@ -111,8 +111,17 @@
     @apply relative w-full h-full;
   }
 
+  .pc-carousel__image-wrapper {
+    @apply absolute inset-0 z-0;
+  }
+
+  .pc-carousel__image {
+    @apply w-full h-full object-cover;
+  }
+
   .pc-carousel__content {
-    @apply absolute inset-0 flex items-center justify-center;
+    @apply absolute inset-0 flex items-center justify-center z-10;
+    background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
   }
 
   .pc-carousel__content-wrapper {
@@ -120,11 +129,15 @@
   }
 
   .pc-carousel__title {
-    @apply text-4xl font-bold text-gray-800;
+    @apply text-4xl font-bold text-white;
   }
 
   .pc-carousel__description {
-    @apply text-xl text-gray-600;
+    @apply text-xl text-white;
+  }
+  
+  .pc-carousel__link {
+    @apply block w-full h-full no-underline;
   }
 
   .pc-carousel__indicators {

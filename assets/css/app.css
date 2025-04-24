@@ -137,7 +137,7 @@
   }
   
   .pc-carousel__link {
-    @apply block w-full h-full no-underline;
+    @apply block w-full h-full no-underline absolute inset-0 z-20 cursor-pointer;
   }
 
   .pc-carousel__indicators {

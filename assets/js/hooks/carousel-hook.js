@@ -45,8 +45,10 @@ const CarouselHook = {
         link.style.display = "block";
         link.style.width = "100%";
         link.style.height = "100%";
-        link.style.position = "relative";
-        link.style.zIndex = "5";
+        link.style.position = "absolute";
+        link.style.top = "0";
+        link.style.left = "0";
+        link.style.zIndex = "20";
         link.style.cursor = "pointer";
       }
 

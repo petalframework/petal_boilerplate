@@ -19,7 +19,13 @@ const CarouselHook = {
       slide.style.left = "0";
       slide.style.width = "100%";
       slide.style.height = "100%";
-      slide.style.transition = `opacity ${this.transitionDuration}ms ease-in-out, transform ${this.transitionDuration}ms ease-in-out`;
+      
+      // Set transition based on transition type
+      if (this.transitionType === "fade") {
+        slide.style.transition = `opacity ${this.transitionDuration}ms ease-in-out`;
+      } else {
+        slide.style.transition = `transform ${this.transitionDuration}ms ease-in-out`;
+      }
       
       // Add styles for carousel images
       const imageWrapper = slide.querySelector('.pc-carousel__image-wrapper');
@@ -167,13 +173,16 @@ const CarouselHook = {
       // Slide transition
       const direction = newIndex > this.activeIndex ? 1 : -1;
 
+      // Make sure opacity is set to 1 for both slides during slide transitions
+      currentSlide.style.opacity = "1";
+      nextSlide.style.opacity = "1";
+
       // Layering: current below next
       currentSlide.style.zIndex = "1";
       nextSlide.style.zIndex = "2";
 
       // Position the next slide off-screen
       nextSlide.style.transform = `translateX(${direction * 100}%)`;
-      nextSlide.style.opacity = "1";
 
       // Force reflow to apply starting position
       nextSlide.offsetHeight;

@@ -69,7 +69,7 @@
   }
 
   .pc-carousel__slide {
-    @apply absolute top-0 left-0 w-full h-full transition-all duration-500 ease-in-out bg-white;
+    @apply absolute top-0 left-0 w-full h-full bg-white;
     will-change: transform, opacity;
   }
 
@@ -116,16 +116,16 @@
   }
 
   .pc-carousel__image {
-    @apply w-full h-full object-cover;
+    @apply object-cover w-full h-full;
   }
 
   .pc-carousel__content {
-    @apply absolute inset-0 flex items-center justify-center z-10;
+    @apply absolute inset-0 z-10 flex items-center justify-center;
     background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
   }
 
   .pc-carousel__content-wrapper {
-    @apply flex flex-col items-center justify-center gap-5 p-8 text-center;
+    @apply flex flex-col w-full gap-5 p-8 sm:p-24;
   }
 
   .pc-carousel__title {
@@ -135,9 +135,9 @@
   .pc-carousel__description {
     @apply text-xl text-white;
   }
-  
+
   .pc-carousel__link {
-    @apply block w-full h-full no-underline absolute inset-0 z-20 cursor-pointer;
+    @apply absolute inset-0 z-20 block w-full h-full no-underline cursor-pointer;
   }
 
   .pc-carousel__indicators {

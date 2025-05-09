@@ -10,72 +10,11 @@ const CarouselHook = {
       parseInt(this.el.dataset.transitionDuration) || 500;
     this.autoplayTimer = null;
     this.isTransitioning = false;
-    this.navigationMethod = null;
 
     // Initialize slides
-    this.slides.forEach((slide, index) => {
-      slide.style.position = "absolute";
-      slide.style.top = "0";
-      slide.style.left = "0";
-      slide.style.width = "100%";
-      slide.style.height = "100%";
-      
-      // Set transition based on transition type
-      if (this.transitionType === "fade") {
-        slide.style.transition = `opacity ${this.transitionDuration}ms ease-in-out`;
-      } else {
-        slide.style.transition = `transform ${this.transitionDuration}ms ease-in-out`;
-      }
-      
-      // Add styles for carousel images
-      const imageWrapper = slide.querySelector('.pc-carousel__image-wrapper');
-      if (imageWrapper) {
-        imageWrapper.style.width = "100%";
-        imageWrapper.style.height = "100%";
-        imageWrapper.style.position = "absolute";
-        imageWrapper.style.top = "0";
-        imageWrapper.style.left = "0";
-        imageWrapper.style.zIndex = "0";
-        
-        const image = imageWrapper.querySelector('.pc-carousel__image');
-        if (image) {
-          image.style.width = "100%";
-          image.style.height = "100%";
-          image.style.objectFit = "cover";
-        }
-      }
-      
-      // Style carousel links
-      const link = slide.querySelector('.pc-carousel__link');
-      if (link) {
-        link.style.display = "block";
-        link.style.width = "100%";
-        link.style.height = "100%";
-        link.style.position = "absolute";
-        link.style.top = "0";
-        link.style.left = "0";
-        link.style.zIndex = "20";
-        link.style.cursor = "pointer";
-      }
-
-      // Handle active/inactive state
-      if (index === this.activeIndex) {
-        slide.classList.add("pc-carousel__slide--active");
-        slide.style.opacity = "1";
-        slide.style.zIndex = "1";
-        // Only set transform for slide transition
-        if (this.transitionType === "slide") {
-          slide.style.transform = "translateX(0)";
-        }
-      } else {
-        slide.classList.add("pc-carousel__slide--inactive");
-        slide.style.opacity = "0";
-        slide.style.zIndex = "0";
-        if (this.transitionType === "slide") {
-          slide.style.transform = "translateX(100%)";
-        }
-      }
-    });
+    for (let i = 0; i < this.slides.length; i++) {
+      this.setupSlide(this.slides[i], i);
+    }
 
     this.setupNavigation();
     this.setupIndicators();
@@ -91,20 +30,84 @@ const CarouselHook = {
     }
   },
 
+  setupSlide(slide, index) {
+    slide.style.position = "absolute";
+    slide.style.top = "0";
+    slide.style.left = "0";
+    slide.style.width = "100%";
+    slide.style.height = "100%";
+
+    // Set transition based on transition type
+    if (this.transitionType === "fade") {
+      slide.style.transition = `opacity ${this.transitionDuration}ms ease-in-out`;
+    } else {
+      slide.style.transition = `transform ${this.transitionDuration}ms ease-in-out`;
+    }
+
+    // Add styles for carousel images
+    const imageWrapper = slide.querySelector(".pc-carousel__image-wrapper");
+    if (imageWrapper) {
+      imageWrapper.style.width = "100%";
+      imageWrapper.style.height = "100%";
+      imageWrapper.style.position = "absolute";
+      imageWrapper.style.top = "0";
+      imageWrapper.style.left = "0";
+      imageWrapper.style.zIndex = "0";
+
+      const image = imageWrapper.querySelector(".pc-carousel__image");
+      if (image) {
+        image.style.width = "100%";
+        image.style.height = "100%";
+        image.style.objectFit = "cover";
+      }
+    }
+
+    // Style carousel links
+    const link = slide.querySelector(".pc-carousel__link");
+    if (link) {
+      link.style.display = "block";
+      link.style.width = "100%";
+      link.style.height = "100%";
+      link.style.position = "absolute";
+      link.style.top = "0";
+      link.style.left = "0";
+      link.style.zIndex = "20";
+      link.style.cursor = "pointer";
+    }
+
+    // Handle active/inactive state
+    if (index === this.activeIndex) {
+      slide.classList.add("pc-carousel__slide--active");
+      slide.style.opacity = "1";
+      slide.style.zIndex = "10";
+      // Only set transform for slide transition
+      if (this.transitionType === "slide") {
+        slide.style.transform = "translateX(0)";
+      }
+    } else {
+      slide.classList.add("pc-carousel__slide--inactive");
+      slide.style.opacity = "0";
+      slide.style.zIndex = "1";
+      if (this.transitionType === "slide") {
+        // Position inactive slides off-screen
+        const direction = index < this.activeIndex ? -1 : 1;
+        slide.style.transform = `translateX(${direction * 100}%)`;
+      }
+    }
+  },
+
   setupNavigation() {
     const prevButton = this.el.querySelector(`#${this.id}-carousel-prev`);
     const nextButton = this.el.querySelector(`#${this.id}-carousel-next`);
 
     if (prevButton) {
       prevButton.addEventListener("click", () => {
-        this.navigationMethod = "prev";
         this.prevSlide();
       });
     }
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
-        this.navigationMethod = "next";
         this.nextSlide();
       });
     }
@@ -114,7 +117,6 @@ const CarouselHook = {
     const indicators = this.el.querySelectorAll(".pc-carousel__indicator");
     indicators.forEach((indicator, index) => {
       indicator.addEventListener("click", () => {
-        this.navigationMethod = "indicator";
         this.goToSlide(index);
       });
       if (index === this.activeIndex) {
@@ -125,7 +127,6 @@ const CarouselHook = {
 
   startAutoplay() {
     this.autoplayTimer = setInterval(() => {
-      this.navigationMethod = "next";
       this.nextSlide();
     }, this.autoplayInterval);
   },
@@ -141,16 +142,16 @@ const CarouselHook = {
     if (this.isTransitioning) return;
     const newIndex =
       (this.activeIndex - 1 + this.slides.length) % this.slides.length;
-    this.goToSlide(newIndex);
+    this.goToSlide(newIndex, -1);
   },
 
   nextSlide() {
     if (this.isTransitioning) return;
     const newIndex = (this.activeIndex + 1) % this.slides.length;
-    this.goToSlide(newIndex);
+    this.goToSlide(newIndex, 1);
   },
 
-  goToSlide(newIndex) {
+  goToSlide(newIndex, direction) {
     if (newIndex === this.activeIndex || this.isTransitioning) return;
 
     this.isTransitioning = true;
@@ -165,32 +166,44 @@ const CarouselHook = {
 
     if (this.transitionType === "fade") {
       // Fade transition
-      currentSlide.style.opacity = "0";
-      currentSlide.style.zIndex = "0";
+      currentSlide.style.zIndex = "5"; // Lower than next but still visible
+      nextSlide.style.zIndex = "10"; // On top of current
+      currentSlide.style.opacity = "1";
+      nextSlide.style.opacity = "0";
+      void nextSlide.offsetWidth;
       nextSlide.style.opacity = "1";
-      nextSlide.style.zIndex = "1";
-    } else {
+    } else if (this.transitionType === "slide") {
       // Slide transition
-      const direction = newIndex > this.activeIndex ? 1 : -1;
+      if (!direction) {
+        direction = newIndex > this.activeIndex ? 1 : -1;
+      }
 
       // Make sure opacity is set to 1 for both slides during slide transitions
+      currentSlide.style.zIndex = "5";
+      nextSlide.style.zIndex = "10";
       currentSlide.style.opacity = "1";
       nextSlide.style.opacity = "1";
 
-      // Layering: current below next
-      currentSlide.style.zIndex = "1";
-      nextSlide.style.zIndex = "2";
-
-      // Position the next slide off-screen
+      // Position next slide off-screen (without transition)
+      nextSlide.style.transition = "none";
       nextSlide.style.transform = `translateX(${direction * 100}%)`;
 
-      // Force reflow to apply starting position
-      nextSlide.offsetHeight;
+      // Force browser to recognize the position before animation
+      void nextSlide.offsetWidth;
 
-      // Animate: current slides out, next slides in
+      // Re-enable transition on next slide
+      nextSlide.style.transition = `transform ${this.transitionDuration}ms ease-in-out`;
+
+      // Move both slides
       currentSlide.style.transform = `translateX(${-direction * 100}%)`;
       nextSlide.style.transform = "translateX(0)";
     }
+
+    // Update classes (but don't change visibility yet - that happens after transition)
+    currentSlide.classList.remove("pc-carousel__slide--active");
+    currentSlide.classList.add("pc-carousel__slide--inactive");
+    nextSlide.classList.remove("pc-carousel__slide--inactive");
+    nextSlide.classList.add("pc-carousel__slide--active");
 
     // Update indicators
     const indicators = this.el.querySelectorAll(".pc-carousel__indicator");
@@ -209,11 +222,23 @@ const CarouselHook = {
       // Reset positions for non-active slides
       this.slides.forEach((slide, index) => {
         if (index !== this.activeIndex) {
+          // Hide and reset all inactive slides
           slide.style.opacity = "0";
-          slide.style.zIndex = "0";
+          slide.style.zIndex = "1";
+
           if (this.transitionType === "slide") {
-            slide.style.transform = "translateX(100%)";
+            // Reset position without animation
+            // const direction = index < this.activeIndex ? -1 : 1;
+            slide.style.transition = "none";
+            slide.style.transform = `translateX(${direction * 100}%)`;
+            // Force reflow to apply immediate change
+            void slide.offsetWidth;
+            // Restore transition
+            slide.style.transition = `transform ${this.transitionDuration}ms ease-in-out`;
           }
+        } else {
+          // Ensure active slide stays visible
+          slide.style.zIndex = "10";
         }
       });
 
@@ -223,7 +248,6 @@ const CarouselHook = {
       }
 
       this.isTransitioning = false;
-      this.navigationMethod = null;
     }, this.transitionDuration);
   },
 };

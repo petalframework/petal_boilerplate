@@ -38,12 +38,24 @@ const CarouselHook = {
 
     if (this.autoplay) {
       this.startAutoplay();
+
+      // Pause on hover
+      this.el.addEventListener("mouseenter", () => {
+        this.stopAutoplay();
+      });
+
+      this.el.addEventListener("mouseleave", () => {
+        this.startAutoplay();
+      });
     }
   },
 
   destroyed() {
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   },
 
@@ -53,6 +65,8 @@ const CarouselHook = {
     this.slideWrapper.style.overflow = "auto";
     this.slideWrapper.style.scrollSnapType = "x mandatory";
     this.slideWrapper.style.scrollbarWidth = "none"; // Firefox
+    this.slideWrapper.style.width = "100%";
+    this.slideWrapper.style.maxWidth = "100%";
 
     // Hide webkit scrollbar
     const style = document.createElement("style");
@@ -63,31 +77,36 @@ const CarouselHook = {
     `;
     document.head.appendChild(style);
 
-    // Set up each slide for scroll snap
-    this.slides.forEach((slide, index) => {
-      slide.style.flex = "0 0 auto";
-      slide.style.scrollSnapAlign = "center";
-      slide.style.width = "100%";
-    });
-
-    // Update slide width first
+    // Update slide width before setting up slides
+    // This ensures we have the correct container width
     this.updateSlideWidth();
     console.log(
       `[Carousel ${this.id}] Slide width: ${this.slideWidth}px, Space: ${this.spaceBtwSlides}px`
     );
 
-    // For now, let's disable infinite scrolling and just get basic scrolling working
-    // this.setupInfiniteScrolling();
+    // Set up each slide for scroll snap with explicit width
+    this.slides.forEach((slide, index) => {
+      slide.style.flex = `0 0 ${this.slideWidth}px`;
+      slide.style.scrollSnapAlign = "center";
+      slide.style.width = `${this.slideWidth}px`;
+      slide.style.minWidth = `${this.slideWidth}px`;
+      slide.style.maxWidth = `${this.slideWidth}px`;
+    });
 
-    // Set up scroll event listener (simplified for now)
-    // this.setupScrollListener();
+    // Set up infinite scrolling
+    this.setupInfiniteScrolling();
+
+    // Set up scroll event listener
+    this.setupScrollListener();
 
     // Set up resize observer
     this.setupResizeObserver();
 
-    // Don't initialize position yet - let it start at 0 naturally
-    // this.goto(0);
-    this.slideWrapper.classList.add("smooth-scroll");
+    // Initialize to first real slide (after cloned last slide)
+    setTimeout(() => {
+      this.goto(0, false); // Use goto with smooth=false for initialization
+      this.updateIndicators();
+    }, 50);
   },
 
   initFadeCarousel() {
@@ -123,17 +142,27 @@ const CarouselHook = {
     );
   },
 
-  goto(index) {
-    // Simple scrolling without infinite scroll for now
-    const scrollPosition = this.slideWidth * index;
+  goto(index, smooth = true) {
+    // Account for cloned slides - add offset for the cloned last slide at the beginning
+    const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (index + this.n_slidesCloned);
     console.log(
-      `[Carousel ${this.id}] goto(${index}), slideWidth: ${this.slideWidth}, scrollTo: ${scrollPosition}px`
+      `[Carousel ${this.id}] goto(${index}), slideWidth: ${this.slideWidth}, scrollTo: ${scrollPosition}px, smooth: ${smooth}`
     );
     console.log(
       `[Carousel ${this.id}] Current scrollLeft before goto:`,
       this.slideWrapper.scrollLeft
     );
-    this.slideWrapper.scrollTo(scrollPosition, 0);
+
+    if (smooth) {
+      this.slideWrapper.scrollTo({
+        left: scrollPosition,
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      this.slideWrapper.scrollTo(scrollPosition, 0);
+    }
+
     console.log(
       `[Carousel ${this.id}] Current scrollLeft after goto:`,
       this.slideWrapper.scrollLeft
@@ -146,17 +175,21 @@ const CarouselHook = {
     // Clone first slide and append to end
     const firstSlideClone = this.slides[0].cloneNode(true);
     firstSlideClone.setAttribute("aria-hidden", "true");
-    firstSlideClone.style.flex = "0 0 auto";
+    firstSlideClone.style.flex = `0 0 ${this.slideWidth}px`;
     firstSlideClone.style.scrollSnapAlign = "center";
-    firstSlideClone.style.width = "100%";
+    firstSlideClone.style.width = `${this.slideWidth}px`;
+    firstSlideClone.style.minWidth = `${this.slideWidth}px`;
+    firstSlideClone.style.maxWidth = `${this.slideWidth}px`;
     this.slideWrapper.append(firstSlideClone);
 
     // Clone last slide and prepend to beginning
     const lastSlideClone = this.slides[this.n_slides - 1].cloneNode(true);
     lastSlideClone.setAttribute("aria-hidden", "true");
-    lastSlideClone.style.flex = "0 0 auto";
+    lastSlideClone.style.flex = `0 0 ${this.slideWidth}px`;
     lastSlideClone.style.scrollSnapAlign = "center";
-    lastSlideClone.style.width = "100%";
+    lastSlideClone.style.width = `${this.slideWidth}px`;
+    lastSlideClone.style.minWidth = `${this.slideWidth}px`;
+    lastSlideClone.style.maxWidth = `${this.slideWidth}px`;
     this.slideWrapper.prepend(lastSlideClone);
 
     console.log(
@@ -168,10 +201,11 @@ const CarouselHook = {
   setupScrollListener() {
     let scrollTimer;
     this.slideWrapper.addEventListener("scroll", () => {
-      // Reset nav dots
-      this.navdots.forEach((navdot) => {
-        navdot.classList.remove("opacity-100");
-      });
+      // Update active index based on current scroll position
+      const currentIndex = this.index_slideCurrent();
+      if (currentIndex >= 0 && currentIndex < this.n_slides) {
+        this.activeIndex = currentIndex;
+      }
 
       // Handle infinite scrolling
       if (scrollTimer) clearTimeout(scrollTimer);
@@ -192,37 +226,28 @@ const CarouselHook = {
         }
       }, 100);
 
-      // Update nav dots
-      this.updateNavdot();
+      // Update indicators
+      this.updateIndicators();
     });
   },
 
   rewind() {
-    this.slideWrapper.classList.remove("smooth-scroll");
     setTimeout(() => {
-      this.slideWrapper.scrollTo(
-        (this.slideWidth + this.spaceBtwSlides) * this.n_slidesCloned,
-        0
-      );
-      this.slideWrapper.classList.add("smooth-scroll");
+      this.goto(0, false); // Instant jump to first slide
     }, 100);
   },
 
   forward() {
-    this.slideWrapper.classList.remove("smooth-scroll");
     setTimeout(() => {
-      this.slideWrapper.scrollTo(
-        (this.slideWidth + this.spaceBtwSlides) *
-          (this.n_slides - 1 + this.n_slidesCloned),
-        0
-      );
-      this.slideWrapper.classList.add("smooth-scroll");
+      this.goto(this.n_slides - 1, false); // Instant jump to last slide
     }, 100);
   },
 
   updateSlideWidth() {
-    if (this.slideWrapper && this.slides[0]) {
-      this.slideWidth = this.slides[0].offsetWidth;
+    if (this.slideWrapper) {
+      // Use the carousel container width, not the slide width
+      // This ensures we get the constrained width, not the expanded slide width
+      this.slideWidth = this.carouselContainer.offsetWidth;
       // For CSS Scroll Snap, we don't need gaps between slides
       this.spaceBtwSlides = 0;
     }
@@ -231,7 +256,20 @@ const CarouselHook = {
   setupResizeObserver() {
     if (typeof ResizeObserver !== "undefined") {
       this.resizeObserver = new ResizeObserver(() => {
+        const currentIndex = this.activeIndex;
         this.updateSlideWidth();
+        // Reapply widths to all slides after resize
+        if (this.transitionType === "slide") {
+          const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
+          allSlides.forEach((slide) => {
+            slide.style.flex = `0 0 ${this.slideWidth}px`;
+            slide.style.width = `${this.slideWidth}px`;
+            slide.style.minWidth = `${this.slideWidth}px`;
+            slide.style.maxWidth = `${this.slideWidth}px`;
+          });
+
+          this.goto(currentIndex, false); // Instant reposition after resize
+        }
       });
       this.resizeObserver.observe(this.slideWrapper);
     }
@@ -248,6 +286,11 @@ const CarouselHook = {
       prevButton.addEventListener("click", () => {
         console.log(`[Carousel ${this.id}] Previous button clicked`);
         this.prevSlide();
+        // Reset autoplay on manual interaction
+        if (this.autoplay) {
+          this.stopAutoplay();
+          this.startAutoplay();
+        }
       });
     }
 
@@ -255,6 +298,11 @@ const CarouselHook = {
       nextButton.addEventListener("click", () => {
         console.log(`[Carousel ${this.id}] Next button clicked`);
         this.nextSlide();
+        // Reset autoplay on manual interaction
+        if (this.autoplay) {
+          this.stopAutoplay();
+          this.startAutoplay();
+        }
       });
     }
   },
@@ -263,24 +311,22 @@ const CarouselHook = {
     this.navdots.forEach((indicator, index) => {
       indicator.addEventListener("click", () => {
         if (this.transitionType === "slide") {
+          this.activeIndex = index;
           this.goto(index);
+          this.updateIndicators();
         } else {
           this.goToSlide(index);
+        }
+        // Reset autoplay on manual interaction
+        if (this.autoplay) {
+          this.stopAutoplay();
+          this.startAutoplay();
         }
       });
     });
 
     // Set initial indicator state
     this.updateIndicators();
-  },
-
-  updateNavdot() {
-    const c = this.index_slideCurrent();
-    if (c < 0 || c >= this.n_slides) return; // Skip for cloned slides
-
-    if (this.navdots[c]) {
-      this.navdots[c].classList.add("opacity-100");
-    }
   },
 
   startAutoplay() {
@@ -301,12 +347,24 @@ const CarouselHook = {
       `[Carousel ${this.id}] prevSlide called, transitionType: ${this.transitionType}`
     );
     if (this.transitionType === "slide") {
-      // Simple previous slide logic
-      this.activeIndex = Math.max(0, this.activeIndex - 1);
-      console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
-      this.goto(this.activeIndex);
+      if (this.activeIndex === 0) {
+        // At first slide, scroll to cloned last slide (position -1 in our offset system)
+        // This will trigger the forward() function to instantly reposition
+        const scrollPosition = 0; // Scroll to the very beginning (cloned last slide)
+        this.slideWrapper.scrollTo({
+          left: scrollPosition,
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        // Normal previous slide
+        this.activeIndex = this.activeIndex - 1;
+        console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
+        this.goto(this.activeIndex);
+      }
     } else {
-      this.goToSlide(this.activeIndex - 1);
+      const newIndex = (this.activeIndex - 1 + this.n_slides) % this.n_slides;
+      this.goToSlide(newIndex);
     }
   },
 
@@ -315,12 +373,24 @@ const CarouselHook = {
       `[Carousel ${this.id}] nextSlide called, transitionType: ${this.transitionType}`
     );
     if (this.transitionType === "slide") {
-      // Simple next slide logic
-      this.activeIndex = Math.min(this.n_slides - 1, this.activeIndex + 1);
-      console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
-      this.goto(this.activeIndex);
+      if (this.activeIndex === this.n_slides - 1) {
+        // At last slide, scroll to cloned first slide (after all real slides)
+        // This will trigger the rewind() function to instantly reposition
+        const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned);
+        this.slideWrapper.scrollTo({
+          left: scrollPosition,
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        // Normal next slide
+        this.activeIndex = this.activeIndex + 1;
+        console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
+        this.goto(this.activeIndex);
+      }
     } else {
-      this.goToSlide(this.activeIndex + 1);
+      const newIndex = (this.activeIndex + 1) % this.n_slides;
+      this.goToSlide(newIndex);
     }
   },
 
@@ -355,11 +425,6 @@ const CarouselHook = {
         currentSlide.style.opacity = "0";
         currentSlide.style.zIndex = "1";
         this.isTransitioning = false;
-
-        if (this.autoplay) {
-          this.stopAutoplay();
-          this.startAutoplay();
-        }
       }, this.transitionDuration);
     }
 

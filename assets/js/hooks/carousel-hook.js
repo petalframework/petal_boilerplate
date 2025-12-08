@@ -466,12 +466,12 @@ const CarouselHook = {
       // Force reflow to ensure opacity 0 is applied before transition
       void nextSlide.offsetWidth;
 
-      // Start fade in
+      // Start fade in AND fade out simultaneously
       nextSlide.style.opacity = "1";
+      currentSlide.style.opacity = "0";
 
-      // Fade out current slide and clean up after transition
+      // Clean up after transition completes
       setTimeout(() => {
-        currentSlide.style.opacity = "0";
         currentSlide.style.zIndex = "1";
         this.isTransitioning = false;
       }, this.transitionDuration);

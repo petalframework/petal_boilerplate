@@ -19,11 +19,13 @@ const CarouselHook = {
     this.transitionType = this.el.dataset.transitionType || "fade";
     this.autoplay = this.el.dataset.autoplay === "true";
     this.autoplayInterval = parseInt(this.el.dataset.autoplayInterval) || 5000;
-    this.slidesPerView = parseInt(this.el.dataset.slidesPerView) || 1;
+    this.slidesPerViewDesktop = parseInt(this.el.dataset.slidesPerView) || 1;
+    this.slidesPerView = this.getResponsiveSlidesPerView();
     this.gap = this.el.dataset.gap || "1rem";
+    this.swipe = this.el.dataset.swipe !== "false"; // Default to true
 
     console.log(`[Carousel ${this.id}] transitionType: ${this.transitionType}`);
-    console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}`);
+    console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}, swipe: ${this.swipe}`);
 
     // Parameters for CSS Scroll Snap approach
     this.n_slides = this.slides.length;
@@ -70,6 +72,28 @@ const CarouselHook = {
     }
   },
 
+  getResponsiveSlidesPerView() {
+    // If only 1 slide per view on desktop, no need for responsive logic
+    if (this.slidesPerViewDesktop <= 1) {
+      return 1;
+    }
+
+    const width = window.innerWidth;
+
+    // Mobile portrait: 1 slide
+    if (width < 768) {
+      return 1;
+    }
+    // Tablet and mobile landscape: 2 slides
+    else if (width < 1024) {
+      return Math.min(2, this.slidesPerViewDesktop);
+    }
+    // Desktop: use the configured value
+    else {
+      return this.slidesPerViewDesktop;
+    }
+  },
+
   initScrollSnapCarousel() {
     // Set up CSS Scroll Snap carousel (like the Medium article)
     this.slideWrapper.style.display = "flex";
@@ -112,6 +136,11 @@ const CarouselHook = {
 
     // Set up resize observer
     this.setupResizeObserver();
+
+    // Set up mouse drag support (only if swipe is enabled)
+    if (this.swipe) {
+      this.setupMouseDrag();
+    }
 
     // Initialize to first real slide (after cloned last slide)
     setTimeout(() => {
@@ -320,7 +349,33 @@ const CarouselHook = {
     if (typeof ResizeObserver !== "undefined") {
       this.resizeObserver = new ResizeObserver(() => {
         const currentIndex = this.activeIndex;
-        this.updateSlideWidth();
+
+        // Recalculate responsive slides per view
+        const newSlidesPerView = this.getResponsiveSlidesPerView();
+        const slidesPerViewChanged = newSlidesPerView !== this.slidesPerView;
+
+        if (slidesPerViewChanged) {
+          console.log(`[Carousel ${this.id}] Slides per view changed: ${this.slidesPerView} -> ${newSlidesPerView}`);
+          this.slidesPerView = newSlidesPerView;
+
+          // Need to rebuild clones for new slides per view
+          if (this.transitionType === "slide") {
+            // Remove all cloned slides
+            const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
+            allSlides.forEach((slide) => {
+              if (slide.getAttribute("aria-hidden") === "true") {
+                slide.remove();
+              }
+            });
+
+            // Recalculate and setup
+            this.updateSlideWidth();
+            this.setupInfiniteScrolling();
+          }
+        } else {
+          this.updateSlideWidth();
+        }
+
         // Reapply widths to all slides after resize
         if (this.transitionType === "slide") {
           const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
@@ -336,6 +391,123 @@ const CarouselHook = {
       });
       this.resizeObserver.observe(this.slideWrapper);
     }
+  },
+
+  setupMouseDrag() {
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let currentX = 0;
+    let animationFrame = null;
+
+    // Add cursor style
+    this.slideWrapper.style.cursor = 'grab';
+
+    // Smooth scrolling with requestAnimationFrame
+    const smoothScroll = () => {
+      if (!isDragging) return;
+
+      const x = currentX;
+      const walk = (x - startX) * 1.5; // Adjusted multiplier for smooth feel
+      this.slideWrapper.scrollLeft = scrollLeft - walk;
+
+      animationFrame = requestAnimationFrame(smoothScroll);
+    };
+
+    const handleMouseDown = (e) => {
+      // Don't start drag on buttons or links
+      if (e.target.closest('button') || e.target.closest('a')) {
+        return;
+      }
+
+      isDragging = true;
+      this.slideWrapper.style.cursor = 'grabbing';
+      this.slideWrapper.style.userSelect = 'none'; // Prevent text selection during drag
+      this.slideWrapper.style.scrollSnapType = 'none'; // Disable snap during drag
+
+      startX = e.pageX - this.slideWrapper.offsetLeft;
+      scrollLeft = this.slideWrapper.scrollLeft;
+      currentX = startX;
+
+      // Start smooth scrolling loop
+      animationFrame = requestAnimationFrame(smoothScroll);
+
+      // Pause autoplay during drag
+      if (this.autoplay) {
+        this.stopAutoplay();
+      }
+    };
+
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+
+      e.preventDefault();
+      currentX = e.pageX - this.slideWrapper.offsetLeft;
+    };
+
+    const handleMouseUp = () => {
+      if (!isDragging) return;
+
+      isDragging = false;
+      this.slideWrapper.style.cursor = 'grab';
+      this.slideWrapper.style.userSelect = '';
+      this.slideWrapper.style.scrollSnapType = 'x mandatory'; // Re-enable snap
+
+      // Cancel animation frame
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+
+      // Resume autoplay after drag
+      if (this.autoplay) {
+        this.startAutoplay();
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (!isDragging) return;
+
+      isDragging = false;
+      this.slideWrapper.style.cursor = 'grab';
+      this.slideWrapper.style.userSelect = '';
+      this.slideWrapper.style.scrollSnapType = 'x mandatory'; // Re-enable snap
+
+      // Cancel animation frame
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+
+      // Resume autoplay if we were dragging
+      if (this.autoplay) {
+        this.startAutoplay();
+      }
+    };
+
+    // Add event listeners
+    this.slideWrapper.addEventListener('mousedown', handleMouseDown);
+    this.slideWrapper.addEventListener('mousemove', handleMouseMove);
+    this.slideWrapper.addEventListener('mouseup', handleMouseUp);
+    this.slideWrapper.addEventListener('mouseleave', handleMouseLeave);
+
+    // Prevent drag on links and images
+    this.slideWrapper.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+    });
+
+    // Prevent click events if there was significant dragging
+    let clickStartX = 0;
+    this.slideWrapper.addEventListener('mousedown', (e) => {
+      clickStartX = e.pageX;
+    });
+    this.slideWrapper.addEventListener('click', (e) => {
+      const clickEndX = e.pageX;
+      if (Math.abs(clickEndX - clickStartX) > 5) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
   },
 
   setupNavigation() {

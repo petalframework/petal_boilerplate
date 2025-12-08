@@ -236,7 +236,7 @@
     <div>
       <.h5 label="7. Multi-Slide Gallery View (3 slides visible, sides buttons)" />
       <.p class="mb-4 text-sm text-gray-500">
-        Shows 3 slides at once with rounded corners, gaps between slides, and navigation buttons on the sides
+        Responsive multi-slide gallery: 1 slide on mobile, 2 on tablet, 3 on desktop. Features rounded corners, gaps between slides, and navigation buttons on the sides.
       </.p>
       <.carousel
         id="carousel-7"
@@ -246,24 +246,37 @@
         slides_per_view={3}
         gap="1.5rem"
       >
-        <:slide
-          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
-        />
-        <:slide
-          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop"
-        />
-        <:slide
-          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=800&auto=format&fit=crop"
-        />
-        <:slide
-          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-        />
-        <:slide
-          image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-        />
-        <:slide
-          image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-        />
+        <:slide image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop" />
+        <:slide image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=800&auto=format&fit=crop" />
+        <:slide image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+      </.carousel>
+    </div>
+
+    <%!-- Example 8: Touch Swipe Enabled Gallery --%>
+    <div>
+      <.h5 label="8. Touch Swipe Gallery (2 slides visible, swipe enabled)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Responsive swipe-friendly carousel: 1 slide on mobile, 2 on tablet/desktop. Try swiping on touch devices or dragging with mouse! Features smooth momentum scrolling and snap-to-slide behavior.
+      </.p>
+      <.carousel
+        id="carousel-8"
+        transition_type="slide"
+        indicator={true}
+        button_style="below"
+        slides_per_view={2}
+        gap="1rem"
+        swipe={true}
+        autoplay={false}
+      >
+        <:slide image="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
+        <:slide image="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
       </.carousel>
     </div>
   </div>

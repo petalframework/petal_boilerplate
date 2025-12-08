@@ -1,36 +1,35 @@
 <.container class="mt-12">
-
- <div class="space-y-12">
- <div>
-    <.h5 label="Carousel with Slide Transition and Autoplay" />
-    <.carousel
-      id="carousel-2"
-      transition_type="slide"
-      indicator={true}
-      control={true}
-      autoplay={true}
-      autoplay_interval={3000}
-    >
-      <:slide
-        content_position="start"
-        title="Feature 1"
-        description="Built with modern technologies"
-        image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-      />
-      <:slide
-        content_position="center"
-        title="Feature 2"
-        description="Built with modern technologies"
-        image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      />
-      <:slide
-        content_position="end"
-        title="Feature 3"
-        description="Easy to customize and extend"
-        image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      />
-    </.carousel>
-  </div>
+  <div class="space-y-12">
+    <div>
+      <.h5 label="Carousel with Slide Transition and Autoplay" />
+      <.carousel
+        id="carousel-hero"
+        transition_type="fade"
+        indicator={false}
+        control={true}
+        autoplay={true}
+        autoplay_interval={3000}
+      >
+        <:slide
+          content_position="start"
+          title="Feature 1"
+          description="Built with modern technologies"
+          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Feature 2"
+          description="Built with modern technologies"
+          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+        <:slide
+          content_position="end"
+          title="Feature 3"
+          description="Easy to customize and extend"
+          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+      </.carousel>
+    </div>
     <%!-- Example 1: Overlay Buttons with Rounded Images --%>
     <div>
       <.h5 label="1. Overlay Buttons with Rounded Images (rounded-lg)" />
@@ -229,6 +228,41 @@
           description="This slide opens Petal Components on GitHub"
           image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           href="https://github.com/petalframework/petal_components"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 7: Multi-Slide Gallery View with Side Buttons --%>
+    <div>
+      <.h5 label="7. Multi-Slide Gallery View (3 slides visible, sides buttons)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Shows 3 slides at once with rounded corners, gaps between slides, and navigation buttons on the sides
+      </.p>
+      <.carousel
+        id="carousel-7"
+        transition_type="slide"
+        indicator={true}
+        button_style="sides"
+        slides_per_view={3}
+        gap="1.5rem"
+      >
+        <:slide
+          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+        />
+        <:slide
+          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop"
+        />
+        <:slide
+          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=800&auto=format&fit=crop"
+        />
+        <:slide
+          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        />
+        <:slide
+          image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        />
+        <:slide
+          image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
         />
       </.carousel>
     </div>

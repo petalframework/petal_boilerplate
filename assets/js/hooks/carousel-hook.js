@@ -19,15 +19,24 @@ const CarouselHook = {
     this.transitionType = this.el.dataset.transitionType || "fade";
     this.autoplay = this.el.dataset.autoplay === "true";
     this.autoplayInterval = parseInt(this.el.dataset.autoplayInterval) || 5000;
+    this.slidesPerView = parseInt(this.el.dataset.slidesPerView) || 1;
+    this.gap = this.el.dataset.gap || "1rem";
 
     console.log(`[Carousel ${this.id}] transitionType: ${this.transitionType}`);
+    console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}`);
 
     // Parameters for CSS Scroll Snap approach
     this.n_slides = this.slides.length;
-    this.n_slidesCloned = this.transitionType === "slide" ? 1 : 0;
+    // For multi-slide view with infinite loop, clone all slides on each side for seamless wrapping
+    // This allows scrolling in both directions through the loop
+    this.n_slidesCloned = this.transitionType === "slide" ? this.n_slides : 0;
     this.slideWidth = this.slides[0] ? this.slides[0].offsetWidth : 0;
     // For CSS Scroll Snap, we don't need gaps between slides
     this.spaceBtwSlides = 0;
+
+    // For infinite carousels, we cycle through all slides
+    // For non-infinite, the last position shows the last N slides
+    this.maxScrollIndex = this.n_slides - 1;
 
     if (this.transitionType === "slide") {
       this.initScrollSnapCarousel();
@@ -174,28 +183,35 @@ const CarouselHook = {
   setupInfiniteScrolling() {
     if (this.n_slides === 0) return;
 
-    // Clone first slide and append to end
-    const firstSlideClone = this.slides[0].cloneNode(true);
-    firstSlideClone.setAttribute("aria-hidden", "true");
-    firstSlideClone.style.flex = `0 0 ${this.slideWidth}px`;
-    firstSlideClone.style.scrollSnapAlign = "center";
-    firstSlideClone.style.width = `${this.slideWidth}px`;
-    firstSlideClone.style.minWidth = `${this.slideWidth}px`;
-    firstSlideClone.style.maxWidth = `${this.slideWidth}px`;
-    this.slideWrapper.append(firstSlideClone);
+    // Clone ALL slides and append to end for forward scrolling
+    for (let i = 0; i < this.n_slides; i++) {
+      const slideToClone = this.slides[i];
+      const clone = slideToClone.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.style.flex = `0 0 ${this.slideWidth}px`;
+      clone.style.scrollSnapAlign = "center";
+      clone.style.width = `${this.slideWidth}px`;
+      clone.style.minWidth = `${this.slideWidth}px`;
+      clone.style.maxWidth = `${this.slideWidth}px`;
+      this.slideWrapper.append(clone);
+    }
 
-    // Clone last slide and prepend to beginning
-    const lastSlideClone = this.slides[this.n_slides - 1].cloneNode(true);
-    lastSlideClone.setAttribute("aria-hidden", "true");
-    lastSlideClone.style.flex = `0 0 ${this.slideWidth}px`;
-    lastSlideClone.style.scrollSnapAlign = "center";
-    lastSlideClone.style.width = `${this.slideWidth}px`;
-    lastSlideClone.style.minWidth = `${this.slideWidth}px`;
-    lastSlideClone.style.maxWidth = `${this.slideWidth}px`;
-    this.slideWrapper.prepend(lastSlideClone);
+    // Clone ALL slides and prepend to beginning for backward scrolling
+    // Prepend in reverse order so they appear in correct sequence
+    for (let i = this.n_slides - 1; i >= 0; i--) {
+      const slideToClone = this.slides[i];
+      const clone = slideToClone.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.style.flex = `0 0 ${this.slideWidth}px`;
+      clone.style.scrollSnapAlign = "center";
+      clone.style.width = `${this.slideWidth}px`;
+      clone.style.minWidth = `${this.slideWidth}px`;
+      clone.style.maxWidth = `${this.slideWidth}px`;
+      this.slideWrapper.prepend(clone);
+    }
 
     console.log(
-      `[Carousel ${this.id}] Cloned slides added. Total slides in DOM:`,
+      `[Carousel ${this.id}] Cloned ${this.n_slides} slides on each side. Total slides in DOM:`,
       this.slideWrapper.children.length
     );
   },
@@ -216,17 +232,22 @@ const CarouselHook = {
 
       scrollTimer = setTimeout(() => {
         const scrollLeft = this.slideWrapper.scrollLeft;
-        const threshold = (this.slideWidth + this.spaceBtwSlides) * 0.5;
 
-        // Check if we're at the cloned last slide (beginning)
-        if (scrollLeft < threshold) {
+        // For multi-slide view, use position-based detection instead of threshold
+        // Calculate the current position index
+        const currentPosition = Math.round(scrollLeft / (this.slideWidth + this.spaceBtwSlides));
+
+        // Check if we're at or before the first real slide position
+        // Real slides start at position n_slidesCloned
+        if (currentPosition < this.n_slidesCloned) {
           this.forward();
         }
-        // Check if we're at the cloned first slide (end)
-        else if (scrollLeft > (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned) - threshold) {
+        // Check if we're at or after the last cloned slide position
+        // Cloned slides at end start at position (n_slidesCloned + n_slides)
+        else if (currentPosition >= this.n_slidesCloned + this.n_slides) {
           this.rewind();
         }
-      }, 150); // Increased delay to let smooth scroll finish
+      }, 100);
 
       // Update indicators
       this.updateIndicators();
@@ -240,7 +261,7 @@ const CarouselHook = {
 
     setTimeout(() => {
       this.goto(0, false); // Instant jump to first slide
-    }, 100);
+    }, 50); // Reduced delay for smoother transition
   },
 
   forward() {
@@ -250,16 +271,48 @@ const CarouselHook = {
 
     setTimeout(() => {
       this.goto(this.n_slides - 1, false); // Instant jump to last slide
-    }, 100);
+    }, 50); // Reduced delay for smoother transition
   },
 
   updateSlideWidth() {
     if (this.slideWrapper) {
-      // Use the carousel container width, not the slide width
-      // This ensures we get the constrained width, not the expanded slide width
-      this.slideWidth = this.carouselContainer.offsetWidth;
-      // For CSS Scroll Snap, we don't need gaps between slides
-      this.spaceBtwSlides = 0;
+      const containerWidth = this.carouselContainer.offsetWidth;
+
+      // Convert gap to pixels if needed
+      const gapInPx = this.parseGapToPixels(this.gap);
+
+      if (this.slidesPerView > 1) {
+        // Multi-slide view: calculate width per slide accounting for gaps
+        // Total gap space = (number of slides - 1) * gap
+        const totalGapSpace = (this.slidesPerView - 1) * gapInPx;
+        this.slideWidth = (containerWidth - totalGapSpace) / this.slidesPerView;
+        this.spaceBtwSlides = gapInPx;
+
+        // Set CSS custom property for gap
+        this.slideWrapper.style.setProperty('--carousel-gap', this.gap);
+      } else {
+        // Single slide view: full width, no gaps
+        this.slideWidth = containerWidth;
+        this.spaceBtwSlides = 0;
+      }
+    }
+  },
+
+  parseGapToPixels(gap) {
+    // Convert rem, em, or px values to pixels
+    if (gap.endsWith('rem')) {
+      const remValue = parseFloat(gap);
+      const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return remValue * rootFontSize;
+    } else if (gap.endsWith('em')) {
+      const emValue = parseFloat(gap);
+      const fontSize = parseFloat(getComputedStyle(this.el).fontSize);
+      return emValue * fontSize;
+    } else if (gap.endsWith('px')) {
+      return parseFloat(gap);
+    } else {
+      // Assume pixels if no unit
+      return parseFloat(gap) || 0;
     }
   },
 
@@ -371,9 +424,11 @@ const CarouselHook = {
       this.isTransitioning = true;
 
       if (this.activeIndex === 0) {
-        // At first slide, scroll to cloned last slide (position -1 in our offset system)
-        // This will trigger the forward() function to instantly reposition
-        const scrollPosition = 0; // Scroll to the very beginning (cloned last slide)
+        // At first slide, scroll LEFT to the cloned slides at the beginning
+        // Position (n_slidesCloned - 1) shows the last cloned slide with first real slides
+        // This creates the visual of going backwards to the previous loop
+        const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slidesCloned - 1);
+        console.log(`[Carousel ${this.id}] Scrolling left to position ${this.n_slidesCloned - 1} for prev loop`);
         this.slideWrapper.scrollTo({
           left: scrollPosition,
           top: 0,
@@ -410,9 +465,13 @@ const CarouselHook = {
     if (this.transitionType === "slide") {
       this.isTransitioning = true;
 
-      if (this.activeIndex === this.n_slides - 1) {
-        // At last slide, scroll to cloned first slide (after all real slides)
-        // This will trigger the rewind() function to instantly reposition
+      if (this.activeIndex >= this.n_slides - 1) {
+        // At last slide, smoothly scroll to the first slide position
+        // The goto function will handle scrolling to the position after all slides,
+        // which triggers the rewind() to seamlessly jump back to the real first slide
+        this.activeIndex = 0;
+        console.log(`[Carousel ${this.id}] Looping to first slide`);
+        // Scroll past all slides to trigger rewind
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned);
         this.slideWrapper.scrollTo({
           left: scrollPosition,

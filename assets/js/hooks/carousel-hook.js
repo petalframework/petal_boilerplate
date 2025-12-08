@@ -2,6 +2,8 @@ const CarouselHook = {
   mounted() {
     this.id = this.el.id;
     this.carouselContainer = this.el;
+    // Look for wrapper to support "below" button style
+    this.wrapper = this.el.closest('.pc-carousel-wrapper') || this.el;
     this.slideWrapper = this.el.querySelector(".pc-carousel__slides");
     this.slides = Array.from(this.el.querySelectorAll(".pc-carousel__slide"));
     this.navdots = Array.from(
@@ -232,12 +234,20 @@ const CarouselHook = {
   },
 
   rewind() {
+    // Update index immediately for indicators
+    this.activeIndex = 0;
+    this.updateIndicators();
+
     setTimeout(() => {
       this.goto(0, false); // Instant jump to first slide
     }, 100);
   },
 
   forward() {
+    // Update index immediately for indicators
+    this.activeIndex = this.n_slides - 1;
+    this.updateIndicators();
+
     setTimeout(() => {
       this.goto(this.n_slides - 1, false); // Instant jump to last slide
     }, 100);
@@ -276,8 +286,9 @@ const CarouselHook = {
   },
 
   setupNavigation() {
-    const prevButton = this.el.querySelector(`#${this.id}-carousel-prev`);
-    const nextButton = this.el.querySelector(`#${this.id}-carousel-next`);
+    // Look in wrapper to support "below" button style
+    const prevButton = this.wrapper.querySelector(`#${this.id}-carousel-prev`);
+    const nextButton = this.wrapper.querySelector(`#${this.id}-carousel-next`);
 
     console.log(`[Carousel ${this.id}] prevButton:`, prevButton);
     console.log(`[Carousel ${this.id}] nextButton:`, nextButton);
@@ -330,6 +341,9 @@ const CarouselHook = {
   },
 
   startAutoplay() {
+    // Clear any existing timer first to prevent duplicates
+    this.stopAutoplay();
+
     this.autoplayTimer = setInterval(() => {
       this.nextSlide();
     }, this.autoplayInterval);
@@ -346,7 +360,16 @@ const CarouselHook = {
     console.log(
       `[Carousel ${this.id}] prevSlide called, transitionType: ${this.transitionType}`
     );
+
+    // Prevent rapid consecutive calls
+    if (this.isTransitioning) {
+      console.log(`[Carousel ${this.id}] Ignoring prevSlide - already transitioning`);
+      return;
+    }
+
     if (this.transitionType === "slide") {
+      this.isTransitioning = true;
+
       if (this.activeIndex === 0) {
         // At first slide, scroll to cloned last slide (position -1 in our offset system)
         // This will trigger the forward() function to instantly reposition
@@ -362,6 +385,11 @@ const CarouselHook = {
         console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
         this.goto(this.activeIndex);
       }
+
+      // Release lock after transition completes
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 600); // Slightly longer than CSS transition
     } else {
       const newIndex = (this.activeIndex - 1 + this.n_slides) % this.n_slides;
       this.goToSlide(newIndex);
@@ -372,7 +400,16 @@ const CarouselHook = {
     console.log(
       `[Carousel ${this.id}] nextSlide called, transitionType: ${this.transitionType}`
     );
+
+    // Prevent rapid consecutive calls
+    if (this.isTransitioning) {
+      console.log(`[Carousel ${this.id}] Ignoring nextSlide - already transitioning`);
+      return;
+    }
+
     if (this.transitionType === "slide") {
+      this.isTransitioning = true;
+
       if (this.activeIndex === this.n_slides - 1) {
         // At last slide, scroll to cloned first slide (after all real slides)
         // This will trigger the rewind() function to instantly reposition
@@ -388,6 +425,11 @@ const CarouselHook = {
         console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
         this.goto(this.activeIndex);
       }
+
+      // Release lock after transition completes
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 600); // Slightly longer than CSS transition
     } else {
       const newIndex = (this.activeIndex + 1) % this.n_slides;
       this.goToSlide(newIndex);
@@ -407,20 +449,27 @@ const CarouselHook = {
       this.isTransitioning = false;
       this.updateIndicators();
     } else {
-      // Fade transition
+      // Fade transition - works for both forward and backward
       const currentSlide = this.slides[oldIndex];
       const nextSlide = this.slides[newIndex];
 
+      // Update classes
       currentSlide.classList.remove("pc-carousel__slide--active");
       currentSlide.classList.add("pc-carousel__slide--inactive");
       nextSlide.classList.remove("pc-carousel__slide--inactive");
       nextSlide.classList.add("pc-carousel__slide--active");
 
+      // Set up the incoming slide
       nextSlide.style.zIndex = "10";
       nextSlide.style.opacity = "0";
+
+      // Force reflow to ensure opacity 0 is applied before transition
       void nextSlide.offsetWidth;
+
+      // Start fade in
       nextSlide.style.opacity = "1";
 
+      // Fade out current slide and clean up after transition
       setTimeout(() => {
         currentSlide.style.opacity = "0";
         currentSlide.style.zIndex = "1";

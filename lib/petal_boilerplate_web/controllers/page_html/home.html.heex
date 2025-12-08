@@ -1,7 +1,7 @@
 <.container class="mt-12">
-  <.h2 underline label="Containers" />
 
-  <div>
+ <div class="space-y-12">
+ <div>
     <.h5 label="Carousel with Slide Transition and Autoplay" />
     <.carousel
       id="carousel-2"
@@ -31,6 +31,213 @@
       />
     </.carousel>
   </div>
+    <%!-- Example 1: Overlay Buttons with Rounded Images --%>
+    <div>
+      <.h5 label="1. Overlay Buttons with Rounded Images (rounded-lg)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Circular overlay buttons inspired by Embla Carousel with rounded image corners
+      </.p>
+      <.carousel
+        id="carousel-1"
+        transition_type="fade"
+        indicator={true}
+        button_style="overlay"
+        rounded="lg"
+      >
+        <:slide
+          content_position="center"
+          title="Welcome to Petal"
+          description="A beautiful UI component library for Phoenix LiveView"
+          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="end"
+          title="Built with Tailwind CSS"
+          description="Modern utility-first CSS framework"
+          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+        <:slide
+          content_position="start"
+          title="Customizable & Extensible"
+          description="Easy to customize and extend for your needs"
+          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 2: Below Buttons with Slide Transition --%>
+    <div>
+      <.h5 label="2. Small Buttons Below with Slide Transition (rounded-xl)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Tiny circular buttons positioned below the carousel for a cleaner look
+      </.p>
+      <.carousel
+        id="carousel-2"
+        transition_type="slide"
+        indicator={true}
+        button_style="below"
+        rounded="xl"
+      >
+        <:slide
+          content_position="start"
+          title="Feature 1"
+          description="Built with modern technologies"
+          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Feature 2"
+          description="Seamless slide transitions"
+          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+        <:slide
+          content_position="end"
+          title="Feature 3"
+          description="Easy to customize and extend"
+          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 3: Autoplay with Rounded Images --%>
+    <div>
+      <.h5 label="3. Autoplay with Rounded Images (rounded-2xl)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Automatic slide progression with highly rounded corners - pauses on hover
+      </.p>
+      <.carousel
+        id="carousel-3"
+        transition_type="slide"
+        indicator={true}
+        autoplay={true}
+        autoplay_interval={3000}
+        button_style="overlay"
+        rounded="2xl"
+      >
+        <:slide
+          content_position="center"
+          title="Slide 1"
+          description="Autoplay enabled - 3 second intervals"
+          image="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Slide 2"
+          description="Hover to pause autoplay"
+          image="https://images.unsplash.com/photo-1531973576160-7125cd663d86?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Slide 3"
+          description="Click buttons to reset timer"
+          image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 4: No Buttons, Indicators Only --%>
+    <div>
+      <.h5 label="4. Indicators Only - No Buttons (rounded-md)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Clean minimal design with only dot indicators for navigation
+      </.p>
+      <.carousel
+        id="carousel-4"
+        transition_type="fade"
+        indicator={true}
+        button_style="none"
+        rounded="md"
+      >
+        <:slide
+          content_position="center"
+          title="Minimal Design"
+          description="Navigate using indicators below"
+          image="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Clean Interface"
+          description="No navigation buttons for a cleaner look"
+          image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Swipe Enabled"
+          description="Touch-friendly on mobile devices"
+          image="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 5: Fade Transition with Below Buttons --%>
+    <div>
+      <.h5 label="5. Fade Transition with Below Buttons (rounded-3xl)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Smooth fade transitions with controls positioned below
+      </.p>
+      <.carousel
+        id="carousel-5"
+        transition_type="fade"
+        indicator={true}
+        button_style="below"
+        rounded="3xl"
+      >
+        <:slide
+          content_position="end"
+          title="Elegant Fades"
+          description="Smooth opacity transitions between slides"
+          image="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="center"
+          title="Professional Look"
+          description="Perfect for portfolios and showcases"
+          image="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+        <:slide
+          content_position="start"
+          title="Highly Rounded"
+          description="3xl border radius for maximum roundness"
+          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+        />
+      </.carousel>
+    </div>
+
+    <%!-- Example 6: Navigation Links --%>
+    <div>
+      <.h5 label="6. Clickable Slides with Navigation Links (rounded-lg)" />
+      <.p class="mb-4 text-sm text-gray-500">
+        Entire slides are clickable - first slide navigates internally, second opens external link
+      </.p>
+      <.carousel
+        id="carousel-6"
+        transition_type="fade"
+        indicator={true}
+        button_style="overlay"
+        rounded="lg"
+      >
+        <:slide
+          content_position="center"
+          title="Click to Navigate"
+          description="This slide links to the form page"
+          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          navigate="/form"
+        />
+        <:slide
+          content_position="end"
+          title="External Link"
+          description="This slide opens Petal Components on GitHub"
+          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          href="https://github.com/petalframework/petal_components"
+        />
+      </.carousel>
+    </div>
+  </div>
+</.container>
+
+<.container class="mt-10">
+  <.h2 underline label="Containers" />
+
   <.container
     max_width="full"
     class="flex items-center justify-center h-10 my-5 bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
@@ -2457,78 +2664,5 @@
   <.h5 class="mt-5" label="Testomonial Skeleton" />
   <.skeleton kind={:testimonial} />
 </.container>
-
-<%!-- <.container class="mt-10">
-  <.h2 underline label="Carousel" />
-  <div class="space-y-8">
-    <div>
-      <.h5 label="Basic Carousel with Fade Transition" />
-      <.carousel id="carousel-1" transition_type="fade" indicator={true}>
-        <:slide
-          content_position="center"
-          title="Welcome to Petal"
-          description="A beautiful UI component library for Phoenix LiveView"
-          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-        />
-        <:slide
-          content_position="end"
-          title="Built with Tailwind CSS"
-          description="Modern utility-first CSS framework"
-          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-      </.carousel>
-    </div>
-
-    <div>
-      <.h5 label="Carousel with Slide Transition and Autoplay" />
-      <.carousel
-        id="carousel-2"
-        transition_type="slide"
-        indicator={true}
-        autoplay={true}
-        autoplay_interval={3000}
-      >
-        <:slide
-          content_position="start"
-          title="Feature 1"
-          description="Built with modern technologies"
-          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-        />
-        <:slide
-          content_position="center"
-          title="Feature 2"
-          description="Built with modern technologies"
-          image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-        <:slide
-          content_position="end"
-          title="Feature 3"
-          description="Easy to customize and extend"
-          image="https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-      </.carousel>
-    </div>
-
-    <div>
-      <.h5 label="Carousel with Navigation Links" />
-      <.carousel id="carousel-3" transition_type="fade" indicator={true}>
-        <:slide
-          content_position="center"
-          title="Click to Navigate"
-          description="This slide has a navigation link"
-          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-          navigate="/form"
-        />
-        <:slide
-          content_position="end"
-          title="External Link"
-          description="This slide has an external link"
-          image="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-          href="https://github.com/petalframework/petal_components"
-        />
-      </.carousel>
-    </div>
-  </div>
-</.container> --%>
 
 <div class="mb-40"></div>

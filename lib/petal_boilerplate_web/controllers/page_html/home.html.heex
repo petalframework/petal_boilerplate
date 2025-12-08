@@ -68,12 +68,13 @@
     <div>
       <.h5 label="2. Small Buttons Below with Slide Transition (rounded-xl)" />
       <.p class="mb-4 text-sm text-gray-500">
-        Tiny circular buttons positioned below the carousel for a cleaner look
+        Tiny circular buttons positioned below the carousel for a cleaner look with dot indicators
       </.p>
       <.carousel
         id="carousel-2"
         transition_type="slide"
         indicator={true}
+        indicator_style="dots"
         button_style="below"
         rounded="xl"
       >
@@ -144,6 +145,7 @@
         id="carousel-4"
         transition_type="fade"
         indicator={true}
+        indicator_style="dots"
         button_style="none"
         rounded="md"
       >
@@ -206,12 +208,13 @@
     <div>
       <.h5 label="6. Clickable Slides with Navigation Links (rounded-lg)" />
       <.p class="mb-4 text-sm text-gray-500">
-        Entire slides are clickable - first slide navigates internally, second opens external link
+        Entire slides are clickable with circular dot indicators - first slide navigates internally, second opens external link
       </.p>
       <.carousel
         id="carousel-6"
         transition_type="fade"
         indicator={true}
+        indicator_style="dots"
         button_style="overlay"
         rounded="lg"
       >

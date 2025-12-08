@@ -59,11 +59,11 @@ defmodule PetalBoilerplateWeb.PageLive do
       <.h2 underline class="mt-10" label="Button Group" />
 
       <.button_group aria_label="Size options" size={@group_size}>
-        <:button phx-click="change_size" phx-value-size="xs">XS</:button>
-        <:button phx-click="change_size" phx-value-size="sm">SM</:button>
-        <:button phx-click="change_size" phx-value-size="md">MD</:button>
-        <:button phx-click="change_size" phx-value-size="lg">LG</:button>
-        <:button phx-click="change_size" phx-value-size="xl">XL</:button>
+        <:button label="XS" phx-click="change_size" phx-value-size="xs" />
+        <:button label="SM" phx-click="change_size" phx-value-size="sm" />
+        <:button label="MD" phx-click="change_size" phx-value-size="md" />
+        <:button label="LG" phx-click="change_size" phx-value-size="lg" />
+        <:button label="XL" phx-click="change_size" phx-value-size="xl" />
       </.button_group>
 
       <%= if @modal do %>

@@ -24,6 +24,10 @@ const CarouselHook = {
     this.gap = this.el.dataset.gap || "1rem";
     this.swipe = this.el.dataset.swipe !== "false"; // Default to true
 
+    // Detect vertical orientation
+    this.isVertical = this.el.classList.contains('pc-carousel--vertical');
+    console.log(`[Carousel ${this.id}] isVertical: ${this.isVertical}`);
+
     console.log(`[Carousel ${this.id}] transitionType: ${this.transitionType}`);
     console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}, swipe: ${this.swipe}`);
 
@@ -98,10 +102,18 @@ const CarouselHook = {
     // Set up CSS Scroll Snap carousel (like the Medium article)
     this.slideWrapper.style.display = "flex";
     this.slideWrapper.style.overflow = "auto";
-    this.slideWrapper.style.scrollSnapType = "x mandatory";
+
+    // Set scroll snap direction based on orientation
+    if (this.isVertical) {
+      this.slideWrapper.style.scrollSnapType = "y mandatory";
+      this.slideWrapper.style.height = "100%";
+    } else {
+      this.slideWrapper.style.scrollSnapType = "x mandatory";
+      this.slideWrapper.style.width = "100%";
+      this.slideWrapper.style.maxWidth = "100%";
+    }
+
     this.slideWrapper.style.scrollbarWidth = "none"; // Firefox
-    this.slideWrapper.style.width = "100%";
-    this.slideWrapper.style.maxWidth = "100%";
 
     // Hide webkit scrollbar
     const style = document.createElement("style");
@@ -112,20 +124,28 @@ const CarouselHook = {
     `;
     document.head.appendChild(style);
 
-    // Update slide width before setting up slides
-    // This ensures we have the correct container width
+    // Update slide dimensions before setting up slides
     this.updateSlideWidth();
     console.log(
-      `[Carousel ${this.id}] Slide width: ${this.slideWidth}px, Space: ${this.spaceBtwSlides}px`
+      `[Carousel ${this.id}] Slide ${this.isVertical ? 'height' : 'width'}: ${this.slideWidth}px, Space: ${this.spaceBtwSlides}px`
     );
 
-    // Set up each slide for scroll snap with explicit width
+    // Set up each slide for scroll snap with explicit dimensions
     this.slides.forEach((slide, index) => {
-      slide.style.flex = `0 0 ${this.slideWidth}px`;
-      slide.style.scrollSnapAlign = "center";
-      slide.style.width = `${this.slideWidth}px`;
-      slide.style.minWidth = `${this.slideWidth}px`;
-      slide.style.maxWidth = `${this.slideWidth}px`;
+      if (this.isVertical) {
+        slide.style.flex = `0 0 ${this.slideWidth}px`;
+        slide.style.scrollSnapAlign = "center";
+        slide.style.height = `${this.slideWidth}px`;
+        slide.style.minHeight = `${this.slideWidth}px`;
+        slide.style.maxHeight = `${this.slideWidth}px`;
+        slide.style.width = "100%";
+      } else {
+        slide.style.flex = `0 0 ${this.slideWidth}px`;
+        slide.style.scrollSnapAlign = "center";
+        slide.style.width = `${this.slideWidth}px`;
+        slide.style.minWidth = `${this.slideWidth}px`;
+        slide.style.maxWidth = `${this.slideWidth}px`;
+      }
     });
 
     // Set up infinite scrolling
@@ -176,8 +196,9 @@ const CarouselHook = {
 
   // CSS Scroll Snap helper functions (from Medium article)
   index_slideCurrent() {
+    const scrollPos = this.isVertical ? this.slideWrapper.scrollTop : this.slideWrapper.scrollLeft;
     return Math.round(
-      this.slideWrapper.scrollLeft / (this.slideWidth + this.spaceBtwSlides) -
+      scrollPos / (this.slideWidth + this.spaceBtwSlides) -
         this.n_slidesCloned
     );
   },
@@ -185,27 +206,33 @@ const CarouselHook = {
   goto(index, smooth = true) {
     // Account for cloned slides - add offset for the cloned last slide at the beginning
     const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (index + this.n_slidesCloned);
+    const scrollProp = this.isVertical ? 'scrollTop' : 'scrollLeft';
+
     console.log(
-      `[Carousel ${this.id}] goto(${index}), slideWidth: ${this.slideWidth}, scrollTo: ${scrollPosition}px, smooth: ${smooth}`
+      `[Carousel ${this.id}] goto(${index}), slide${this.isVertical ? 'Height' : 'Width'}: ${this.slideWidth}, scrollTo: ${scrollPosition}px, smooth: ${smooth}`
     );
     console.log(
-      `[Carousel ${this.id}] Current scrollLeft before goto:`,
-      this.slideWrapper.scrollLeft
+      `[Carousel ${this.id}] Current ${scrollProp} before goto:`,
+      this.slideWrapper[scrollProp]
     );
 
     if (smooth) {
       this.slideWrapper.scrollTo({
-        left: scrollPosition,
-        top: 0,
+        left: this.isVertical ? 0 : scrollPosition,
+        top: this.isVertical ? scrollPosition : 0,
         behavior: 'smooth'
       });
     } else {
-      this.slideWrapper.scrollTo(scrollPosition, 0);
+      if (this.isVertical) {
+        this.slideWrapper.scrollTo(0, scrollPosition);
+      } else {
+        this.slideWrapper.scrollTo(scrollPosition, 0);
+      }
     }
 
     console.log(
-      `[Carousel ${this.id}] Current scrollLeft after goto:`,
-      this.slideWrapper.scrollLeft
+      `[Carousel ${this.id}] Current ${scrollProp} after goto:`,
+      this.slideWrapper[scrollProp]
     );
   },
 
@@ -219,9 +246,18 @@ const CarouselHook = {
       clone.setAttribute("aria-hidden", "true");
       clone.style.flex = `0 0 ${this.slideWidth}px`;
       clone.style.scrollSnapAlign = "center";
-      clone.style.width = `${this.slideWidth}px`;
-      clone.style.minWidth = `${this.slideWidth}px`;
-      clone.style.maxWidth = `${this.slideWidth}px`;
+
+      if (this.isVertical) {
+        clone.style.height = `${this.slideWidth}px`;
+        clone.style.minHeight = `${this.slideWidth}px`;
+        clone.style.maxHeight = `${this.slideWidth}px`;
+        clone.style.width = "100%";
+      } else {
+        clone.style.width = `${this.slideWidth}px`;
+        clone.style.minWidth = `${this.slideWidth}px`;
+        clone.style.maxWidth = `${this.slideWidth}px`;
+      }
+
       this.slideWrapper.append(clone);
     }
 
@@ -233,9 +269,18 @@ const CarouselHook = {
       clone.setAttribute("aria-hidden", "true");
       clone.style.flex = `0 0 ${this.slideWidth}px`;
       clone.style.scrollSnapAlign = "center";
-      clone.style.width = `${this.slideWidth}px`;
-      clone.style.minWidth = `${this.slideWidth}px`;
-      clone.style.maxWidth = `${this.slideWidth}px`;
+
+      if (this.isVertical) {
+        clone.style.height = `${this.slideWidth}px`;
+        clone.style.minHeight = `${this.slideWidth}px`;
+        clone.style.maxHeight = `${this.slideWidth}px`;
+        clone.style.width = "100%";
+      } else {
+        clone.style.width = `${this.slideWidth}px`;
+        clone.style.minWidth = `${this.slideWidth}px`;
+        clone.style.maxWidth = `${this.slideWidth}px`;
+      }
+
       this.slideWrapper.prepend(clone);
     }
 
@@ -260,11 +305,11 @@ const CarouselHook = {
       if (scrollTimer) clearTimeout(scrollTimer);
 
       scrollTimer = setTimeout(() => {
-        const scrollLeft = this.slideWrapper.scrollLeft;
+        const scrollPos = this.isVertical ? this.slideWrapper.scrollTop : this.slideWrapper.scrollLeft;
 
         // For multi-slide view, use position-based detection instead of threshold
         // Calculate the current position index
-        const currentPosition = Math.round(scrollLeft / (this.slideWidth + this.spaceBtwSlides));
+        const currentPosition = Math.round(scrollPos / (this.slideWidth + this.spaceBtwSlides));
 
         // Check if we're at or before the first real slide position
         // Real slides start at position n_slidesCloned
@@ -305,23 +350,26 @@ const CarouselHook = {
 
   updateSlideWidth() {
     if (this.slideWrapper) {
-      const containerWidth = this.carouselContainer.offsetWidth;
+      // For vertical, we measure height; for horizontal, width
+      const containerSize = this.isVertical
+        ? this.carouselContainer.offsetHeight
+        : this.carouselContainer.offsetWidth;
 
       // Convert gap to pixels if needed
       const gapInPx = this.parseGapToPixels(this.gap);
 
-      if (this.slidesPerView > 1) {
+      if (this.slidesPerView > 1 && !this.isVertical) {
         // Multi-slide view: calculate width per slide accounting for gaps
         // Total gap space = (number of slides - 1) * gap
         const totalGapSpace = (this.slidesPerView - 1) * gapInPx;
-        this.slideWidth = (containerWidth - totalGapSpace) / this.slidesPerView;
+        this.slideWidth = (containerSize - totalGapSpace) / this.slidesPerView;
         this.spaceBtwSlides = gapInPx;
 
         // Set CSS custom property for gap
         this.slideWrapper.style.setProperty('--carousel-gap', this.gap);
       } else {
-        // Single slide view: full width, no gaps
-        this.slideWidth = containerWidth;
+        // Single slide view or vertical: full size, no gaps
+        this.slideWidth = containerSize;
         this.spaceBtwSlides = 0;
       }
     }
@@ -376,14 +424,22 @@ const CarouselHook = {
           this.updateSlideWidth();
         }
 
-        // Reapply widths to all slides after resize
+        // Reapply dimensions to all slides after resize
         if (this.transitionType === "slide") {
           const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
           allSlides.forEach((slide) => {
             slide.style.flex = `0 0 ${this.slideWidth}px`;
-            slide.style.width = `${this.slideWidth}px`;
-            slide.style.minWidth = `${this.slideWidth}px`;
-            slide.style.maxWidth = `${this.slideWidth}px`;
+
+            if (this.isVertical) {
+              slide.style.height = `${this.slideWidth}px`;
+              slide.style.minHeight = `${this.slideWidth}px`;
+              slide.style.maxHeight = `${this.slideWidth}px`;
+              slide.style.width = "100%";
+            } else {
+              slide.style.width = `${this.slideWidth}px`;
+              slide.style.minWidth = `${this.slideWidth}px`;
+              slide.style.maxWidth = `${this.slideWidth}px`;
+            }
           });
 
           this.goto(currentIndex, false); // Instant reposition after resize
@@ -395,9 +451,9 @@ const CarouselHook = {
 
   setupMouseDrag() {
     let isDragging = false;
-    let startX = 0;
-    let scrollLeft = 0;
-    let currentX = 0;
+    let startPos = 0;
+    let scrollPos = 0;
+    let currentPos = 0;
     let animationFrame = null;
 
     // Add cursor style
@@ -407,9 +463,13 @@ const CarouselHook = {
     const smoothScroll = () => {
       if (!isDragging) return;
 
-      const x = currentX;
-      const walk = (x - startX) * 1.5; // Adjusted multiplier for smooth feel
-      this.slideWrapper.scrollLeft = scrollLeft - walk;
+      const walk = (currentPos - startPos) * 1.5; // Adjusted multiplier for smooth feel
+
+      if (this.isVertical) {
+        this.slideWrapper.scrollTop = scrollPos - walk;
+      } else {
+        this.slideWrapper.scrollLeft = scrollPos - walk;
+      }
 
       animationFrame = requestAnimationFrame(smoothScroll);
     };
@@ -425,9 +485,15 @@ const CarouselHook = {
       this.slideWrapper.style.userSelect = 'none'; // Prevent text selection during drag
       this.slideWrapper.style.scrollSnapType = 'none'; // Disable snap during drag
 
-      startX = e.pageX - this.slideWrapper.offsetLeft;
-      scrollLeft = this.slideWrapper.scrollLeft;
-      currentX = startX;
+      if (this.isVertical) {
+        startPos = e.pageY - this.slideWrapper.offsetTop;
+        scrollPos = this.slideWrapper.scrollTop;
+      } else {
+        startPos = e.pageX - this.slideWrapper.offsetLeft;
+        scrollPos = this.slideWrapper.scrollLeft;
+      }
+
+      currentPos = startPos;
 
       // Start smooth scrolling loop
       animationFrame = requestAnimationFrame(smoothScroll);
@@ -442,7 +508,12 @@ const CarouselHook = {
       if (!isDragging) return;
 
       e.preventDefault();
-      currentX = e.pageX - this.slideWrapper.offsetLeft;
+
+      if (this.isVertical) {
+        currentPos = e.pageY - this.slideWrapper.offsetTop;
+      } else {
+        currentPos = e.pageX - this.slideWrapper.offsetLeft;
+      }
     };
 
     const handleMouseUp = () => {
@@ -451,7 +522,8 @@ const CarouselHook = {
       isDragging = false;
       this.slideWrapper.style.cursor = 'grab';
       this.slideWrapper.style.userSelect = '';
-      this.slideWrapper.style.scrollSnapType = 'x mandatory'; // Re-enable snap
+      // Re-enable snap with proper direction
+      this.slideWrapper.style.scrollSnapType = this.isVertical ? 'y mandatory' : 'x mandatory';
 
       // Cancel animation frame
       if (animationFrame) {
@@ -471,7 +543,8 @@ const CarouselHook = {
       isDragging = false;
       this.slideWrapper.style.cursor = 'grab';
       this.slideWrapper.style.userSelect = '';
-      this.slideWrapper.style.scrollSnapType = 'x mandatory'; // Re-enable snap
+      // Re-enable snap with proper direction
+      this.slideWrapper.style.scrollSnapType = this.isVertical ? 'y mandatory' : 'x mandatory';
 
       // Cancel animation frame
       if (animationFrame) {
@@ -596,14 +669,12 @@ const CarouselHook = {
       this.isTransitioning = true;
 
       if (this.activeIndex === 0) {
-        // At first slide, scroll LEFT to the cloned slides at the beginning
-        // Position (n_slidesCloned - 1) shows the last cloned slide with first real slides
-        // This creates the visual of going backwards to the previous loop
+        // At first slide, scroll to the cloned slides at the beginning
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slidesCloned - 1);
-        console.log(`[Carousel ${this.id}] Scrolling left to position ${this.n_slidesCloned - 1} for prev loop`);
+        console.log(`[Carousel ${this.id}] Scrolling to position ${this.n_slidesCloned - 1} for prev loop`);
         this.slideWrapper.scrollTo({
-          left: scrollPosition,
-          top: 0,
+          left: this.isVertical ? 0 : scrollPosition,
+          top: this.isVertical ? scrollPosition : 0,
           behavior: 'smooth'
         });
       } else {
@@ -639,15 +710,13 @@ const CarouselHook = {
 
       if (this.activeIndex >= this.n_slides - 1) {
         // At last slide, smoothly scroll to the first slide position
-        // The goto function will handle scrolling to the position after all slides,
-        // which triggers the rewind() to seamlessly jump back to the real first slide
         this.activeIndex = 0;
         console.log(`[Carousel ${this.id}] Looping to first slide`);
         // Scroll past all slides to trigger rewind
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned);
         this.slideWrapper.scrollTo({
-          left: scrollPosition,
-          top: 0,
+          left: this.isVertical ? 0 : scrollPosition,
+          top: this.isVertical ? scrollPosition : 0,
           behavior: 'smooth'
         });
       } else {

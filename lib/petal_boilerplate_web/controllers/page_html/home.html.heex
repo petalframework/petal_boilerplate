@@ -7,6 +7,7 @@
       id="carousel-2"
       transition_type="slide"
       indicator={true}
+      control={true}
       autoplay={true}
       autoplay_interval={3000}
     >
@@ -359,8 +360,8 @@
     button_bg_class="dark:bg-gray-800 dark:hover:bg-gray-700"
     button_border_class="dark:border-gray-700"
   >
-    <:button to="#">Prev</:button>
-    <:button to="#">Next</:button>
+    <:button to="#" label="Prev" />
+    <:button to="#" label="Next" />
   </.button_group>
 </.container>
 
@@ -2457,7 +2458,7 @@
   <.skeleton kind={:testimonial} />
 </.container>
 
-<.container class="mt-10">
+<%!-- <.container class="mt-10">
   <.h2 underline label="Carousel" />
   <div class="space-y-8">
     <div>
@@ -2528,6 +2529,6 @@
       </.carousel>
     </div>
   </div>
-</.container>
+</.container> --%>
 
 <div class="mb-40"></div>

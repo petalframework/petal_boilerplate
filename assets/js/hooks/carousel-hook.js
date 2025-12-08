@@ -200,6 +200,8 @@ const CarouselHook = {
 
   setupScrollListener() {
     let scrollTimer;
+    this.isScrolling = false;
+
     this.slideWrapper.addEventListener("scroll", () => {
       // Update active index based on current scroll position
       const currentIndex = this.index_slideCurrent();
@@ -207,24 +209,22 @@ const CarouselHook = {
         this.activeIndex = currentIndex;
       }
 
-      // Handle infinite scrolling
+      // Handle infinite scrolling with debouncing
       if (scrollTimer) clearTimeout(scrollTimer);
+
       scrollTimer = setTimeout(() => {
-        if (
-          this.slideWrapper.scrollLeft <
-          (this.slideWidth + this.spaceBtwSlides) *
-            (this.n_slidesCloned - 1 / 2)
-        ) {
+        const scrollLeft = this.slideWrapper.scrollLeft;
+        const threshold = (this.slideWidth + this.spaceBtwSlides) * 0.5;
+
+        // Check if we're at the cloned last slide (beginning)
+        if (scrollLeft < threshold) {
           this.forward();
         }
-        if (
-          this.slideWrapper.scrollLeft >
-          (this.slideWidth + this.spaceBtwSlides) *
-            (this.n_slides - 1 + this.n_slidesCloned + 1 / 2)
-        ) {
+        // Check if we're at the cloned first slide (end)
+        else if (scrollLeft > (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned) - threshold) {
           this.rewind();
         }
-      }, 100);
+      }, 150); // Increased delay to let smooth scroll finish
 
       // Update indicators
       this.updateIndicators();

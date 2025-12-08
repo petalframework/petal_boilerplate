@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "../../deps/petal_components/assets/default.css";
-@source "../../deps/petal_components/**/*.*ex";
+@import "../../../petal_components/assets/default.css";
+@source "../../../petal_components/**/*.*ex";
 @import "./colors.css";
 
 
@@ -31,7 +31,6 @@
   }
 
   @layer components {
-
     /* Add component styles here (eg. buttons or tabs or anything that uses a number of styles)
 
     Example change button styles:

@@ -72,6 +72,39 @@ const CarouselHook = {
     }
   },
 
+  // Helper function to apply slide dimensions based on orientation
+  applySlideDimensions(slide) {
+    slide.style.flex = `0 0 ${this.slideWidth}px`;
+    slide.style.scrollSnapAlign = "center";
+
+    if (this.isVertical) {
+      slide.style.height = `${this.slideWidth}px`;
+      slide.style.minHeight = `${this.slideWidth}px`;
+      slide.style.maxHeight = `${this.slideWidth}px`;
+      slide.style.width = "100%";
+    } else {
+      slide.style.width = `${this.slideWidth}px`;
+      slide.style.minWidth = `${this.slideWidth}px`;
+      slide.style.maxWidth = `${this.slideWidth}px`;
+    }
+  },
+
+  // Helper function to clone a slide for infinite scrolling
+  cloneSlide(slideToClone) {
+    const clone = slideToClone.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    this.applySlideDimensions(clone);
+    return clone;
+  },
+
+  // Helper function to reset autoplay after manual interaction
+  resetAutoplay() {
+    if (this.autoplay) {
+      this.stopAutoplay();
+      this.startAutoplay();
+    }
+  },
+
   getResponsiveSlidesPerView() {
     // If only 1 slide per view on desktop, no need for responsive logic
     if (this.slidesPerViewDesktop <= 1) {
@@ -124,21 +157,8 @@ const CarouselHook = {
     this.updateSlideWidth();
 
     // Set up each slide for scroll snap with explicit dimensions
-    this.slides.forEach((slide, index) => {
-      if (this.isVertical) {
-        slide.style.flex = `0 0 ${this.slideWidth}px`;
-        slide.style.scrollSnapAlign = "center";
-        slide.style.height = `${this.slideWidth}px`;
-        slide.style.minHeight = `${this.slideWidth}px`;
-        slide.style.maxHeight = `${this.slideWidth}px`;
-        slide.style.width = "100%";
-      } else {
-        slide.style.flex = `0 0 ${this.slideWidth}px`;
-        slide.style.scrollSnapAlign = "center";
-        slide.style.width = `${this.slideWidth}px`;
-        slide.style.minWidth = `${this.slideWidth}px`;
-        slide.style.maxWidth = `${this.slideWidth}px`;
-      }
+    this.slides.forEach((slide) => {
+      this.applySlideDimensions(slide);
     });
 
     // Set up infinite scrolling
@@ -227,47 +247,13 @@ const CarouselHook = {
 
     // Clone ALL slides and append to end for forward scrolling
     for (let i = 0; i < this.n_slides; i++) {
-      const slideToClone = this.slides[i];
-      const clone = slideToClone.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      clone.style.flex = `0 0 ${this.slideWidth}px`;
-      clone.style.scrollSnapAlign = "center";
-
-      if (this.isVertical) {
-        clone.style.height = `${this.slideWidth}px`;
-        clone.style.minHeight = `${this.slideWidth}px`;
-        clone.style.maxHeight = `${this.slideWidth}px`;
-        clone.style.width = "100%";
-      } else {
-        clone.style.width = `${this.slideWidth}px`;
-        clone.style.minWidth = `${this.slideWidth}px`;
-        clone.style.maxWidth = `${this.slideWidth}px`;
-      }
-
-      this.slideWrapper.append(clone);
+      this.slideWrapper.append(this.cloneSlide(this.slides[i]));
     }
 
     // Clone ALL slides and prepend to beginning for backward scrolling
     // Prepend in reverse order so they appear in correct sequence
     for (let i = this.n_slides - 1; i >= 0; i--) {
-      const slideToClone = this.slides[i];
-      const clone = slideToClone.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      clone.style.flex = `0 0 ${this.slideWidth}px`;
-      clone.style.scrollSnapAlign = "center";
-
-      if (this.isVertical) {
-        clone.style.height = `${this.slideWidth}px`;
-        clone.style.minHeight = `${this.slideWidth}px`;
-        clone.style.maxHeight = `${this.slideWidth}px`;
-        clone.style.width = "100%";
-      } else {
-        clone.style.width = `${this.slideWidth}px`;
-        clone.style.minWidth = `${this.slideWidth}px`;
-        clone.style.maxWidth = `${this.slideWidth}px`;
-      }
-
-      this.slideWrapper.prepend(clone);
+      this.slideWrapper.prepend(this.cloneSlide(this.slides[i]));
     }
   },
 
@@ -413,18 +399,7 @@ const CarouselHook = {
         if (this.transitionType === "slide") {
           const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
           allSlides.forEach((slide) => {
-            slide.style.flex = `0 0 ${this.slideWidth}px`;
-
-            if (this.isVertical) {
-              slide.style.height = `${this.slideWidth}px`;
-              slide.style.minHeight = `${this.slideWidth}px`;
-              slide.style.maxHeight = `${this.slideWidth}px`;
-              slide.style.width = "100%";
-            } else {
-              slide.style.width = `${this.slideWidth}px`;
-              slide.style.minWidth = `${this.slideWidth}px`;
-              slide.style.maxWidth = `${this.slideWidth}px`;
-            }
+            this.applySlideDimensions(slide);
           });
 
           this.goto(currentIndex, false); // Instant reposition after resize
@@ -576,22 +551,14 @@ const CarouselHook = {
     if (prevButton) {
       prevButton.addEventListener("click", () => {
         this.prevSlide();
-        // Reset autoplay on manual interaction
-        if (this.autoplay) {
-          this.stopAutoplay();
-          this.startAutoplay();
-        }
+        this.resetAutoplay();
       });
     }
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
         this.nextSlide();
-        // Reset autoplay on manual interaction
-        if (this.autoplay) {
-          this.stopAutoplay();
-          this.startAutoplay();
-        }
+        this.resetAutoplay();
       });
     }
   },
@@ -606,11 +573,7 @@ const CarouselHook = {
         } else {
           this.goToSlide(index);
         }
-        // Reset autoplay on manual interaction
-        if (this.autoplay) {
-          this.stopAutoplay();
-          this.startAutoplay();
-        }
+        this.resetAutoplay();
       });
     });
 
@@ -642,11 +605,7 @@ const CarouselHook = {
         this.prevSlide();
       }
 
-      // Reset autoplay on manual interaction
-      if (this.autoplay) {
-        this.stopAutoplay();
-        this.startAutoplay();
-      }
+      this.resetAutoplay();
     };
 
     // Make carousel focusable

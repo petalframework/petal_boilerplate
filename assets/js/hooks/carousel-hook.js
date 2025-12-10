@@ -23,10 +23,11 @@ const CarouselHook = {
     this.slidesPerView = this.getResponsiveSlidesPerView();
     this.gap = this.el.dataset.gap || "1rem";
     this.swipe = this.el.dataset.swipe !== "false"; // Default to true
+    this.loop = this.el.dataset.loop !== "false"; // Default to true
 
     // Detect vertical orientation
     this.isVertical = this.el.classList.contains('pc-carousel--vertical');
-    console.log(`[Carousel ${this.id}] isVertical: ${this.isVertical}`);
+    console.log(`[Carousel ${this.id}] isVertical: ${this.isVertical}, loop: ${this.loop}`);
 
     console.log(`[Carousel ${this.id}] transitionType: ${this.transitionType}`);
     console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}, swipe: ${this.swipe}`);
@@ -166,6 +167,7 @@ const CarouselHook = {
     setTimeout(() => {
       this.goto(0, false); // Use goto with smooth=false for initialization
       this.updateIndicators();
+      this.updateButtonStates();
     }, 50);
   },
 
@@ -239,6 +241,13 @@ const CarouselHook = {
   setupInfiniteScrolling() {
     if (this.n_slides === 0) return;
 
+    // Skip cloning if loop is disabled
+    if (!this.loop) {
+      console.log(`[Carousel ${this.id}] Loop disabled, skipping slide cloning`);
+      this.n_slidesCloned = 0;
+      return;
+    }
+
     // Clone ALL slides and append to end for forward scrolling
     for (let i = 0; i < this.n_slides; i++) {
       const slideToClone = this.slides[i];
@@ -301,30 +310,33 @@ const CarouselHook = {
         this.activeIndex = currentIndex;
       }
 
-      // Handle infinite scrolling with debouncing
-      if (scrollTimer) clearTimeout(scrollTimer);
+      // Handle infinite scrolling with debouncing (skip if loop is disabled)
+      if (this.loop) {
+        if (scrollTimer) clearTimeout(scrollTimer);
 
-      scrollTimer = setTimeout(() => {
-        const scrollPos = this.isVertical ? this.slideWrapper.scrollTop : this.slideWrapper.scrollLeft;
+        scrollTimer = setTimeout(() => {
+          const scrollPos = this.isVertical ? this.slideWrapper.scrollTop : this.slideWrapper.scrollLeft;
 
-        // For multi-slide view, use position-based detection instead of threshold
-        // Calculate the current position index
-        const currentPosition = Math.round(scrollPos / (this.slideWidth + this.spaceBtwSlides));
+          // For multi-slide view, use position-based detection instead of threshold
+          // Calculate the current position index
+          const currentPosition = Math.round(scrollPos / (this.slideWidth + this.spaceBtwSlides));
 
-        // Check if we're at or before the first real slide position
-        // Real slides start at position n_slidesCloned
-        if (currentPosition < this.n_slidesCloned) {
-          this.forward();
-        }
-        // Check if we're at or after the last cloned slide position
-        // Cloned slides at end start at position (n_slidesCloned + n_slides)
-        else if (currentPosition >= this.n_slidesCloned + this.n_slides) {
-          this.rewind();
-        }
-      }, 100);
+          // Check if we're at or before the first real slide position
+          // Real slides start at position n_slidesCloned
+          if (currentPosition < this.n_slidesCloned) {
+            this.forward();
+          }
+          // Check if we're at or after the last cloned slide position
+          // Cloned slides at end start at position (n_slidesCloned + n_slides)
+          else if (currentPosition >= this.n_slidesCloned + this.n_slides) {
+            this.rewind();
+          }
+        }, 100);
+      }
 
-      // Update indicators
+      // Update indicators and button states
       this.updateIndicators();
+      this.updateButtonStates();
     });
   },
 
@@ -332,6 +344,7 @@ const CarouselHook = {
     // Update index immediately for indicators
     this.activeIndex = 0;
     this.updateIndicators();
+    this.updateButtonStates();
 
     setTimeout(() => {
       this.goto(0, false); // Instant jump to first slide
@@ -342,6 +355,7 @@ const CarouselHook = {
     // Update index immediately for indicators
     this.activeIndex = this.n_slides - 1;
     this.updateIndicators();
+    this.updateButtonStates();
 
     setTimeout(() => {
       this.goto(this.n_slides - 1, false); // Instant jump to last slide
@@ -669,7 +683,14 @@ const CarouselHook = {
       this.isTransitioning = true;
 
       if (this.activeIndex === 0) {
-        // At first slide, scroll to the cloned slides at the beginning
+        // If loop is disabled, prevent going past the first slide
+        if (!this.loop) {
+          console.log(`[Carousel ${this.id}] At first slide and loop disabled, preventing previous`);
+          this.isTransitioning = false;
+          return;
+        }
+
+        // At first slide with loop enabled, scroll to the cloned slides at the beginning
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slidesCloned - 1);
         console.log(`[Carousel ${this.id}] Scrolling to position ${this.n_slidesCloned - 1} for prev loop`);
         this.slideWrapper.scrollTo({
@@ -689,6 +710,12 @@ const CarouselHook = {
         this.isTransitioning = false;
       }, 600); // Slightly longer than CSS transition
     } else {
+      // Fade transition
+      if (!this.loop && this.activeIndex === 0) {
+        // At first slide with loop disabled, prevent going previous
+        console.log(`[Carousel ${this.id}] At first slide and loop disabled, preventing previous`);
+        return;
+      }
       const newIndex = (this.activeIndex - 1 + this.n_slides) % this.n_slides;
       this.goToSlide(newIndex);
     }
@@ -709,7 +736,14 @@ const CarouselHook = {
       this.isTransitioning = true;
 
       if (this.activeIndex >= this.n_slides - 1) {
-        // At last slide, smoothly scroll to the first slide position
+        // If loop is disabled, prevent going past the last slide
+        if (!this.loop) {
+          console.log(`[Carousel ${this.id}] At last slide and loop disabled, preventing next`);
+          this.isTransitioning = false;
+          return;
+        }
+
+        // At last slide with loop enabled, smoothly scroll to the first slide position
         this.activeIndex = 0;
         console.log(`[Carousel ${this.id}] Looping to first slide`);
         // Scroll past all slides to trigger rewind
@@ -731,6 +765,12 @@ const CarouselHook = {
         this.isTransitioning = false;
       }, 600); // Slightly longer than CSS transition
     } else {
+      // Fade transition
+      if (!this.loop && this.activeIndex >= this.n_slides - 1) {
+        // At last slide with loop disabled, prevent going next
+        console.log(`[Carousel ${this.id}] At last slide and loop disabled, preventing next`);
+        return;
+      }
       const newIndex = (this.activeIndex + 1) % this.n_slides;
       this.goToSlide(newIndex);
     }
@@ -777,8 +817,9 @@ const CarouselHook = {
       }, this.transitionDuration);
     }
 
-    // Update indicators
+    // Update indicators and button states
     this.updateIndicators();
+    this.updateButtonStates();
   },
 
   updateIndicators() {
@@ -791,6 +832,31 @@ const CarouselHook = {
         indicator.classList.remove("opacity-100");
       }
     });
+  },
+
+  updateButtonStates() {
+    // Only update button states when loop is disabled
+    if (this.loop) {
+      // When loop is enabled, ensure buttons are always enabled
+      const prevButton = this.wrapper.querySelector(`#${this.id}-carousel-prev`);
+      const nextButton = this.wrapper.querySelector(`#${this.id}-carousel-next`);
+
+      if (prevButton) prevButton.disabled = false;
+      if (nextButton) nextButton.disabled = false;
+      return;
+    }
+
+    // When loop is disabled, disable buttons at boundaries
+    const prevButton = this.wrapper.querySelector(`#${this.id}-carousel-prev`);
+    const nextButton = this.wrapper.querySelector(`#${this.id}-carousel-next`);
+
+    if (prevButton) {
+      prevButton.disabled = this.activeIndex === 0;
+    }
+
+    if (nextButton) {
+      nextButton.disabled = this.activeIndex >= this.n_slides - 1;
+    }
   },
 };
 

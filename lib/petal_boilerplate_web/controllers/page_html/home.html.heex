@@ -275,7 +275,7 @@
         gap="1rem"
         swipe={true}
         autoplay={false}
-        overlay_gradient={true}
+        overlay_gradient={false}
       >
         <:slide image="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
         <:slide image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" />
@@ -327,6 +327,39 @@
           />
         </.carousel>
       </div>
+    </div>
+
+    <%!-- Example 10: Non-Looping Carousel with Definitive Start/End --%>
+    <div class="flex flex-col gap-4">
+      <.h5 label="10. Non-Looping Carousel (with definitive start and end)" />
+      <.p class="text-sm text-gray-500">
+        Carousel with loop disabled. Navigation buttons are disabled when reaching the first or last slide, providing a definitive start and end. Notice how the previous button is disabled on the first slide and the next button is disabled on the last slide.
+      </.p>
+      <.carousel
+        id="carousel-10"
+        transition_type="slide"
+        indicator={true}
+        indicator_style="bars"
+        button_style="sides"
+        rounded="lg"
+        loop={false}
+      >
+        <:slide
+          title="First Slide"
+          description="This is the beginning - previous button is disabled"
+          image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        />
+        <:slide
+          title="Middle Slide"
+          description="Both navigation buttons are active"
+          image="https://images.unsplash.com/photo-1484417894907-623942c8ee29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        />
+        <:slide
+          title="Last Slide"
+          description="This is the end - next button is disabled"
+          image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        />
+      </.carousel>
     </div>
   </div>
 </.container>

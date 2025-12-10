@@ -10,11 +10,6 @@ const CarouselHook = {
       this.el.querySelectorAll(".pc-carousel__indicator")
     );
 
-    console.log(
-      `[Carousel ${this.id}] Mounted with ${this.slides.length} slides`
-    );
-    console.log(`[Carousel ${this.id}] slideWrapper:`, this.slideWrapper);
-
     this.activeIndex = parseInt(this.el.dataset.activeIndex) || 0;
     this.transitionType = this.el.dataset.transitionType || "fade";
     this.autoplay = this.el.dataset.autoplay === "true";
@@ -27,10 +22,6 @@ const CarouselHook = {
 
     // Detect vertical orientation
     this.isVertical = this.el.classList.contains('pc-carousel--vertical');
-    console.log(`[Carousel ${this.id}] isVertical: ${this.isVertical}, loop: ${this.loop}`);
-
-    console.log(`[Carousel ${this.id}] transitionType: ${this.transitionType}`);
-    console.log(`[Carousel ${this.id}] slidesPerView: ${this.slidesPerView}, gap: ${this.gap}, swipe: ${this.swipe}`);
 
     // Parameters for CSS Scroll Snap approach
     this.n_slides = this.slides.length;
@@ -53,6 +44,7 @@ const CarouselHook = {
 
     this.setupNavigation();
     this.setupIndicators();
+    this.setupKeyboardNavigation();
 
     if (this.autoplay) {
       this.startAutoplay();
@@ -74,6 +66,9 @@ const CarouselHook = {
     }
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
+    }
+    if (this.keyboardHandler) {
+      this.el.removeEventListener('keydown', this.keyboardHandler);
     }
   },
 
@@ -127,9 +122,6 @@ const CarouselHook = {
 
     // Update slide dimensions before setting up slides
     this.updateSlideWidth();
-    console.log(
-      `[Carousel ${this.id}] Slide ${this.isVertical ? 'height' : 'width'}: ${this.slideWidth}px, Space: ${this.spaceBtwSlides}px`
-    );
 
     // Set up each slide for scroll snap with explicit dimensions
     this.slides.forEach((slide, index) => {
@@ -208,15 +200,6 @@ const CarouselHook = {
   goto(index, smooth = true) {
     // Account for cloned slides - add offset for the cloned last slide at the beginning
     const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (index + this.n_slidesCloned);
-    const scrollProp = this.isVertical ? 'scrollTop' : 'scrollLeft';
-
-    console.log(
-      `[Carousel ${this.id}] goto(${index}), slide${this.isVertical ? 'Height' : 'Width'}: ${this.slideWidth}, scrollTo: ${scrollPosition}px, smooth: ${smooth}`
-    );
-    console.log(
-      `[Carousel ${this.id}] Current ${scrollProp} before goto:`,
-      this.slideWrapper[scrollProp]
-    );
 
     if (smooth) {
       this.slideWrapper.scrollTo({
@@ -231,11 +214,6 @@ const CarouselHook = {
         this.slideWrapper.scrollTo(scrollPosition, 0);
       }
     }
-
-    console.log(
-      `[Carousel ${this.id}] Current ${scrollProp} after goto:`,
-      this.slideWrapper[scrollProp]
-    );
   },
 
   setupInfiniteScrolling() {
@@ -243,7 +221,6 @@ const CarouselHook = {
 
     // Skip cloning if loop is disabled
     if (!this.loop) {
-      console.log(`[Carousel ${this.id}] Loop disabled, skipping slide cloning`);
       this.n_slidesCloned = 0;
       return;
     }
@@ -292,11 +269,6 @@ const CarouselHook = {
 
       this.slideWrapper.prepend(clone);
     }
-
-    console.log(
-      `[Carousel ${this.id}] Cloned ${this.n_slides} slides on each side. Total slides in DOM:`,
-      this.slideWrapper.children.length
-    );
   },
 
   setupScrollListener() {
@@ -417,7 +389,6 @@ const CarouselHook = {
         const slidesPerViewChanged = newSlidesPerView !== this.slidesPerView;
 
         if (slidesPerViewChanged) {
-          console.log(`[Carousel ${this.id}] Slides per view changed: ${this.slidesPerView} -> ${newSlidesPerView}`);
           this.slidesPerView = newSlidesPerView;
 
           // Need to rebuild clones for new slides per view
@@ -602,12 +573,8 @@ const CarouselHook = {
     const prevButton = this.wrapper.querySelector(`#${this.id}-carousel-prev`);
     const nextButton = this.wrapper.querySelector(`#${this.id}-carousel-next`);
 
-    console.log(`[Carousel ${this.id}] prevButton:`, prevButton);
-    console.log(`[Carousel ${this.id}] nextButton:`, nextButton);
-
     if (prevButton) {
       prevButton.addEventListener("click", () => {
-        console.log(`[Carousel ${this.id}] Previous button clicked`);
         this.prevSlide();
         // Reset autoplay on manual interaction
         if (this.autoplay) {
@@ -619,7 +586,6 @@ const CarouselHook = {
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
-        console.log(`[Carousel ${this.id}] Next button clicked`);
         this.nextSlide();
         // Reset autoplay on manual interaction
         if (this.autoplay) {
@@ -652,6 +618,46 @@ const CarouselHook = {
     this.updateIndicators();
   },
 
+  setupKeyboardNavigation() {
+    // Add keyboard navigation for accessibility
+    this.keyboardHandler = (e) => {
+      // Only respond to arrow keys
+      const isArrowKey = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key);
+      if (!isArrowKey) return;
+
+      // Prevent default scrolling behavior
+      e.preventDefault();
+
+      // Determine direction based on orientation and key
+      const isNext = this.isVertical
+        ? e.key === 'ArrowDown'
+        : e.key === 'ArrowRight';
+      const isPrev = this.isVertical
+        ? e.key === 'ArrowUp'
+        : e.key === 'ArrowLeft';
+
+      if (isNext) {
+        this.nextSlide();
+      } else if (isPrev) {
+        this.prevSlide();
+      }
+
+      // Reset autoplay on manual interaction
+      if (this.autoplay) {
+        this.stopAutoplay();
+        this.startAutoplay();
+      }
+    };
+
+    // Make carousel focusable
+    if (!this.el.hasAttribute('tabindex')) {
+      this.el.setAttribute('tabindex', '0');
+    }
+
+    // Add event listener
+    this.el.addEventListener('keydown', this.keyboardHandler);
+  },
+
   startAutoplay() {
     // Clear any existing timer first to prevent duplicates
     this.stopAutoplay();
@@ -669,13 +675,8 @@ const CarouselHook = {
   },
 
   prevSlide() {
-    console.log(
-      `[Carousel ${this.id}] prevSlide called, transitionType: ${this.transitionType}`
-    );
-
     // Prevent rapid consecutive calls
     if (this.isTransitioning) {
-      console.log(`[Carousel ${this.id}] Ignoring prevSlide - already transitioning`);
       return;
     }
 
@@ -685,14 +686,12 @@ const CarouselHook = {
       if (this.activeIndex === 0) {
         // If loop is disabled, prevent going past the first slide
         if (!this.loop) {
-          console.log(`[Carousel ${this.id}] At first slide and loop disabled, preventing previous`);
           this.isTransitioning = false;
           return;
         }
 
         // At first slide with loop enabled, scroll to the cloned slides at the beginning
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slidesCloned - 1);
-        console.log(`[Carousel ${this.id}] Scrolling to position ${this.n_slidesCloned - 1} for prev loop`);
         this.slideWrapper.scrollTo({
           left: this.isVertical ? 0 : scrollPosition,
           top: this.isVertical ? scrollPosition : 0,
@@ -701,7 +700,6 @@ const CarouselHook = {
       } else {
         // Normal previous slide
         this.activeIndex = this.activeIndex - 1;
-        console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
         this.goto(this.activeIndex);
       }
 
@@ -713,7 +711,6 @@ const CarouselHook = {
       // Fade transition
       if (!this.loop && this.activeIndex === 0) {
         // At first slide with loop disabled, prevent going previous
-        console.log(`[Carousel ${this.id}] At first slide and loop disabled, preventing previous`);
         return;
       }
       const newIndex = (this.activeIndex - 1 + this.n_slides) % this.n_slides;
@@ -722,13 +719,8 @@ const CarouselHook = {
   },
 
   nextSlide() {
-    console.log(
-      `[Carousel ${this.id}] nextSlide called, transitionType: ${this.transitionType}`
-    );
-
     // Prevent rapid consecutive calls
     if (this.isTransitioning) {
-      console.log(`[Carousel ${this.id}] Ignoring nextSlide - already transitioning`);
       return;
     }
 
@@ -738,14 +730,12 @@ const CarouselHook = {
       if (this.activeIndex >= this.n_slides - 1) {
         // If loop is disabled, prevent going past the last slide
         if (!this.loop) {
-          console.log(`[Carousel ${this.id}] At last slide and loop disabled, preventing next`);
           this.isTransitioning = false;
           return;
         }
 
         // At last slide with loop enabled, smoothly scroll to the first slide position
         this.activeIndex = 0;
-        console.log(`[Carousel ${this.id}] Looping to first slide`);
         // Scroll past all slides to trigger rewind
         const scrollPosition = (this.slideWidth + this.spaceBtwSlides) * (this.n_slides + this.n_slidesCloned);
         this.slideWrapper.scrollTo({
@@ -756,7 +746,6 @@ const CarouselHook = {
       } else {
         // Normal next slide
         this.activeIndex = this.activeIndex + 1;
-        console.log(`[Carousel ${this.id}] Going to slide: ${this.activeIndex}`);
         this.goto(this.activeIndex);
       }
 
@@ -768,7 +757,6 @@ const CarouselHook = {
       // Fade transition
       if (!this.loop && this.activeIndex >= this.n_slides - 1) {
         // At last slide with loop disabled, prevent going next
-        console.log(`[Carousel ${this.id}] At last slide and loop disabled, preventing next`);
         return;
       }
       const newIndex = (this.activeIndex + 1) % this.n_slides;
@@ -832,6 +820,25 @@ const CarouselHook = {
         indicator.classList.remove("opacity-100");
       }
     });
+
+    // Update aria-current on slides
+    this.slides.forEach((slide, index) => {
+      if (index === this.activeIndex) {
+        slide.setAttribute('aria-current', 'true');
+      } else {
+        slide.setAttribute('aria-current', 'false');
+      }
+    });
+
+    // Announce slide change to screen readers
+    this.announceSlideChange();
+  },
+
+  announceSlideChange() {
+    const liveRegion = this.el.querySelector(`#${this.id}-live-region`);
+    if (liveRegion) {
+      liveRegion.textContent = `Slide ${this.activeIndex + 1} of ${this.n_slides}`;
+    }
   },
 
   updateButtonStates() {

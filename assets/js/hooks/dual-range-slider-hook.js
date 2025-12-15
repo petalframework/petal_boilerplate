@@ -55,12 +55,32 @@ const DualRangeSliderHook = {
       rangeElement.style.left = leftPosition + "%";
       rangeElement.style.right = rightPosition + "%";
 
+      // Update the displayed values in the center text
+      const container = document.getElementById(this.sliderId);
+      if (container) {
+        const valueDisplay = container.querySelector('.grid.grid-cols-3 span:nth-child(2)');
+        if (valueDisplay) {
+          // Format values - check if there's a data attribute for format
+          const formatValue = (val) => {
+            // Try to match the original format - if it has $ signs, add them
+            const originalText = valueDisplay.textContent;
+            if (originalText.includes('$')) {
+              return '$' + val;
+            }
+            return val.toString();
+          };
+          valueDisplay.textContent = formatValue(minSlider.value) + ' - ' + formatValue(maxSlider.value);
+        }
+      }
+
       // Push values to LiveView with the sliderId to identify which slider was updated
-      this.pushEvent("range_updated", {
-        id: this.sliderId,
-        min: parseInt(minSlider.value),
-        max: parseInt(maxSlider.value),
-      });
+      if (this.pushEvent) {
+        this.pushEvent("range_updated", {
+          id: this.sliderId,
+          min: parseInt(minSlider.value),
+          max: parseInt(maxSlider.value),
+        });
+      }
     };
 
     // Add event listener to this specific slider only

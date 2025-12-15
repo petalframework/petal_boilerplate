@@ -1,4 +1,25 @@
 <.container class="mt-12">
+  <.h2 underline label="Dual Range Slider Demo" />
+  <div class="p-6 my-8 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <.simple_form :let={f} for={%{}} as={:demo}>
+      <.input
+        type="range-dual"
+        label="Price Range"
+        min_field={f[:min_price]}
+        max_field={f[:max_price]}
+        range_min={0}
+        range_max={1000}
+        step={10}
+        format_value={&"$#{&1}"}
+        range_min_label="Min"
+        range_max_label="Max"
+        id="price-range-demo"
+      />
+    </.simple_form>
+  </div>
+</.container>
+
+<.container class="mt-12">
   <.h2 underline label="Containers" />
   <.container
     max_width="full"
@@ -329,8 +350,8 @@
     button_bg_class="dark:bg-gray-800 dark:hover:bg-gray-700"
     button_border_class="dark:border-gray-700"
   >
-    <:button to="#">Prev</:button>
-    <:button to="#">Next</:button>
+    <:button to="#" label="Prev" />
+    <:button to="#" label="Next" />
   </.button_group>
 </.container>
 

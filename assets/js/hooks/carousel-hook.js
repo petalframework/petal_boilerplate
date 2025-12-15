@@ -75,7 +75,11 @@ const CarouselHook = {
   // Helper function to apply slide dimensions based on orientation
   applySlideDimensions(slide) {
     slide.style.flex = `0 0 ${this.slideWidth}px`;
-    slide.style.scrollSnapAlign = "center";
+
+    // CRITICAL: Always use 'start' alignment for consistent scroll positioning calculations
+    // Using 'center' for multi-slide views would require adding centering offsets to all
+    // scroll position calculations (goto, prevSlide, nextSlide, index_slideCurrent)
+    slide.style.scrollSnapAlign = "start";
 
     if (this.isVertical) {
       slide.style.height = `${this.slideWidth}px`;
@@ -211,10 +215,10 @@ const CarouselHook = {
   // CSS Scroll Snap helper functions (from Medium article)
   index_slideCurrent() {
     const scrollPos = this.isVertical ? this.slideWrapper.scrollTop : this.slideWrapper.scrollLeft;
-    return Math.round(
-      scrollPos / (this.slideWidth + this.spaceBtwSlides) -
-        this.n_slidesCloned
-    );
+    const rawPosition = scrollPos / (this.slideWidth + this.spaceBtwSlides);
+    const index = Math.round(rawPosition - this.n_slidesCloned);
+
+    return index;
   },
 
   goto(index, smooth = true) {
@@ -259,14 +263,22 @@ const CarouselHook = {
 
   setupScrollListener() {
     let scrollTimer;
+    let indexUpdateTimer;
     this.isScrolling = false;
 
     this.slideWrapper.addEventListener("scroll", () => {
-      // Update active index based on current scroll position
-      const currentIndex = this.index_slideCurrent();
-      if (currentIndex >= 0 && currentIndex < this.n_slides) {
-        this.activeIndex = currentIndex;
-      }
+      // Debounce activeIndex update to prevent jumping during smooth scroll
+      if (indexUpdateTimer) clearTimeout(indexUpdateTimer);
+
+      indexUpdateTimer = setTimeout(() => {
+        // Update active index based on current scroll position after scrolling settles
+        const currentIndex = this.index_slideCurrent();
+        if (currentIndex >= 0 && currentIndex < this.n_slides) {
+          this.activeIndex = currentIndex;
+          this.updateIndicators();
+          this.updateButtonStates();
+        }
+      }, 50); // Short delay to wait for scroll to settle
 
       // Handle infinite scrolling with debouncing (skip if loop is disabled)
       if (this.loop) {
@@ -291,10 +303,6 @@ const CarouselHook = {
           }
         }, 100);
       }
-
-      // Update indicators and button states
-      this.updateIndicators();
-      this.updateButtonStates();
     });
   },
 
@@ -322,7 +330,7 @@ const CarouselHook = {
 
   updateSlideWidth() {
     if (this.slideWrapper) {
-      // For vertical, we measure height; for horizontal, width
+      // Use offsetWidth/offsetHeight which includes padding for accurate measurements
       const containerSize = this.isVertical
         ? this.carouselContainer.offsetHeight
         : this.carouselContainer.offsetWidth;
@@ -330,19 +338,58 @@ const CarouselHook = {
       // Convert gap to pixels if needed
       const gapInPx = this.parseGapToPixels(this.gap);
 
+      // Set CSS custom property for gap (applies to all views)
+      this.slideWrapper.style.setProperty('--carousel-gap', this.gap);
+
       if (this.slidesPerView > 1 && !this.isVertical) {
         // Multi-slide view: calculate width per slide accounting for gaps
         // Total gap space = (number of slides - 1) * gap
         const totalGapSpace = (this.slidesPerView - 1) * gapInPx;
         this.slideWidth = (containerSize - totalGapSpace) / this.slidesPerView;
         this.spaceBtwSlides = gapInPx;
-
-        // Set CSS custom property for gap
-        this.slideWrapper.style.setProperty('--carousel-gap', this.gap);
       } else {
-        // Single slide view or vertical: full size, no gaps
+        // Single slide view or vertical: full container size
         this.slideWidth = containerSize;
-        this.spaceBtwSlides = 0;
+        // Gap still affects scroll positioning even with one slide visible
+        this.spaceBtwSlides = gapInPx;
+      }
+
+      // Measure actual dimensions after browser renders
+      // Verify that CSS gap and slide dimensions match our calculations
+      if (this.slides.length > 1) {
+        // Use setTimeout to measure after browser fully renders (200ms for larger screens)
+        setTimeout(() => {
+          if (!this.slides[0]) return;
+
+          const actualWidth = this.isVertical ? this.slides[0].offsetHeight : this.slides[0].offsetWidth;
+          const actualSpacing = this.isVertical
+            ? (this.slides[1].offsetTop - this.slides[0].offsetTop)
+            : (this.slides[1].offsetLeft - this.slides[0].offsetLeft);
+          const measuredGap = actualSpacing - actualWidth;
+
+          let needsUpdate = false;
+
+          // For single-slide views, trust measured width over calculated
+          if (this.slidesPerView === 1 && Math.abs(actualWidth - this.slideWidth) > 2) {
+            this.slideWidth = actualWidth;
+            needsUpdate = true;
+          }
+
+          // For all views, verify gap matches (critical for loop positioning)
+          if (measuredGap > 1 && Math.abs(measuredGap - this.spaceBtwSlides) > 2) {
+            this.spaceBtwSlides = measuredGap;
+            needsUpdate = true;
+          }
+
+          // Reapply if measurements differ
+          if (needsUpdate) {
+            const allSlides = this.slideWrapper.querySelectorAll(".pc-carousel__slide");
+            allSlides.forEach((slide) => {
+              this.applySlideDimensions(slide);
+            });
+            this.goto(this.activeIndex, false);
+          }
+        }, 200);
       }
     }
   },

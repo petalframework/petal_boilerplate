@@ -1,25 +1,4 @@
 <.container class="mt-12">
-  <.h2 underline label="Dual Range Slider Demo" />
-  <div class="p-6 my-8 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-    <.simple_form :let={f} for={%{}} as={:demo}>
-      <.input
-        type="range-dual"
-        label="Price Range"
-        min_field={f[:min_price]}
-        max_field={f[:max_price]}
-        range_min={0}
-        range_max={1000}
-        step={10}
-        format_value={&"$#{&1}"}
-        range_min_label="Min"
-        range_max_label="Max"
-        id="price-range-demo"
-      />
-    </.simple_form>
-  </div>
-</.container>
-
-<.container class="mt-12">
   <.h2 underline label="Containers" />
   <.container
     max_width="full"
@@ -855,6 +834,40 @@
           type="range"
           field={@form[:range_with_error]}
           placeholder="Placeholder"
+          help_text="Help text"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <.field
+          type="range-dual"
+          id="price_range"
+          label="Dual Range Slider (Requires Alpine.js)"
+          range_min={0}
+          range_max={1000}
+          range_min_label="$0"
+          range_max_label="$1000"
+          step={10}
+          min_field={%{name: "min_price", value: 100}}
+          max_field={%{name: "max_price", value: 500}}
+          field={@form[:range_dual]}
+          help_text="Drag sliders to select range"
+        />
+      </div>
+
+      <div class="mb-6">
+        <.field
+          type="range-dual"
+          id="price_range_with_error"
+          label="Dual Range Slider (with error)"
+          range_min={0}
+          range_max={1000}
+          step={10}
+          min_field={%{name: "min_price", value: 100}}
+          max_field={%{name: "max_price", value: 500}}
+          field={@form[:range_dual_with_error]}
           help_text="Help text"
         />
       </div>

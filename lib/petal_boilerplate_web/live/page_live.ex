@@ -35,17 +35,18 @@ defmodule PetalBoilerplateWeb.PageLive do
     end
   end
 
-  @impl true
-  def handle_event("range_updated", %{"id" => id, "min" => min, "max" => max}, socket)
-      when id in ["price_range", "price_range_with_error"] do
-    {:noreply, socket |> assign(:price_min, min) |> assign(:price_max, max)}
-  end
-
-  @impl true
-  def handle_event("range_updated", %{"id" => id, "min" => min, "max" => max}, socket)
-      when id in ["quantity_range", "quantity_range_with_error"] do
-    {:noreply, socket |> assign(:quantity_min, min) |> assign(:quantity_max, max)}
-  end
+  # Note: With Alpine.js dual range slider, real-time server updates are optional.
+  # The sliders work client-side with Alpine and send values on form submission.
+  # If you need real-time updates to the server, wrap the slider in a form with phx-change:
+  #
+  # <.form for={%{}} phx-change="update_price_range">
+  #   <.field type="range-dual" ... />
+  # </.form>
+  #
+  # Then handle it like this:
+  # def handle_event("update_price_range", %{"min_price" => min, "max_price" => max}, socket) do
+  #   {:noreply, assign(socket, price_min: String.to_integer(min), price_max: String.to_integer(max))}
+  # end
 
   @impl true
   def handle_event("change_size", %{"size" => size}, socket) do
@@ -106,8 +107,7 @@ defmodule PetalBoilerplateWeb.PageLive do
               radio_group_col_with_error: {"can't be blank", [validation: :required]},
               radio_group_row_with_error: {"can't be blank", [validation: :required]},
               range_dual_with_error: {"can't be blank", [validation: :required]},
-              range_numeric_with_error: {"can't be blank", [validation: :required]},
-              range_with_error: {"can't be blank", [validation: :required]}
+              range_numeric_with_error: {"can't be blank", [validation: :required]}
             ]
           },
           as: :object
@@ -392,7 +392,7 @@ defmodule PetalBoilerplateWeb.PageLive do
             <.field
               type="range-dual"
               id="price_range"
-              label="Select Price Range (Dual Slider)"
+              label="Dual Range Slider (Requires Alpine.js)"
               range_min={0}
               range_max={500}
               range_min_label="$0"
@@ -401,14 +401,14 @@ defmodule PetalBoilerplateWeb.PageLive do
               min_field={%{name: "min_price", value: @price_min}}
               max_field={%{name: "max_price", value: @price_max}}
               field={form[:range_dual]}
-              help_text="Help text"
+              help_text="Drag sliders to select range"
             />
           </div>
           <div class="mb-6">
             <.field
               type="range-dual"
               id="price_range_with_error"
-              label="Select Price Range (Dual Slider with Error)"
+              label="Dual Range Slider (with error)"
               range_min={0}
               range_max={500}
               range_min_label="$0"
@@ -927,24 +927,5 @@ defmodule PetalBoilerplateWeb.PageLive do
       />
     </.container>
     """
-  end
-
-  @impl true
-  def handle_event("change_size", %{"size" => size}, socket) do
-    {:noreply, assign(socket, group_size: size)}
-  end
-
-  @impl true
-  def handle_event("close_modal", _, socket) do
-    {:noreply, push_patch(socket, to: "/live")}
-  end
-
-  def handle_event("close_slide_over", _, socket) do
-    {:noreply, push_patch(socket, to: "/live")}
-  end
-
-  @impl true
-  def handle_event("goto-page", %{"page" => page}, socket) do
-    {:noreply, push_patch(socket, to: ~p"/live/pagination/#{page}")}
   end
 end

@@ -42,8 +42,10 @@ defmodule PetalBoilerplateWeb do
         formats: [:html, :json],
         layouts: [html: PetalBoilerplateWeb.Layouts]
 
-      import Plug.Conn
       use Gettext, backend: PetalBoilerplateWeb.Gettext
+
+      import Plug.Conn
+
       unquote(verified_routes())
     end
   end
@@ -80,14 +82,19 @@ defmodule PetalBoilerplateWeb do
 
   defp html_helpers do
     quote do
+      # Translation
+      use Gettext, backend: PetalBoilerplateWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
+      # Core UI components
       import PetalBoilerplateWeb.CoreComponents
+      # Petal Components
       use PetalComponents
-      use Gettext, backend: PetalBoilerplateWeb.Gettext
-      # Shortcut for generating JS commands
+
+      # Common modules used in templates
       alias Phoenix.LiveView.JS
+      alias PetalBoilerplateWeb.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -104,7 +111,7 @@ defmodule PetalBoilerplateWeb do
   end
 
   @doc """
-  When used, dispatch to the appropriate controller/view/etc.
+  When used, dispatch to the appropriate controller/live_view/etc.
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])

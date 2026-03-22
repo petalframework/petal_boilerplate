@@ -8,18 +8,14 @@ defmodule PetalBoilerplate.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       PetalBoilerplateWeb.Telemetry,
-      # Start the Ecto repository
       PetalBoilerplate.Repo,
-      # Start the PubSub system
+      {DNSCluster, query: Application.get_env(:petal_boilerplate, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: PetalBoilerplate.PubSub},
-      # Start Finch
-      {Finch, name: PetalBoilerplate.Finch},
-      # Start the Endpoint (http/https)
-      PetalBoilerplateWeb.Endpoint
       # Start a worker by calling: PetalBoilerplate.Worker.start_link(arg)
-      # {PetalBoilerplate.Worker, arg}
+      # {PetalBoilerplate.Worker, arg},
+      # Start to serve requests, typically the last entry
+      PetalBoilerplateWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

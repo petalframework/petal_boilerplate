@@ -5,7 +5,7 @@ defmodule PetalBoilerplateWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {PetalBoilerplateWeb.Layouts, :root}
+    plug :put_root_layout, html: {PetalBoilerplateWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end

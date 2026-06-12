@@ -117,6 +117,12 @@
         <.tab link_type="a" is_active={@active_tab == :home} to="/" label="Components" />
         <.tab link_type="a" is_active={@active_tab == :live} to="/live" label="Live Components" />
         <.tab link_type="live_redirect" is_active={@active_tab == :form} to="/form" label="Forms" />
+        <.tab
+          link_type="a"
+          is_active={@active_tab == :effects}
+          to="/effects"
+          label="Effects"
+        />
       </.tabs>
     </.container>
 

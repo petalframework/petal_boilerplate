@@ -1,3 +1,19 @@
+/* Colour roles — the contract petal_components styles against.
+ *
+ *   primary    your base action colour. Every variant of every component
+ *              tints with it — solid fills, outline borders, ghost text,
+ *              progress bars, the lot. Map it to any Tailwind hue below,
+ *              or make it monochrome (near-black light / near-white dark,
+ *              via light-dark()) for the shadcn look.
+ *   secondary  your brand accent — a second hue for when one isn't enough.
+ *              Same rule: it tints everything rendered color="secondary".
+ *   semantics  info/success/warning/danger carry meaning; keep them
+ *              recognisable (blue-ish, green, yellow, red).
+ *   gray       the chrome — borders, muted text, washes. Always neutral.
+ *
+ * One rule everywhere: colour picks the ramp, variant picks the treatment.
+ * Swap a ramp here and every component follows — no component CSS to touch.
+ */
 @theme inline {
   --color-primary-50: var(--color-blue-50);
   --color-primary-100: var(--color-blue-100);
